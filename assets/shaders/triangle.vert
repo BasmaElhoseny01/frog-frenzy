@@ -33,7 +33,9 @@ void main(){
         vec3(0.5,-0.5,0.0),
         vec3(0.0,0.5,0.0)
     );
+     // get the position based on the vertex id
     vec3 position = positions[gl_VertexID];
+    
     // Scale it
     position.xy *= scale;
 

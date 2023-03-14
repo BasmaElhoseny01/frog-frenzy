@@ -12,8 +12,8 @@ uniform int size = 32;
 uniform vec3 colors[2];
 
 void main(){
-    float total = floor(gl_FragCoord.x/size) + floor(gl_FragCoord.y/size) ;
-    if(mod(total, 2.0)==0.0)
+    float index = floor(gl_FragCoord.x/size) + floor(gl_FragCoord.y/size) ;// get value od diagonal
+    if(mod(index, 2.0)==1.0)// check location of diagonal
         frag_color = vec4(colors[1], 1.0);
     else
         frag_color = vec4(colors[0], 1.0);

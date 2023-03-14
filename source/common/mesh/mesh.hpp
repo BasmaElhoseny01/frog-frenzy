@@ -66,6 +66,8 @@ namespace our
             glBindVertexArray(VAO);
             // FIXME: glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
             // 6. Position Attribute
             // FIXME:what does it do??
             glEnableVertexAttribArray(ATTRIB_LOC_POSITION);
@@ -88,7 +90,7 @@ namespace our
             // stride: complete vertex
             // offset: skip position
             // CHECK: @AhmedHosny2024 is it Normalized??
-            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void *)(offsetof(Vertex, color)));
+            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
             // 8. Texture Attribute
             // FIXME: what does it do??
@@ -114,8 +116,10 @@ namespace our
             // CHECK: @AhmedHosny2024 is it Normalized??
             glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, false, sizeof(Vertex), (void *)(offsetof(Vertex, normal)));
 
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
             // FIXME: Unbind Vertex Array
-            // glBindVertexArray(0);
+            glBindVertexArray(0);
 
             // 10.Set Num of Elements to size of the vector
             elementCount = elements.size();

@@ -54,6 +54,7 @@ namespace our
 
             // 4.Buffer Data To EBO
             // size= # of elements in the vector * size of each element
+            // CHECK: @AhmedHosny2024 .data()??
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements.size() * sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
             // FIXME: Unbind Element Buffer
             // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
@@ -89,10 +90,34 @@ namespace our
             // CHECK: @AhmedHosny2024 is it Normalized??
             glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void *)(offsetof(Vertex, color)));
 
-            // Unbind Vertex Array
-            glBindVertexArray(0);
+            // 8. Texture Attribute
+            // FIXME: what does it do??
+            glEnableVertexAttribArray(ATTRIB_LOC_TEXCOORD);
+            // How will we read bits inside the buffer ??
+            // size:4 ➡ vec<4, glm::uint8, glm::defaultp> Color; (vec4)
+            // type:GL_UNSIGNED_BYTE ➡ vec<4, glm::uint8, glm::defaultp> Color; (uint8)
+            // normalized: true ==> uint8 =>0-255 so we need to make it normalized
+            // stride: complete vertex
+            // offset: skip position
+            // CHECK: @AhmedHosny2024 is it Normalized??
+            glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, false, sizeof(Vertex), (void *)(offsetof(Vertex, tex_coord)));
 
-            // 8.Set Num of Elements to size of the vector
+            // 9. normal Attribute
+            // FIXME: what does it do??
+            glEnableVertexAttribArray(ATTRIB_LOC_NORMAL);
+            // How will we read bits inside the buffer ??
+            // size:4 ➡ vec<4, glm::uint8, glm::defaultp> Color; (vec4)
+            // type:GL_UNSIGNED_BYTE ➡ vec<4, glm::uint8, glm::defaultp> Color; (uint8)
+            // normalized: true ==> uint8 =>0-255 so we need to make it normalized
+            // stride: complete vertex
+            // offset: skip position
+            // CHECK: @AhmedHosny2024 is it Normalized??
+            glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, false, sizeof(Vertex), (void *)(offsetof(Vertex, normal)));
+
+            // FIXME: Unbind Vertex Array
+            // glBindVertexArray(0);
+
+            // 10.Set Num of Elements to size of the vector
             elementCount = elements.size();
         }
 
@@ -107,10 +132,7 @@ namespace our
             //  Syntax: void glDrawElements(	GLenum mode,GLsizei count,GLenum type,const void * indices);
             //  CHECK: count:  => # of the elements in elements vector
             // type: type of one element is unsigned int
-            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void *)0);
-
-            // 3.Unbind Vertex Array
-            glBindVertexArray(0);
+            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
         }
 
         // this function should delete the vertex & element buffers and the vertex array object

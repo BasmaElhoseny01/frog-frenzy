@@ -26,3 +26,9 @@ CMakeSettings.json
 
 # Screenshots
 screenshots/
+
+# Errors
+errors/
+
+# Scripts
+scripts/

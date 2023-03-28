@@ -42,6 +42,39 @@ namespace our {
         // For example, if faceCulling.enabled is true, you should call glEnable(GL_CULL_FACE), otherwise, you should call glDisable(GL_CULL_FACE)
         void setup() const {
             //TODO: (Req 4) Write this function
+            glColorMask(colorMask[0],colorMask[1],colorMask[2],colorMask[3]);
+
+            if(depthTesting.enabled){
+                //to enable depth testing
+                glEnable(GL_DEPTH_TEST); 
+                //clear the depth buffer  
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
+                if(depthMask)
+                    glDepthMask(GL_TRUE);    // enable wirting un depth buffer
+                else 
+                    glDepthMask(GL_FALSE);   // disabled writing in depth buffer
+                //update depth if the fragment's depth value is less than the stored depth value.
+                glDepthFunc(depthTesting.function);  
+            }
+            if(faceCulling.enabled){
+                //to enable face culling 
+                glEnable(GL_CULL_FACE);  
+                //to cull front faces or the back faces
+                //to cull back faces and not the front faces
+                glCullFace(faceCulling.culledFace);  
+                //to decide the culledFace as frontFace
+                //the back-faces instead of counter-clockwise
+                glFrontFace(faceCulling.frontFace);  
+            }
+            if(blending.enabled){
+                // to enable blending.
+                glEnable(GL_BLEND);  
+                //set the option for the source and destination factor.
+                glBlendFunc(blending.sourceFactor, blending.destinationFactor);  
+                glBlendEquation(blending.equation);
+                glBlendColor(blending.constantColor[0],blending.constantColor[1],blending.constantColor[2],blending.constantColor[3]);
+            }
+
         }
 
         // Given a json object, this function deserializes a PipelineState structure

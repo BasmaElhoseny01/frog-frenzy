@@ -40,8 +40,9 @@ our::Texture2D* our::texture_utils::loadImage(const std::string& filename, bool 
     // send texture data from the RAM to the VRAM.
     // using the width and height of the read image above
     // pass pixels array
-
+    
     glGenerateMipmap(GL_TEXTURE_2D);
+    
     // This function will generate the mip map for the texture.
 
     stbi_image_free(pixels); //Free image data after uploading to GPU

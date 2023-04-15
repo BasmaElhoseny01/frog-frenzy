@@ -25,11 +25,14 @@ namespace our {
         // deleted when "deleteMarkedEntities" is called.
         Entity* add() {
             //TODO: (Req 8) Create a new entity, set its world member variable to this,
+            Entity *newEntity=new Entity();
+            newEntity->world=this;
             // and don't forget to insert it in the suitable container.
+            entities.insert(newEntity);
             return nullptr;
         }
 
-        // This returns and immutable reference to the set of all entites in the world.
+        // This returns and immutable reference to the set of all entities in the world.
         const std::unordered_set<Entity*>& getEntities() {
             return entities;
         }
@@ -38,17 +41,34 @@ namespace our {
         // The elements in the "markedForRemoval" set will be removed and deleted when "deleteMarkedEntities" is called.
         void markForRemoval(Entity* entity){
             //TODO: (Req 8) If the entity is in this world, add it to the "markedForRemoval" set.
+            if(entities.find(entity) != entities.end()){
+                //if entity belongs to this world
+                markedForRemoval.insert(entity);
+            }
         }
 
         // This removes the elements in "markedForRemoval" from the "entities" set.
         // Then each of these elements are deleted.
         void deleteMarkedEntities(){
             //TODO: (Req 8) Remove and delete all the entities that have been marked for removal
+            for(auto it=markedForRemoval.begin();it!=markedForRemoval.end();it++){
+                //Remove from the entities
+                entities.erase(*it);
+                //Delete the Entity
+                delete *it;
+            }
         }
 
         //This deletes all entities in the world
         void clear(){
-            //TODO: (Req 8) Delete all the entites and make sure that the containers are empty
+            //TODO: (Req 8) Delete all the entities and make sure that the containers are empty
+            for(auto it=entities.begin();it!=entities.end();it++){
+                delete *it;
+            }
+
+            //Empty entities and markedForRemoval sets
+            entities.clear();
+            markedForRemoval.clear();
         }
 
         //Since the world owns all of its entities, they should be deleted alongside it.

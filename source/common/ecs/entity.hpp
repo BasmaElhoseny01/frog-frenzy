@@ -7,6 +7,7 @@
 #include <string>
 #include <glm/glm.hpp>
 
+
 namespace our
 {
 
@@ -47,8 +48,8 @@ namespace our
             return newComponent;
         }
 
-        // This template method searches for a component of type T and returns a pointer to it
-        // If no component of type T was found, it returns a nullptr
+        //This template method searches for a component of type T and returns a pointer to it
+        //If no component of type T was found, it returns a nullptr
         template <typename T>
         T *getComponent()
         {
@@ -66,6 +67,20 @@ namespace our
             // No Component with type T is found
             return nullptr;
         }
+        // This template method seacrhes for a component of type T and returns a pointer to it
+        // If no component of type T was found, it returns a nullptr 
+        // template<typename T>
+        // T* getComponent(){
+        //     //TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
+        //     // Return the component you found, or return null of nothing was found.
+        //     for(auto& component : components){
+        //     T* ptr = dynamic_cast<T*>(component);
+        //     if(ptr) {
+        //         return ptr;
+        //     }
+        // }
+        // return nullptr;
+        // }
 
         // Note: By index
         //  This template method dynamic and returns a pointer to it

@@ -3,6 +3,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <iostream>
+using namespace std;
+
 namespace our
 {
     // Reads camera parameters from the given json object
@@ -43,7 +46,12 @@ namespace our
         //  - the up direction which is the vector (0,1,0) but after being transformed by M
         //  then you can use glm::lookAt
 
-        glm::mat4 view_matrix = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        glm::vec4 center = M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f);
+        glm::vec4 up = M * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+
+        // cout << "Basma" << endl;
+        glm::mat4 view_matrix = glm::lookAt(glm::vec3(eye), glm::vec3(center), glm::vec3(up));
         return view_matrix;
     }
 
@@ -62,12 +70,11 @@ namespace our
             // NOTE: The function glm::ortho can be used to create the orthographic projection matrix
             // It takes left, right, bottom, top. Bottom is -orthoHeight/2 and Top is orthoHeight/2.
             // Left and Right are the same but after being multiplied by the aspect ratio
-            // CHECK:where is left and right
             float bottom = -1 * (orthoHeight / 2);
             float top = (orthoHeight / 2);
             float left = bottom * aspect_ratio;
             float right = top * aspect_ratio;
-            projection_matrix = glm::ortho(left, right, bottom, top);
+            projection_matrix = glm::ortho(left, right, bottom, top, near, far);
         }
         else if (this->cameraType == CameraType::PERSPECTIVE)
         {

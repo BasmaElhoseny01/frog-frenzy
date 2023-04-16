@@ -2,7 +2,8 @@
 
 #include <glad/gl.h>
 #include "vertex.hpp"
-
+#include <iostream>
+using namespace std;
 namespace our
 {
 
@@ -133,10 +134,11 @@ namespace our
             glBindVertexArray(VAO);
 
             // 2. Draw
-            //  Syntax: void glDrawElements(	GLenum mode,GLsizei count,GLenum type,const void * indices);
+            //  Syntax: void glDrawElements(GLenum mode,GLsizei count,GLenum type,const void * indices);
             //  CHECK: count:  => # of the elements in elements vector
             // type: type of one element is unsigned int
             glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
+           // cout << "Drawn" << endl;
         }
 
         // this function should delete the vertex & element buffers and the vertex array object

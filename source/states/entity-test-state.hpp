@@ -6,9 +6,6 @@
 #include <components/mesh-renderer.hpp>
 #include <application.hpp>
 
-#include <iostream>
-using namespace std;
-
 // This is a helper function that will search for a component and will return the first one found
 template <typename T>
 T *find(our::World *world)
@@ -76,7 +73,6 @@ class EntityTestState : public our::State
 
             // draw mesh
             meshRenderer->mesh->draw();
-            cout << "Basma10" << endl;
         }
     }
 

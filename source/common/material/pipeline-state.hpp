@@ -48,7 +48,7 @@ namespace our {
                 //to enable depth testing
                 glEnable(GL_DEPTH_TEST); 
                 //clear the depth buffer  
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
+               //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
                 if(depthMask)
                     glDepthMask(GL_TRUE);    // enable wirting un depth buffer
                 else 

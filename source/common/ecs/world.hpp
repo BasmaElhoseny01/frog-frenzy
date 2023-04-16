@@ -29,7 +29,7 @@ namespace our {
             newEntity->world=this;
             // and don't forget to insert it in the suitable container.
             entities.insert(newEntity);
-            return nullptr;
+            return newEntity;
         }
 
         // This returns and immutable reference to the set of all entities in the world.
@@ -52,10 +52,13 @@ namespace our {
         void deleteMarkedEntities(){
             //TODO: (Req 8) Remove and delete all the entities that have been marked for removal
             for(auto it=markedForRemoval.begin();it!=markedForRemoval.end();it++){
-                //Remove from the entities
-                entities.erase(*it);
+
+                //Note: the erase members shall invalidate only iterators and references to the erased elements.
                 //Delete the Entity
-                delete *it;
+                delete *it;//delete pointer just *it =nullptr
+
+                //Remove from the entities
+                entities.erase(it);
             }
         }
 

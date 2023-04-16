@@ -47,7 +47,7 @@ class EntityTestState: public our::State {
         //TODO: (Req 8) Change the following line to compute the correct view projection matrix 
         glm::mat4 V = camera->getViewMatrix();
         glm::mat4 P = camera->getProjectionMatrix(getApp()->getFrameBufferSize());
-        glm::mat4 VP = V*P;
+        glm::mat4 VP = P*V;//MProjection* MView
 
         glm::mat4 MVP;
 

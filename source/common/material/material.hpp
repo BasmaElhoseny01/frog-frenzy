@@ -46,7 +46,7 @@ namespace our {
     class TexturedMaterial : public TintedMaterial {
     public:
         Texture2D* texture;
-        Sampler* sampler;
+        Sampler* sampler=new Sampler();
         float alphaThreshold;
 
         void setup() const override;

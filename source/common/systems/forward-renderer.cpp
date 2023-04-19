@@ -135,12 +135,14 @@ namespace our {
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::mat4 ViewMatrix = camera->getViewMatrix();
-        glm::vec3 cameraForward = glm::vec3(ViewMatrix[0][2], ViewMatrix[1][2],ViewMatrix[2][2]);
+        auto M = camera->getOwner()->getLocalToWorldMatrix(); //get local matrix
+        glm::vec3 eyeTrans = M * glm::vec4(0, 0, 0, 1.0);   // eye direction
+        glm::vec3 centerTrans = M * glm::vec4(0, 0, -1, 1.0); // center direction
+        glm::vec3 cameraForward = glm::normalize(centerTrans - eyeTrans);
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
-            // HINT: the following return should return true "first" should be drawn before "second". 
-            return (first.localToWorld[2][2]<second.localToWorld[2][2]);
+            // HINT: the following return should return true "first" should be drawn before "second".
+            return (glm::dot(cameraForward, first.center) > glm::dot(cameraForward, second.center)); // sort render components
         });
 
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
@@ -157,11 +159,13 @@ namespace our {
         glViewport(	0, 0,windowSize[0],windowSize[1]);
 
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClearDepth(1.0);
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
         glColorMask(true, true, true, true);
-        glDepthMask(GL_TRUE);
+        glDepthMask(true);
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer
@@ -173,9 +177,9 @@ namespace our {
         //TODO: (Req 9) Draw all the opaque commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto it :opaqueCommands){
-            it.material->setup();
-            it.material->shader->set("transform", VP * it.localToWorld);
-            it.mesh->draw();
+            it.material->setup(); //set up material
+            it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
+            it.mesh->draw(); // draw
         }
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
@@ -201,9 +205,9 @@ namespace our {
         //TODO: (Req 9) Draw all the transparent commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto it :transparentCommands){
-            it.material->setup();
-            it.material->shader->set("transform", VP * it.localToWorld);
-            it.mesh->draw();
+            it.material->setup(); //set up material
+            it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
+            it.mesh->draw(); // draw
         }
 
         // If there is a postprocess material, apply postprocessing

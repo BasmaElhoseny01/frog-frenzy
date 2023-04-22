@@ -137,7 +137,7 @@ namespace our
             //  Syntax: void glDrawElements(GLenum mode,GLsizei count,GLenum type,const void * indices);
             //  CHECK: count:  => # of the elements in elements vector
             // type: type of one element is unsigned int
-            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
+            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
            // cout << "Drawn" << endl;
         }
 

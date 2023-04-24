@@ -58,7 +58,7 @@ class EntityTestState : public our::State
         glm::mat4 VP = P * V; // MProjection* MView
 
         glm::mat4 MVP;
-
+      
         for (auto &entity : world.getEntities())
         {
             // For each entity, we look for a mesh renderer (if none was found, we skip this entity)

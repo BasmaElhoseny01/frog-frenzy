@@ -45,6 +45,7 @@ namespace our {
         //TODO: (Req 7) Write this function
         TintedMaterial::setup();// setup of its parent
         shader->set("alphaThreshold" , alphaThreshold);
+        glActiveTexture(GL_TEXTURE0);
         texture->bind();
         sampler->bind(0);
         shader->set("tex", 0);

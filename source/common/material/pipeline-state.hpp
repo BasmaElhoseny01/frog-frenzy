@@ -43,7 +43,7 @@ namespace our {
         void setup() const {
             //TODO: (Req 4) Write this function
             glColorMask(colorMask[0],colorMask[1],colorMask[2],colorMask[3]);
-
+            glDepthMask(depthMask);
             if(depthTesting.enabled){
                 //to enable depth testing
                 glEnable(GL_DEPTH_TEST); 
@@ -56,6 +56,11 @@ namespace our {
                 //update depth if the fragment's depth value is less than the stored depth value.
                 glDepthFunc(depthTesting.function);  
             }
+             else
+            {
+                glDisable(GL_DEPTH_TEST);
+            }
+
             if(faceCulling.enabled){
                 //to enable face culling 
                 glEnable(GL_CULL_FACE);  
@@ -66,6 +71,11 @@ namespace our {
                 //the back-faces instead of counter-clockwise
                 glFrontFace(faceCulling.frontFace);  
             }
+            else
+            {
+                glDisable(GL_CULL_FACE);
+            }
+
             if(blending.enabled){
                 // to enable blending.
                 glEnable(GL_BLEND);  
@@ -73,6 +83,10 @@ namespace our {
                 glBlendFunc(blending.sourceFactor, blending.destinationFactor);  
                 glBlendEquation(blending.equation);
                 glBlendColor(blending.constantColor[0],blending.constantColor[1],blending.constantColor[2],blending.constantColor[3]);
+            }
+            else
+            {
+                glDisable(GL_BLEND);
             }
 
         }

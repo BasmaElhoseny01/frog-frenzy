@@ -197,7 +197,8 @@ namespace our {
             skyMaterial->setup();
             //TODO: (Req 10) Get the camera position
             glm::vec3 camera_position = camera->getOwner()->getLocalToWorldMatrix()*glm::vec4(0,0,0,1);
-            //TODO: (Req 10) Create a model matrix for the sy such that it always follows the camera (sky sphere center = camera position)
+            //cout << camera_position[0] <<" " <<camera_position[1]<<" " << camera_position[2] << endl;
+            // TODO: (Req 10) Create a model matrix for the sy such that it always follows the camera (sky sphere center = camera position)
             glm::mat4 trans = glm::mat4(1.0f);
             trans = glm::translate(trans,camera_position);
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
@@ -209,7 +210,7 @@ namespace our {
                 0.0f, 0.0f, 1.0f, 1.0f
             );
             //TODO: (Req 10) set the "transform" uniform
-            glm::mat4 Transformation = alwaysBehindTransform * VP *  trans  ;
+            glm::mat4 Transformation = alwaysBehindTransform * VP * trans;
             skyMaterial->shader->set("transform", Transformation);
 
             //TODO: (Req 10) draw the sky sphere

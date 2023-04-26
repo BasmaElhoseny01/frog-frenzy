@@ -61,7 +61,7 @@ namespace our
     {
         // TODO: (Req 8) Write this function
         // Compute Aspect Ratio
-        float aspect_ratio = viewportSize[0] / viewportSize[1];
+        float aspect_ratio = viewportSize[0] / float(viewportSize[1]);
 
         glm::mat4 projection_matrix;
 

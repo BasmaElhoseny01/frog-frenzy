@@ -61,22 +61,41 @@ namespace our {
             //TODO: (Req 11) Create a framebuffer
             glGenFramebuffers(1, &postprocessFrameBuffer);
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
+            // created the frame buffer and binded it to draw framebuffer 
 
             //TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
-            GLuint color_texture;
-            glGenTextures(1, &color_texture);
-            glBindTexture(GL_TEXTURE_2D, color_texture);
-            glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, 4, 8);  
 
-            GLuint depth_texture;
-            glGenTextures(1, &depth_texture);
-            glBindTexture(GL_TEXTURE_2D, depth_texture);
-            glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24, 4, 8);  
+            // GLuint color_texture;
+            // glGenTextures(1, &color_texture);
+            // glBindTexture(GL_TEXTURE_2D, color_texture);
+            // glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);  
 
-            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_texture, 0);
-            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_texture, 0);
+            // GLuint depth_texture;
+            // glGenTextures(1, &depth_texture);
+            // glBindTexture(GL_TEXTURE_2D, depth_texture);
+            // glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24, windowSize.x, windowSize.y);  
+
+            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_texture, 0);
+            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_texture, 0);
+
+            colorTarget=texture_utils::empty(GL_RGBA8, windowSize);
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
+            // create the color texture using the object provided in hpp file
+            // with formate rgba and size of windowsize
+            // then attach the texture to the frame buffer binded to GL_DRAW_FRAMEBUFFER with level 0
+             
+            depthTarget=texture_utils::empty( GL_DEPTH_COMPONENT24, windowSize);
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER,  GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
+            // create the depth texture 
+            // with formate (Depth component with 24 bits) and size of windowsize
+            // then attach the texture to the same frame buffer binded to GL_DRAW_FRAMEBUFFER with level 0
+
+            if(glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+
+                std::cout << "************************ Frame Buffer incomplete ****************************" << std::endl;
+            }
 
             //TODO: (Req 11) Unbind the framebuffer just to be safe
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
@@ -195,7 +214,6 @@ namespace our {
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
-            // glViewport(0, 0, 4, 8);
         }
 
         //TODO: (Req 9) Clear the color and depth buffers
@@ -244,11 +262,14 @@ namespace our {
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-            // glViewport(0, 0, windowSize[0], windowSize[1]);
+            // unbind the frameBuffer to return to the default frameBuffer
             
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup(); //set up material
-            // it.mesh->draw(); // draw
+
+            // drawing a full screen triangle
+            glBindVertexArray(postProcessVertexArray);
+            glDrawArrays(GL_TRIANGLES,0,3);
         }
     }
 

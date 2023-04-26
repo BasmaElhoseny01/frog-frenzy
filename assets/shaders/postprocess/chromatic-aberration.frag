@@ -20,16 +20,18 @@ void main(){
     // To apply this effect, we only read the green channel from the correct pixel (as defined by tex_coord)
     // To get the red channel, we move by amount STRENGTH to the left then sample another pixel from which we take the red channel
     // To get the blue channel, we move by amount STRENGTH to the right then sample another pixel from which we take the blue channel
-    vec2 uv = tex_coord.xy / iResolution.xy;
+
 
     vec3 col;
-    col.r = texture( iChannel0, vec2(uv.x+STRENGTH,uv.y) ).r;
-    col.g = texture( iChannel0, uv ).g;
-    col.b = texture( iChannel0, vec2(uv.x-STRENGTH,uv.y) ).b;
+    col.r = texture( tex, vec2(tex_coord.x-STRENGTH,tex_coord.y) ).r;
+    // get the red channel of the texture but moved by 0.005 to left
+    col.g = texture( tex, tex_coord ).g;
+    // get the green channel of the texture 
+    col.b = texture( tex, vec2(tex_coord.x+STRENGTH,tex_coord.y) ).b;
+    // get the blue channel of the texture but moved by 0.005 to right
 
-	col *= (1.0 - STRENGTH * 0.5);
-	
     frag_color = vec4(col,1.0);
+    // send the three channels to fragment color
 
     // frag_color = texture(tex, tex_coord);
 }

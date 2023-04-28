@@ -67,19 +67,6 @@ namespace our {
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
 
-            // GLuint color_texture;
-            // glGenTextures(1, &color_texture);
-            // glBindTexture(GL_TEXTURE_2D, color_texture);
-            // glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);  
-
-            // GLuint depth_texture;
-            // glGenTextures(1, &depth_texture);
-            // glBindTexture(GL_TEXTURE_2D, depth_texture);
-            // glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24, windowSize.x, windowSize.y);  
-
-            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_texture, 0);
-            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_texture, 0);
-
             colorTarget=texture_utils::empty(GL_RGBA8, windowSize);
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
             // create the color texture using the object provided in hpp file

@@ -13,8 +13,8 @@ out Varyings {
 // So two uniforms should be added: translation (vec2) and scale (vec2).
 // Each vertex "v" should be transformed to be "scale * v + translation".
 // The default value for "translation" is (0.0, 0.0) and for "scale" is (1.0, 1.0).
-uniform vec2 scale=vec2(1.0,1.0);
-uniform vec2 translation=vec2(0.0,0.0);
+uniform vec2 scale=vec2(1.0,1.0); // sacle
+uniform vec2 translation=vec2(0.0,0.0); // translation
 
 //TODO: (Req 1) Finish this shader
 

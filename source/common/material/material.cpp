@@ -28,7 +28,7 @@ namespace our {
     void TintedMaterial::setup() const {
         //TODO: (Req 7) Write this function
         Material::setup();// setup of its parent
-        shader->set("tint" , tint);
+        shader->set("tint" , tint);// set tint value
     }
 
     // This function read the material data from a json object
@@ -44,11 +44,11 @@ namespace our {
     void TexturedMaterial::setup() const {
         //TODO: (Req 7) Write this function
         TintedMaterial::setup();// setup of its parent
-        shader->set("alphaThreshold" , alphaThreshold);
-        glActiveTexture(GL_TEXTURE0);
-        texture->bind();
-        sampler->bind(0);
-        shader->set("tex", 0);
+        shader->set("alphaThreshold" , alphaThreshold);// set alphaThreshold value
+        glActiveTexture(GL_TEXTURE0);//selects which texture unit subsequent texture state calls will affect
+        texture->bind();// bind texture
+        sampler->bind(0);// bind sampler by giving it textureUnit 0
+        shader->set("tex", 0);// set tex value
     }
 
     // This function read the material data from a json object

@@ -182,7 +182,7 @@ namespace our {
         auto M = camera->getOwner()->getLocalToWorldMatrix(); //get local matrix
         glm::vec3 eyeTrans = M * glm::vec4(0, 0, 0, 1.0);   // eye direction
         glm::vec3 centerTrans = M * glm::vec4(0, 0, -1, 1.0); // center direction
-        glm::vec3 cameraForward = glm::normalize(centerTrans - eyeTrans);
+        glm::vec3 cameraForward = glm::normalize(centerTrans - eyeTrans); // get camera forward direction
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second".
@@ -190,26 +190,27 @@ namespace our {
         });
 
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
+        // multiply View Matrix and Projection Matrix
         glm::mat4 VP = camera->getProjectionMatrix(windowSize)*camera->getViewMatrix();
 
         // TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
         
         // Parameters (glViewport):
-        // x, y
-        // Specify the lower left corner of the viewport rectangle, in pixels. The initial value is (0,0).
-        // width, height
-        // Specify the width and height of the viewport. When a GL context is first attached to a window, width and height are set to the dimensions of that window.
-        
+            // x, y
+            // Specify the lower left corner of the viewport rectangle, in pixels. The initial value is (0,0).
+            // width, height
+            // Specify the width and height of the viewport. When a GL context is first attached to a window, width and height are set to the dimensions of that window.
+            
         glViewport(	0, 0,windowSize[0],windowSize[1]);
 
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LESS);
+        glEnable(GL_DEPTH_TEST);// do depth comparisons and update the depth buffer
+        glDepthFunc(GL_LESS);// Passes if the incoming depth value is less than the stored depth value.
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClearDepth(1.0);
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        glColorMask(true, true, true, true);
-        glDepthMask(true);
+        glColorMask(true, true, true, true);// enable  writing of frame buffer color components
+        glDepthMask(true);// enable writing into the depth buffer
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer

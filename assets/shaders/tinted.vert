@@ -11,6 +11,6 @@ uniform mat4 transform;
 
 void main(){
     //TODO: (Req 7) Change the next line to apply the transformation matrix
-    gl_Position = transform*vec4(position, 1.0);
-    vs_out.color = color;
+    gl_Position = transform*vec4(position, 1.0);// get postion of pixel by multipy it to transform matrix
+    vs_out.color = color;// set color to send it to frag file
 }

@@ -14,7 +14,8 @@ namespace our {
         //TODO: (Req 8) Write this function
         Entity* upper_parent_entity=parent;
         glm::mat4 LocalToWorldMat=localTransform.toMat4();//transformation matrix from this entity to its parent
-
+        
+        //Recursively
         while(upper_parent_entity!=nullptr){
             LocalToWorldMat=upper_parent_entity->localTransform.toMat4() * LocalToWorldMat;
             upper_parent_entity=upper_parent_entity->parent;

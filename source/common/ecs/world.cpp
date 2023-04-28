@@ -13,7 +13,7 @@ namespace our
         for (const auto &entityData : data)
         {
             // TODO: (Req 8) Create an entity, make its parent "parent" and call its deserialize with "entityData".
-            Entity *newEntity = World::add(); // Add this Entity to the world
+            Entity *newEntity = World::add(); // Make new Entity + Add this Entity to the world
             newEntity->parent = parent;
             newEntity->deserialize(entityData);
 

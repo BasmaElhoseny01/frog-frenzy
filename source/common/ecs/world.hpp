@@ -28,9 +28,9 @@ namespace our
         {
             // TODO: (Req 8) Create a new entity, set its world member variable to this,
             Entity *newEntity = new Entity();
-            newEntity->world = this;
+            newEntity->world = this; // set Entity's world to be this world :D
             // and don't forget to insert it in the suitable container.
-            entities.insert(newEntity);
+            entities.insert(newEntity); // Add new Entity to the list of entities of this competent
             return newEntity;
         }
 
@@ -47,7 +47,7 @@ namespace our
             // TODO: (Req 8) If the entity is in this world, add it to the "markedForRemoval" set.
             if (entity->world == this)
             {
-                // if entity belongs to this world
+                // if entity belongs to this world Add it to the list of Entities that will be removed later
                 markedForRemoval.insert(entity);
             }
         }
@@ -59,12 +59,11 @@ namespace our
             // TODO: (Req 8) Remove and delete all the entities that have been marked for removal
             for (auto it = markedForRemoval.begin(); it != markedForRemoval.end(); it++)
             {
-
-                // Note: the erase members shall invalidate only iterators and references to the erased elements.
+                // Note: the erase members shall invalidate only iterators and references to the erased elements.So Order here matters
                 // Delete the Entity
                 delete *it; // delete pointer just *it =nullptr
 
-                // Remove from the entities
+                // Remove from the entities list
                 entities.erase(it);
             }
         }

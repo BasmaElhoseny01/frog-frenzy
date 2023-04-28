@@ -39,10 +39,9 @@ namespace our
             // Note: Just An Asset thrown if T isn't a child of class Component :D
             static_assert(std::is_base_of<Component, T>::value, "T must inherit from Component");
             // TODO: (Req 8) Create an component of type T, set its "owner" to be this entity, then push it into the component's list
-            // CHECK: @BasmaElhoseny01 Type T
             T *newComponent = new T();
-            newComponent->owner = this;
-            components.push_back(newComponent);
+            newComponent->owner = this;//set Entity of this Component
+            components.push_back(newComponent);//Add to the this entity's components
 
             // Don't forget to return a pointer to the new component
             return newComponent;
@@ -54,12 +53,11 @@ namespace our
         T *getComponent()
         {
             // TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
-            //  for(int i=0;i<components.size();i++){
-            //  T* casted_component=dynamic_cast<T*>(components[i]);
             for (auto it = components.begin(); it != components.end(); it++)
             {
-                // Dynamic Casting [Down Casting from Component* to T*]
+                // Dynamic Casting [Down Casting from Component* to T* :D]
                 T *casted_component = dynamic_cast<T *>(*it);
+                //if this competent is of type T then return it
                 if (casted_component != nullptr)
                     return casted_component;
             }
@@ -67,20 +65,6 @@ namespace our
             // No Component with type T is found
             return nullptr;
         }
-        // This template method seacrhes for a component of type T and returns a pointer to it
-        // If no component of type T was found, it returns a nullptr 
-        // template<typename T>
-        // T* getComponent(){
-        //     //TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
-        //     // Return the component you found, or return null of nothing was found.
-        //     for(auto& component : components){
-        //     T* ptr = dynamic_cast<T*>(component);
-        //     if(ptr) {
-        //         return ptr;
-        //     }
-        // }
-        // return nullptr;
-        // }
 
         // Note: By index
         //  This template method dynamic and returns a pointer to it

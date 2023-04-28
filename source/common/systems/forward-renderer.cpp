@@ -225,6 +225,7 @@ namespace our {
             trans = glm::translate(trans,camera_position);
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
+            // scaled the Z with zero then translate it with 1 so it is in the far Z direction so any thing will be drawn above it
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,

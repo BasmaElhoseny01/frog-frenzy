@@ -47,45 +47,45 @@ namespace our {
             if(depthTesting.enabled){
                 //to enable depth testing
                 glEnable(GL_DEPTH_TEST); 
-                //clear the depth buffer  
-               //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
                 if(depthMask)
                     glDepthMask(GL_TRUE);    // enable wirting un depth buffer
                 else 
                     glDepthMask(GL_FALSE);   // disabled writing in depth buffer
-                //update depth if the fragment's depth value is less than the stored depth value.
+                //update depth depending on the depth function ( GL_LEQUAL => if the fragment's depth value is less than the stored depth value ).
                 glDepthFunc(depthTesting.function);  
             }
              else
             {
+                //disable the depth test 
                 glDisable(GL_DEPTH_TEST);
             }
 
             if(faceCulling.enabled){
                 //to enable face culling 
                 glEnable(GL_CULL_FACE);  
-                //to cull front faces or the back faces
-                //to cull back faces and not the front faces
+                //to cull front faces or the back faces (GL_BACK => to cull back faces not the front faces)
                 glCullFace(faceCulling.culledFace);  
-                //to decide the culledFace as frontFace
-                //the back-faces instead of counter-clockwise
+                //set how a face is determined to be afront face in opengl 
                 glFrontFace(faceCulling.frontFace);  
             }
             else
             {
+                //to disable cull face
                 glDisable(GL_CULL_FACE);
             }
 
             if(blending.enabled){
                 // to enable blending.
                 glEnable(GL_BLEND);  
-                //set the option for the source and destination factor.
+                // set the option for the source and destination factor.
                 glBlendFunc(blending.sourceFactor, blending.destinationFactor);  
+                // set the blinding equation 
                 glBlendEquation(blending.equation);
                 glBlendColor(blending.constantColor[0],blending.constantColor[1],blending.constantColor[2],blending.constantColor[3]);
             }
             else
             {
+                // to disable blinding
                 glDisable(GL_BLEND);
             }
 

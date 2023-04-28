@@ -45,30 +45,23 @@ namespace our
             // 2.Buffer Data To VBO
             // Syntax: void glBufferData(GLenum target,GLsizeiptr size [total size of the data to be stored in the buffer],const void * data, GLenum usage);
             // size= # of vertices in the vector * size of each Vertex
-            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-            // FIXME: Unbind Vertex Buffer
-            // glBindBuffer(GL_ARRAY_BUFFER,0);
-
+            // STATIC_DRAW => the data store contents will be modified once and used many times.
+            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
             // 3.Create Element Buffer
             glGenBuffers(1, &EBO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
             // 4.Buffer Data To EBO
             // size= # of elements in the vector * size of each element
-            // CHECK: @AhmedHosny2024 .data()??
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements.size() * sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
-            // FIXME: Unbind Element Buffer
-            // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+            // &elements[0] => refrence for the firts element in the vector 
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements.size() * sizeof(unsigned int), &elements[0], GL_STATIC_DRAW);
 
             // 5.Vertex Array
             // Syntax: void glGenVertexArrays(GLsizei n, GLuint *arrays);
             glGenVertexArrays(1, &VAO);
             // Syntax: void glBindVertexArray(GLuint array);
             glBindVertexArray(VAO);
-            // FIXME: glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
             // 6. Position Attribute
             // FIXME:what does it do??
             glEnableVertexAttribArray(ATTRIB_LOC_POSITION);
@@ -82,7 +75,6 @@ namespace our
             glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, false, sizeof(Vertex), 0);
 
             // 7. Color Attribute
-            // FIXME: what does it do??
             glEnableVertexAttribArray(ATTRIB_LOC_COLOR);
             // How will we read bits inside the buffer ??
             // size:4 ➡ vec<4, glm::uint8, glm::defaultp> Color; (vec4)
@@ -90,11 +82,9 @@ namespace our
             // normalized: true ==> uint8 =>0-255 so we need to make it normalized
             // stride: complete vertex
             // offset: skip position
-            // CHECK: @AhmedHosny2024 is it Normalized??
             glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
             // 8. Texture Attribute
-            // FIXME: what does it do??
             glEnableVertexAttribArray(ATTRIB_LOC_TEXCOORD);
             // How will we read bits inside the buffer ??
             // size:4 ➡ vec<4, glm::uint8, glm::defaultp> Color; (vec4)
@@ -102,11 +92,9 @@ namespace our
             // normalized: true ==> uint8 =>0-255 so we need to make it normalized
             // stride: complete vertex
             // offset: skip position
-            // CHECK: @AhmedHosny2024 is it Normalized??
             glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, false, sizeof(Vertex), (void *)(offsetof(Vertex, tex_coord)));
 
             // 9. normal Attribute
-            // FIXME: what does it do??
             glEnableVertexAttribArray(ATTRIB_LOC_NORMAL);
             // How will we read bits inside the buffer ??
             // size:4 ➡ vec<4, glm::uint8, glm::defaultp> Color; (vec4)
@@ -114,12 +102,8 @@ namespace our
             // normalized: true ==> uint8 =>0-255 so we need to make it normalized
             // stride: complete vertex
             // offset: skip position
-            // CHECK: @AhmedHosny2024 is it Normalized??
             glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, false, sizeof(Vertex), (void *)(offsetof(Vertex, normal)));
-
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-            // FIXME: Unbind Vertex Array
             glBindVertexArray(0);
 
             // 10.Set Num of Elements to size of the vector
@@ -138,7 +122,6 @@ namespace our
             //  CHECK: count:  => # of the elements in elements vector
             // type: type of one element is unsigned int
             glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
-           // cout << "Drawn" << endl;
         }
 
         // this function should delete the vertex & element buffers and the vertex array object

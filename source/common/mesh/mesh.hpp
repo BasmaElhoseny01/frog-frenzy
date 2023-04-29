@@ -41,7 +41,7 @@ namespace our
             glGenVertexArrays(1, &VAO);
             // Syntax: void glBindVertexArray(GLuint array);
             glBindVertexArray(VAO);
-            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            //glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
             // Step(2) Create Vertex Buffer
             //  Syntax: void glGenBuffers(GLsizei n,GLuint * buffers);

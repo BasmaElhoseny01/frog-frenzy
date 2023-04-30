@@ -48,7 +48,7 @@ namespace our
 
         glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f); // Vec4*4 *4*1=4*1 Postion of the Camera
         glm::vec4 center = M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f);
-        glm::vec4 up = M * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+        glm::vec4 up = M * glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
 
         // Syntax:glm::mat4 view_matrix = glm::lookAt(eye, center, up);
         // Multiplying this mat view_matrix with any object in the world space gets it to Eye space where the camera is the Origin

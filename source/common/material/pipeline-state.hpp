@@ -81,7 +81,7 @@ namespace our {
                 glBlendFunc(blending.sourceFactor, blending.destinationFactor);  
                 // set the blinding equation 
                 glBlendEquation(blending.equation);
-                glBlendColor(blending.constantColor[0],blending.constantColor[1],blending.constantColor[2],blending.constantColor[3]);
+                 (blending.constantColor[0],blending.constantColor[1],blending.constantColor[2],blending.constantColor[3]);
             }
             else
             {

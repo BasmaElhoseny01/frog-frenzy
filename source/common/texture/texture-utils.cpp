@@ -36,6 +36,7 @@ our::Texture2D *our::texture_utils::loadImage(const std::string &filename, bool 
     }
     // Create a texture
     our::Texture2D *texture = new our::Texture2D();
+    texture->bind();
     // Bind the texture such that we upload the image data to its storage
     // TODO: (Req 5) Finish this function to fill the texture with the data found in "pixels"
 

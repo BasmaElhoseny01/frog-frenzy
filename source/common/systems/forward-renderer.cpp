@@ -68,13 +68,15 @@ namespace our {
             // The depth format can be (Depth component with 24 bits).
 
             colorTarget=texture_utils::empty(GL_RGBA8, windowSize);
+            colorTarget->bind();
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
             // create the color texture using the object provided in hpp file
             // with formate rgba and size of windowsize
             // then attach the texture to the frame buffer binded to GL_DRAW_FRAMEBUFFER with level 0
              
             depthTarget=texture_utils::empty( GL_DEPTH_COMPONENT24, windowSize);
-            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER,  GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
+            depthTarget->bind();
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
             // create the depth texture 
             // with formate (Depth component with 24 bits) and size of windowsize
             // then attach the texture to the same frame buffer binded to GL_DRAW_FRAMEBUFFER with level 0

@@ -13,7 +13,6 @@ namespace our {
         Texture2D() {
             //TODO: (Req 5) Complete this function
             glGenTextures(1, &name);
-            bind();
             // generate a texture where
             // 1 ==> the number of texture names to be generated.
             // name ==> the name of texture
@@ -23,7 +22,6 @@ namespace our {
         // This deconstructor deletes the underlying OpenGL texture
         ~Texture2D() { 
             //TODO: (Req 5) Complete this function
-            unbind();
             // then unbind the texture
             glDeleteTextures(1, &name);
             // delete the texture where

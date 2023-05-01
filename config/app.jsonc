@@ -30,13 +30,18 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/frog.jpg"
+                "monkey": "assets/textures/frog.jpg",
+                "blue": "assets/textures/blue.png",
+                "grad1": "assets/textures/grad1.png",
+                "grad2": "assets/textures/grad2.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/frog.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/sphere.obj"
+                "sphere": "assets/models/sphere.obj",
+                "car": "assets/models/car.obj",
+                "bus": "assets/models/bus.obj"
             },
             "samplers":{
                 "default":{},
@@ -110,6 +115,36 @@
                     "texture": "monkey",
                     "sampler": "default"
                 },
+                "car":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "blue",
+                    "sampler": "default"
+                },
+                "bus":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "grad1",
+                    "sampler": "default"
+                },
                 "moon":{
                     "type": "textured",
                     "shader": "textured",
@@ -166,6 +201,30 @@
                         "type": "Movement",
                         "linearVelocity": [0, 0.1, 0],
                         "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-50, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [0.01, 0.01, 0.01],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    }
+                ]
+            },
+            {
+                "position": [50, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [0.01, 0.01, 0.01],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
                     }
                 ]
             },

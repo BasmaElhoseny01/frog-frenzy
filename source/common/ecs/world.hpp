@@ -2,6 +2,8 @@
 
 #include <unordered_set>
 #include "entity.hpp"
+#include <iostream>
+using namespace std;
 
 namespace our
 {
@@ -14,6 +16,12 @@ namespace our
                                                        // when deleteMarkedEntities is called
     public:
         World() = default;
+
+        // // For Debug inly Added by @BasmaElhoseny
+        // const std::unordered_set<Entity *> &getmarkedForRemoval()
+        // {
+        //     return markedForRemoval;
+        // }
 
         // This will deserialize a json array of entities and add the new entities to the current world
         // If parent pointer is not null, the new entities will be have their parent set to that given pointer
@@ -56,16 +64,22 @@ namespace our
         // Then each of these elements are deleted.
         void deleteMarkedEntities()
         {
+            cout << "Entereddelete MarkedEntities " << endl;
             // TODO: (Req 8) Remove and delete all the entities that have been marked for removal
-            for (auto it = markedForRemoval.begin(); it != markedForRemoval.end(); it++)
+            // CHECK: DIFFERGNEC
+            // for (auto it = markedForRemoval.begin(); it != markedForRemoval.end(); it++)
+            for (auto entity : markedForRemoval)
             {
+                cout << "1";
                 // Note: the erase members shall invalidate only iterators and references to the erased elements.So Order here matters
                 // Delete the Entity
-                delete *it; // delete pointer just *it =nullptr
+                // delete *it; // delete pointer just *it =nullptr
+                delete entity;
 
                 // Remove from the entities list
-                entities.erase(it);
+                entities.erase(entity);
             }
+            markedForRemoval.clear();
         }
 
         // This deletes all entities in the world

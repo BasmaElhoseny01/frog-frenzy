@@ -1,5 +1,5 @@
 {
-    "start-scene": "menu",
+    "start-scene": "play",
     "window":
     {
         "title":"Default Game Window",
@@ -30,18 +30,25 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png"
+                "monkey": "assets/textures/monkey.png",
+                "street": "assets/textures/street.jpg"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/sphere.obj"
+                "sphere": "assets/models/sphere.obj",
+                "street": "assets/models/street.obj"
             },
             "samplers":{
                 "default":{},
                 "pixelated":{
                     "MAG_FILTER": "GL_NEAREST"
+                },
+                "repeated":{
+                    "MAG_FILTER":"GL_LINEAR",
+                    "WRAP_S": "GL_REPEAT",
+                    "WRAP_T": "GL_REPEAT"
                 }
             },
             "materials":{
@@ -93,6 +100,21 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "grass",
+                    "sampler": "repeated"
+                },
+                "street":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "street",
                     "sampler": "default"
                 },
                 "monkey":{
@@ -171,12 +193,24 @@
             {
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
-                "scale": [10, 10, 1],
+                "scale": [20, 10, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "grass"
+                    }
+                ]
+            },
+            {
+                "position": [0, -1, -20],
+                "rotation": [-90, 0, 0],
+                "scale": [20, 10, 0],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "street"
                     }
                 ]
             },

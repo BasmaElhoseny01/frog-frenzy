@@ -14,6 +14,10 @@ namespace our
         std::unordered_set<Entity *> entities;         // These are the entities held by this world
         std::unordered_set<Entity *> markedForRemoval; // These are the entities that are awaiting to be deleted
                                                        // when deleteMarkedEntities is called
+
+        std::unordered_set<Entity *> hiddenEntities;  
+        std::unordered_set<Entity *> markedToUnhide;  
+
     public:
         World() = default;
 
@@ -46,6 +50,12 @@ namespace our
         const std::unordered_set<Entity *> &getEntities()
         {
             return entities;
+        }
+
+        // This returns and immutable reference to the set of all Hidden entities in the world.
+        const std::unordered_set<Entity *> &getHiddenEntities()
+        {
+            return hiddenEntities;
         }
 
         // This marks an entity for removal by adding it to the "markedForRemoval" set.
@@ -81,6 +91,64 @@ namespace our
             }
             markedForRemoval.clear();
         }
+
+        // This marks an entity for hiding by adding it to the "hiddenEntities" set.
+        // The elements in the "hiddenEntities" set will be removed from world when "hideMarkedEntities" is called.
+        void markToHide(Entity *entity)
+        {
+            // TODO: (Req 8) If the entity is in this world, add it to the "hiddenEntities" set.
+            if (entity->world == this)
+            {
+                // if entity belongs to this world Add it to the list of Entities that will be removed later
+                hiddenEntities.insert(entity);
+            }
+        }
+
+
+        // This removes the elements in "markedForRemoval" from the "entities" set.
+        // Then each of these elements are deleted.
+        void hideMarkedEntities()
+        {
+          
+            // TODO: (Req 8) Remove and delete all the entities that have been marked for removal
+            for (auto entity : hiddenEntities)
+            {
+                // Remove from the entities list
+                entities.erase(entity);
+            }
+        }
+
+         // This marks an entity for hiding by adding it to the "hiddenEntities" set.
+        // The elements in the "hiddenEntities" set will be removed from world when "hideMarkedEntities" is called.
+        void markToUnhide(Entity *entity)
+        {
+            // TODO: (Req 8) If the entity is in this world, add it to the "hiddenEntities" set.
+            if (entity->world == this)
+            {
+                // Add Back to Entities List
+                markedToUnhide.insert(entity);
+            }
+        }
+
+
+        // This removes the elements in "markedForRemoval" from the "entities" set.
+        // Then each of these elements are deleted.
+        void unhideMarkedEntities()
+        {
+            // TODO: (Req 8) Remove and delete all the entities that have been marked for removal
+            for (auto entity : markedToUnhide)
+            {
+                // Remove from the Hidden list
+                hiddenEntities.erase(entity);
+
+                //Back to World
+                entities.insert(entity);
+
+            }
+            markedToUnhide.clear();
+        }
+
+
 
         // This deletes all entities in the world
         void clear()

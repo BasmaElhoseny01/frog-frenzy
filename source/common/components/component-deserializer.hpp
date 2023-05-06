@@ -5,6 +5,7 @@
 #include "mesh-renderer.hpp"
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
+#include "car.hpp"
 
 namespace our {
 
@@ -23,6 +24,10 @@ namespace our {
         }else if(type==MeshRendererComponent::getID()){
             //Added De
             component=entity->addComponent<MeshRendererComponent>();
+        }
+        else if(type==CarComponent::getID()){
+            //Add deserializer of Car Component 
+            component=entity->addComponent<CarComponent>();
         }
         if(component) component->deserialize(data);
     }

@@ -158,22 +158,10 @@ namespace our
             if (auto meshRenderer = entity->getComponent<MeshRendererComponent>(); meshRenderer)
             {
                 cout << "Name::" << entity->name << endl;
-                // cout<<"Position"<<entity->
-                // if (entity->name == "street")
-                // {
-                //     world->markForRemoval(entity);
-                //     cout << "Added street to mark for removal";
-                //     // continue;
-                // }
-                // We construct a command from it
                 RenderCommand command;
                 command.localToWorld = meshRenderer->getOwner()->getLocalToWorldMatrix();
                 command.center = glm::vec3(command.localToWorld * glm::vec4(0, 0, 0, 1));
-                // cout << entity->name << "command.center" << command.center[0] << ", " << command.center[1] << "," << command.center[2] << endl;
-                if (entity->name == "bicycle" && (command.center[0] < -100 || command.center[0] > 100))
-                {
-                    world->markForRemoval(entity);
-                }
+
                 command.mesh = meshRenderer->mesh;
                 command.material = meshRenderer->material;
                 // if it is transparent, we add it to the transparent commands list
@@ -188,7 +176,6 @@ namespace our
                 }
             }
         }
-        cout << " Window Size" << windowSize[0] << "," << windowSize[1] << endl;
         // cout << "size for entities list" << world->getEntities().size() << "Size of Marked for removal" << world->getmarkedForRemoval().size() << endl;
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world->deleteMarkedEntities();

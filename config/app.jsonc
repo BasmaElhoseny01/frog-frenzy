@@ -322,6 +322,13 @@
                             0,
                             0
                         ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": 50,
+                        "renderEvery": 20, //in sec
+                        "lifeTime": 15 //60 sec
                     }
                 ]
             },
@@ -355,6 +362,13 @@
                             0,
                             0
                         ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": -100,
+                        "renderEvery": 30, //in sec
+                        "lifeTime": 15 //60 sec
                     }
                 ]
             }

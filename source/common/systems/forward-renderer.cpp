@@ -177,9 +177,7 @@ namespace our
             }
         }
         // cout << "size for entities list" << world->getEntities().size() << "Size of Marked for removal" << world->getmarkedForRemoval().size() << endl;
-        // Remove Marked for removal Entities[Basma] so that they aren't rendered again
-        world->deleteMarkedEntities();
-
+   
         // If there is no camera, we return (we cannot render without a camera)
         if (camera == nullptr)
             return;

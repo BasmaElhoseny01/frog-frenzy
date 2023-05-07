@@ -46,6 +46,15 @@ class Playstate : public our::State
         carsSystem.update(&world); // To control Cars System to appear
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
+        /// Hereeeeeeeeee
+
+
+        // Remove Marked for removal Entities[Basma] so that they aren't rendered again
+        world.deleteMarkedEntities();
+        // Hide and Unhide Marked Entities :D
+        world.hideMarkedEntities();
+        world.unhideMarkedEntities();
+
 
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);

@@ -63,10 +63,6 @@ namespace our
                 }
             }
 
-            // Hide and Unhide Marked Entities :D
-            world->hideMarkedEntities();
-            world->unhideMarkedEntities();
-
             // cout << "World Entities" << world->getEntities().size() << endl;
             // cout << "Removal Entities" << world->getmarkedForRemoval().size() << endl;
             // cout << "Hidden Entities" << world->getHiddenEntities().size() << endl;

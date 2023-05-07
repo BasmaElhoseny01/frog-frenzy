@@ -243,11 +243,10 @@
                 ]
             },
             {
-                "name": "street",
                 "position": [
-                    -40,
-                    -40,
-                    -60
+                    0,
+                    -20,
+                    0
                 ],
                 "rotation": [
                     -90,
@@ -255,24 +254,24 @@
                     0
                 ],
                 "scale": [
+                    80,
                     40,
-                    20,
-                    0
+                    1
                 ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "street"
+                        "material": "grass"
                     }
                 ]
             },
             {
                 "name": "street",
                 "position": [
-                    40,
-                    -40,
-                    -60
+                    0,
+                    -20,
+                    -80
                 ],
                 "rotation": [
                     -90,
@@ -280,8 +279,8 @@
                     0
                 ],
                 "scale": [
+                    80,
                     40,
-                    20,
                     0
                 ],
                 "components": [
@@ -289,89 +288,92 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "street"
+                    },
+                    {
+                        "type": "Street"
                     }
                 ]
             },
-            {
-                "name": "bicycle",
-                "scale": [
-                    0.25,
-                    0.25,
-                    0.25
-                ],
-                "position": [
-                    50,
-                    -40,
-                    -45
-                ],
-                "rotation": [
-                    270,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "bicycle",
-                        "material": "bicycle"
-                    },
-                    {
-                        "type": "Movement",
-                        "linearVelocity": [
-                            -10,
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": 50,
-                        "renderEvery": 20, //in sec
-                        "lifeTime": 15 //60 sec
-                    }
-                ]
-            },
-            {
-                "name": "bicycle",
-                "scale": [
-                    0.25,
-                    0.25,
-                    0.25
-                ],
-                "position": [
-                    -50,
-                    -40,
-                    -65
-                ],
-                "rotation": [
-                    270,
-                    270,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "bicycle",
-                        "material": "bicycle"
-                    },
-                    {
-                        "type": "Movement",
-                        "linearVelocity": [
-                            10,
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": -100,
-                        "renderEvery": 30, //in sec
-                        "lifeTime": 15 //60 sec
-                    }
-                ]
-            }
+           {
+            "name": "bicycle",
+            "scale": [
+                0.25,
+                0.25,
+                0.25
+            ],
+            "position": [
+                50,
+                -40,
+                -45
+            ],
+            "rotation": [
+                270,
+                90,
+                0
+            ],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "bicycle",
+                    "material": "bicycle"
+                },
+                {
+                    "type": "Movement",
+                    "linearVelocity": [
+                        -10,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "Car",
+                    "hidden": true,
+                    "start_x": 50,
+                    "renderEvery": 20, //in sec
+                    "lifeTime": 15 //60 sec
+                }
+            ]
+        },
+        {
+            "name": "bicycle",
+            "scale": [
+                0.25,
+                0.25,
+                0.25
+            ],
+            "position": [
+                -50,
+                -40,
+                -65
+            ],
+            "rotation": [
+                270,
+                270,
+                0
+            ],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "bicycle",
+                    "material": "bicycle"
+                },
+                {
+                    "type": "Movement",
+                    "linearVelocity": [
+                        10,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "Car",
+                    "hidden": true,
+                    "start_x": -100,
+                    "renderEvery": 30, //in sec
+                    "lifeTime": 15 //60 sec
+                }
+            ]
+        }
         ]
     }
 }

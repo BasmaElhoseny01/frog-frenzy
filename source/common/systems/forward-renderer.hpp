@@ -3,6 +3,7 @@
 #include "../ecs/world.hpp"
 #include "../components/camera.hpp"
 #include "../components/mesh-renderer.hpp"
+#include "../components/camera.hpp"
 #include "../asset-loader.hpp"
 
 #include <glad/gl.h>

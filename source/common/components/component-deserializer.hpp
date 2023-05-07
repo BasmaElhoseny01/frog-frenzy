@@ -6,6 +6,7 @@
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
 #include "car.hpp"
+#include "street.hpp"
 
 namespace our {
 
@@ -28,6 +29,10 @@ namespace our {
         else if(type==CarComponent::getID()){
             //Add deserializer of Car Component 
             component=entity->addComponent<CarComponent>();
+        }
+        else if(type==StreetComponent::getID()){
+            //Added Street Component
+            component=entity->addComponent<StreetComponent>();
         }
         if(component) component->deserialize(data);
     }

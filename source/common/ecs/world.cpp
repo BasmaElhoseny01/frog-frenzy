@@ -16,7 +16,6 @@ namespace our
             Entity *newEntity = World::add(); // Make new Entity + Add this Entity to the world
             newEntity->parent = parent;
             newEntity->deserialize(entityData);
-            std::cout << entityData;
             if (entityData.contains("children"))
             {
                 // TODO: (Req 8) Recursively call this world's "deserialize" using the children data

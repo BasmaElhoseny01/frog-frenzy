@@ -74,13 +74,13 @@ namespace our
         // Then each of these elements are deleted.
         void deleteMarkedEntities()
         {
-            cout << "Entereddelete MarkedEntities " << endl;
+            //cout << "Entereddelete MarkedEntities " << endl;
             // TODO: (Req 8) Remove and delete all the entities that have been marked for removal
             // CHECK: DIFFERGNEC
             // for (auto it = markedForRemoval.begin(); it != markedForRemoval.end(); it++)
             for (auto entity : markedForRemoval)
             {
-                cout << "1";
+                //cout << "1";
                 // Note: the erase members shall invalidate only iterators and references to the erased elements.So Order here matters
                 // Delete the Entity
                 // delete *it; // delete pointer just *it =nullptr

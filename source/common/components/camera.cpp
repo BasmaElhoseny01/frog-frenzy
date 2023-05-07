@@ -88,4 +88,13 @@ namespace our
         return projection_matrix;
         // return glm::mat4(1.0f);
     }
+
+    // get Postion of camera
+    glm::vec4 CameraComponent::getPosition() const
+    {
+        auto owner = getOwner();
+        auto M = owner->getLocalToWorldMatrix(); // Transform Camera from local to world using its getLocalToWorldMatrix since camera is a component
+        glm::vec4 position = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f); // Vec4*4 *4*1=4*1 Postion of the Camera
+        return position;
+    }
 }

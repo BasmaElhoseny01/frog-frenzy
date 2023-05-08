@@ -10,7 +10,7 @@
     },
     "scene": {
         "renderer": {
-            "sky": "assets/textures/sky.jpg",
+            "sky": "assets/textures/sky100.jpg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets": {
@@ -426,6 +426,7 @@
                     }
                 ]
             },
+            ///////////// fist way  street 1 ////////////////////
             {
                 "name": "bus",
                 "scale": [
@@ -456,16 +457,76 @@
                             0,
                             0
                         ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": 50,
-                        "renderEvery": 5, //in sec
-                        "lifeTime": 10 //60 sec
                     }
                 ]
             },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -25
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -25
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// second way street 1 ////////////////////
             {
                 "name": "bus",
                 "scale": [
@@ -496,13 +557,6 @@
                             0,
                             0
                         ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": -45,
-                        "renderEvery": 5, //in sec
-                        "lifeTime": 10 //60 sec
                     }
                 ]
             },
@@ -520,7 +574,7 @@
                 ],
                 "rotation": [
                     -90,
-                    0,
+                    180,
                     0
                 ],
                 "components": [
@@ -536,16 +590,43 @@
                             0,
                             0
                         ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": -45,
-                        "renderEvery": 5, //in sec
-                        "lifeTime": 10 //60 sec
                     }
                 ]
             },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -35
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// third way street 1 ////////////////////
             {
                 "name": "bus",
                 "scale": [
@@ -554,7 +635,7 @@
                     0.03
                 ],
                 "position": [
-                    50,
+                    30,
                     -20,
                     -45
                 ],
@@ -576,16 +657,76 @@
                             0,
                             0
                         ]
-                    },
-                    {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": 50,
-                        "renderEvery": 5, //in sec
-                        "lifeTime": 10 //60 sec
                     }
                 ]
             },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    50,
+                    -20,
+                    -45
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -40,
+                    -20,
+                    -45
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// four way  street 1 ////////////////////
             {
                 "name": "bus",
                 "scale": [
@@ -616,13 +757,472 @@
                             0,
                             0
                         ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -10,
+                    -20,
+                    -55
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
                     },
                     {
-                        "type": "Car",
-                        "hidden": true,
-                        "start_x": -45,
-                        "renderEvery": 5, //in sec
-                        "lifeTime": 10 //60 sec
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -55
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// fist way  street 2 ////////////////////
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    50,
+                    -20,
+                    -105
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -105
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -105
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// second way street 2 ////////////////////
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -10,
+                    -20,
+                    -115
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -115
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -115
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// third way street 2 ////////////////////
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    10,
+                    -20,
+                    -125
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    50,
+                    -20,
+                    -125
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -40,
+                    -20,
+                    -125
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            ///////////// four way  street 2 ////////////////////
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -135
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -10,
+                    -20,
+                    -135
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -135
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
                     }
                 ]
             }

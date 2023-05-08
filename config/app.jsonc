@@ -31,7 +31,8 @@
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
-                "bicycle": "assets/textures/bicycle.jpg"
+                "bus": "assets/textures/bus.jpg",
+                "taxi": "assets/textures/taxi.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -39,7 +40,8 @@
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
-                "bicycle": "assets/models/bicycle.obj"
+                "bus": "assets/models/bus.obj",
+                "taxi": "assets/models/taxi.obj"
             },
             "samplers": {
                 "default": {},
@@ -178,7 +180,7 @@
                     "texture": "moon",
                     "sampler": "default"
                 },
-                "bicycle": {
+                "bus": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -195,7 +197,27 @@
                         1,
                         1
                     ],
-                    "texture": "bicycle",
+                    "texture": "bus",
+                    "sampler": "default"
+                },
+                "taxi": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "taxi",
                     "sampler": "default"
                 }
             }
@@ -297,7 +319,7 @@
                 "position": [
                     0,
                     -20,
-                    -40
+                    -30
                 ],
                 "rotation": [
                     -90,
@@ -306,7 +328,7 @@
                 ],
                 "scale": [
                     40,
-                    20,
+                    10,
                     1
                 ],
                 "components": [
@@ -325,7 +347,7 @@
                 "position": [
                     0,
                     -20,
-                    -120
+                    -50
                 ],
                 "rotation": [
                     -90,
@@ -334,7 +356,7 @@
                 ],
                 "scale": [
                     40,
-                    20,
+                    10,
                     0
                 ],
                 "components": [
@@ -348,86 +370,262 @@
                     }
                 ]
             },
-           {
-            "name": "bicycle",
-            "scale": [
-                0.09,
-                0.09,
-                0.09
-            ],
-            "position": [
-                50,
-                -20,
-                -45
-            ],
-            "rotation": [
-                270,
-                90,
-                0
-            ],
-            "components": [
-                {
-                    "type": "Mesh Renderer",
-                    "mesh": "bicycle",
-                    "material": "bicycle"
-                },
-                {
-                    "type": "Movement",
-                    "linearVelocity": [
-                        -10,
-                        0,
-                        0
-                    ]
-                },
-                {
-                    "type": "Car",
-                    "hidden": true,
-                    "start_x": 50,
-                    "renderEvery": 5, //in sec
-                    "lifeTime": 10 //60 sec
-                }
-            ]
-        },
-        {
-            "name": "bicycle",
-            "scale": [
-                0.09,
-                0.09,
-                0.09
-            ],
-            "position": [
-                -50,
-                -20,
-                -65
-            ],
-            "rotation": [
-                270,
-                270,
-                0
-            ],
-            "components": [
-                {
-                    "type": "Mesh Renderer",
-                    "mesh": "bicycle",
-                    "material": "bicycle"
-                },
-                {
-                    "type": "Movement",
-                    "linearVelocity": [
-                        10,
-                        0,
-                        0
-                    ]
-                },
-                {
-                    "type": "Car",
-                    "hidden": true,
-                    "start_x": -45,
-                    "renderEvery": 5, //in sec
-                    "lifeTime": 10 //60 sec
-                }
-            ]
-        }
+            {
+                "name": "street",
+                "position": [
+                    0,
+                    -20,
+                    -110
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "street"
+                    },
+                    {
+                        "type": "Street"
+                    }
+                ]
+            },
+            {
+                "name": "street",
+                "position": [
+                    0,
+                    -20,
+                    -130
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    10,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "street"
+                    },
+                    {
+                        "type": "Street"
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    50,
+                    -20,
+                    -25
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": 50,
+                        "renderEvery": 5, //in sec
+                        "lifeTime": 10 //60 sec
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -35
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": -45,
+                        "renderEvery": 5, //in sec
+                        "lifeTime": 10 //60 sec
+                    }
+                ]
+            },
+            {
+                "name": "taxi",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -10,
+                    -20,
+                    -35
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "taxi",
+                        "material": "taxi"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": -45,
+                        "renderEvery": 5, //in sec
+                        "lifeTime": 10 //60 sec
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    50,
+                    -20,
+                    -45
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            -10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": 50,
+                        "renderEvery": 5, //in sec
+                        "lifeTime": 10 //60 sec
+                    }
+                ]
+            },
+            {
+                "name": "bus",
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
+                "position": [
+                    -50,
+                    -20,
+                    -55
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "bus",
+                        "material": "bus"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "Car",
+                        "hidden": true,
+                        "start_x": -45,
+                        "renderEvery": 5, //in sec
+                        "lifeTime": 10 //60 sec
+                    }
+                ]
+            }
         ]
     }
 }

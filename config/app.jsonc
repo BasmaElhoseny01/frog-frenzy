@@ -243,6 +243,7 @@
                 ]
             },
             {
+                "name": "grass",
                 "position": [
                     0,
                     -20,
@@ -254,8 +255,33 @@
                     0
                 ],
                 "scale": [
-                    80,
                     40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "grass"
+                    }
+                ]
+            },
+            {
+                "name": "grass",
+                "position": [
+                    0,
+                    -20,
+                    -80
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
                     1
                 ],
                 "components": [
@@ -271,7 +297,7 @@
                 "position": [
                     0,
                     -20,
-                    -80
+                    -40
                 ],
                 "rotation": [
                     -90,
@@ -279,8 +305,36 @@
                     0
                 ],
                 "scale": [
-                    80,
                     40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "street"
+                    },
+                    {
+                        "type": "Street"
+                    }
+                ]
+            },
+            {
+                "name": "street",
+                "position": [
+                    0,
+                    -20,
+                    -120
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
                     0
                 ],
                 "components": [
@@ -297,13 +351,13 @@
            {
             "name": "bicycle",
             "scale": [
-                0.25,
-                0.25,
-                0.25
+                0.09,
+                0.09,
+                0.09
             ],
             "position": [
                 50,
-                -40,
+                -20,
                 -45
             ],
             "rotation": [
@@ -329,21 +383,21 @@
                     "type": "Car",
                     "hidden": true,
                     "start_x": 50,
-                    "renderEvery": 20, //in sec
-                    "lifeTime": 15 //60 sec
+                    "renderEvery": 5, //in sec
+                    "lifeTime": 10 //60 sec
                 }
             ]
         },
         {
             "name": "bicycle",
             "scale": [
-                0.25,
-                0.25,
-                0.25
+                0.09,
+                0.09,
+                0.09
             ],
             "position": [
                 -50,
-                -40,
+                -20,
                 -65
             ],
             "rotation": [
@@ -368,9 +422,9 @@
                 {
                     "type": "Car",
                     "hidden": true,
-                    "start_x": -100,
-                    "renderEvery": 30, //in sec
-                    "lifeTime": 15 //60 sec
+                    "start_x": -45,
+                    "renderEvery": 5, //in sec
+                    "lifeTime": 10 //60 sec
                 }
             ]
         }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../ecs/world.hpp"
-#include "../components/street.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
@@ -11,7 +10,7 @@
 namespace our
 {
 
-    class StreetSystem {
+    class GroundSystem {
         glm::vec4 positionCamera;
         int width = 20;
         int height = 40;
@@ -30,15 +29,14 @@ namespace our
                     positionCamera = camera->getPosition();
                 }
             }
-            std::cout << "position";
-            std::cout << positionCamera[0] << " " << positionCamera[1] << " " << positionCamera[2];
             for(auto entity : world->getEntities()){
-                // Get the street component if it exists
-                StreetComponent* street = entity->getComponent<StreetComponent>();
+                // Get name of entity
+                std::string name = entity->name;
+                
                 // If the street component exists
-                if(street &&  (entity->localTransform.position[2]-width) >positionCamera[2] ){
+                if((name=="street"||name=="grass")  &&  (entity->localTransform.position[2]-width) >positionCamera[2] ){
                     Entity *newEntity = world->add(); // Make new Entity + Add this Entity to the world
-                    entity->localTransform.position[2] -= height * 2;
+                    entity->localTransform.position[2] -= height * 4;
                 }
             }
         }

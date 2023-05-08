@@ -80,16 +80,13 @@ set(COMMON_SOURCES
         source/common/components/car.hpp
         source/common/components/car.cpp
         source/common/components/component-deserializer.hpp
-        source/common/components/street.hpp
-        source/common/components/street.cpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
         source/common/systems/free-camera-controller.hpp
         source/common/systems/movement.hpp
-        source/common/systems/cars-system.hpp
-
-        source/common/systems/street.hpp
+        source/common/systems/car.hpp
+        source/common/systems/ground.hpp
 )
 
 # Define the directories in which to search for the included headers

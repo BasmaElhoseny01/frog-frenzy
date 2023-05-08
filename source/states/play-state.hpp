@@ -7,7 +7,7 @@
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
 #include <systems/cars-system.hpp>
-#include <systems/street.hpp>
+#include <systems/ground.hpp>
 #include <asset-loader.hpp>
 
 // This state shows how to use the ECS framework and deserialization.
@@ -19,7 +19,7 @@ class Playstate : public our::State
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
     our::CarsSystem carsSystem;
-    our::StreetSystem streetSystem;
+    our::GroundSystem groundSystem;
 
     void onInitialize() override
     {
@@ -48,7 +48,7 @@ class Playstate : public our::State
         carsSystem.update(&world); // To control Cars System to appear
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
-         streetSystem.update(&world);
+        groundSystem.update(&world);
 
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again

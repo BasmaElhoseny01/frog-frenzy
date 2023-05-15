@@ -32,6 +32,9 @@
                 "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
                 "bus": "assets/textures/bus.jpg",
+                "wall": "assets/textures/wall.jpg",
+                "hole": "assets/textures/hole.jpg",
+                "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg"
             },
             "meshes": {
@@ -41,6 +44,9 @@
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
                 "bus": "assets/models/bus.obj",
+                "wall": "assets/models/wall.obj",
+                "hole": "assets/models/hole.obj",
+                "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj"
             },
             "samplers": {
@@ -219,6 +225,66 @@
                     ],
                     "texture": "taxi",
                     "sampler": "default"
+                },
+                "wall": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "wall",
+                    "sampler": "default"
+                },
+                "hole": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "hole",
+                    "sampler": "default"
+                },
+                "fence": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "fence",
+                    "sampler": "default"
                 }
             }
         },
@@ -261,6 +327,31 @@
                                 "material": "metal"
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "name": "fence",
+                "position": [
+                    0,
+                    2,
+                    0
+                ],
+                "rotation": [
+                    90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "fence"
                     }
                 ]
             },
@@ -427,6 +518,156 @@
                 ]
             },
             ///////////// fist way  street 1 ////////////////////
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
+                    -40,
+                    -22,
+                    -40
+                ],
+                "rotation": [
+                    -90,
+                    90,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "name": "hole",
+                "scale": [
+                    4,
+                    4,
+                    1
+                ],
+                "position": [
+                    -38,
+                    -15,
+                    -26
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "hole",
+                        "material": "hole"
+                    }
+                ]
+            },
+            {
+                "name": "hole",
+                "scale": [
+                    4,
+                    4,
+                    1
+                ],
+                "position": [
+                    -38,
+                    -15,
+                    -45
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "hole",
+                        "material": "hole"
+                    }
+                ]
+            },
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
+                    40,
+                    -22,
+                    -40
+                ],
+                "rotation": [
+                    -90,
+                    90,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "name": "hole",
+                "scale": [
+                    4,
+                    4,
+                    1
+                ],
+                "position": [
+                    38,
+                    -15,
+                    -26
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "hole",
+                        "material": "hole"
+                    }
+                ]
+            },
+            {
+                "name": "hole",
+                "scale": [
+                    4,
+                    4,
+                    1
+                ],
+                "position": [
+                    38,
+                    -15,
+                    -45
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "hole",
+                        "material": "hole"
+                    }
+                ]
+            },
             {
                 "name": "bus",
                 "scale": [

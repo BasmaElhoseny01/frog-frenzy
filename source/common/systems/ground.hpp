@@ -1,7 +1,6 @@
 #pragma once
-
 #include "../ecs/world.hpp"
-
+#include "../components/camera.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
@@ -17,7 +16,7 @@ namespace our
 
     public:
 
-        // This should be called every frame to update all entities containing a StreetComponent. 
+        // This should be called every frame to update all entities containing a StreetComponent.
         void update(World* world) {
             // For each entity in the world
             for(auto entity : world->getEntities()){
@@ -34,14 +33,16 @@ namespace our
                 std::string name = entity->name;
                 // If the street component exists
                 if((name=="street"||name=="grass")  &&  (entity->localTransform.position[2]-width) >positionCamera[2] ){
-                    Entity *newEntity = world->add(); // Make new Entity + Add this Entity to the world
-                    entity->localTransform.position[2] -= height * 4;
+
                     for(auto entity2 : world->getEntities()){
-                         if((entity2->name=="bus"|| entity2->name=="taxi" )&& (entity2->localTransform.position[2]-width) >positionCamera[2] ){
+                        if((entity2->name=="bus"|| entity2->name=="taxi" )&& (entity2->localTransform.position[2]) > ( entity->localTransform.position[2] - width/2 ) ){
+                            // change taxi or bus position
                             entity2->localTransform.position[2] -= height * 4;
-                         }
+                        }
 
                     }
+                    // change grass or street position
+                    entity->localTransform.position[2] -= height * 4;
                 }
             }
         }

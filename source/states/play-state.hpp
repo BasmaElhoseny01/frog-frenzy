@@ -5,6 +5,7 @@
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
+#include <systems/free-frog-controller.hpp>
 #include <systems/movement.hpp>
 #include <systems/car.hpp>
 #include <systems/ground.hpp>
@@ -17,6 +18,7 @@ class Playstate : public our::State
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
+    our::FreeFrogControllerSystem frogController;
     our::MovementSystem movementSystem;
     our::CarsSystem carsSystem;
     our::GroundSystem groundSystem;
@@ -37,6 +39,8 @@ class Playstate : public our::State
         }
         // We initialize the camera controller system since it needs a pointer to the app
         cameraController.enter(getApp());
+        // We initialize the frog controller system since it needs a pointer to the app
+        frogController.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
@@ -47,7 +51,8 @@ class Playstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
         movementSystem.update(&world, (float)deltaTime);
-        cameraController.update(&world, (float)deltaTime);
+        //cameraController.update(&world, (float)deltaTime);
+        frogController.update(&world, (float)deltaTime);
         groundSystem.update(&world);
 
 
@@ -78,6 +83,8 @@ class Playstate : public our::State
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
         cameraController.exit();
+         // On exit, we call exit for the frog  controller system to make sure that the mouse is unlocked
+        frogController.exit();
         // Clear the world
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM

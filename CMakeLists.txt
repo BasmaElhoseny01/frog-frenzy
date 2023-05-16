@@ -75,6 +75,8 @@ set(COMMON_SOURCES
         source/common/components/mesh-renderer.cpp
         source/common/components/free-camera-controller.hpp
         source/common/components/free-camera-controller.cpp
+        source/common/components/free-frog-controller.hpp
+        source/common/components/free-frog-controller.cpp
         source/common/components/movement.hpp
         source/common/components/movement.cpp
         source/common/components/component-deserializer.hpp
@@ -84,6 +86,7 @@ set(COMMON_SOURCES
         source/common/systems/free-camera-controller.hpp
         source/common/systems/movement.hpp
         source/common/systems/ground.hpp
+        source/common/systems/free-frog-controller.hpp
 )
 
 # Define the directories in which to search for the included headers

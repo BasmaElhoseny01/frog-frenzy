@@ -35,7 +35,8 @@
                 "wall": "assets/textures/wall.jpg",
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
-                "taxi": "assets/textures/taxi.jpg"
+                "taxi": "assets/textures/taxi.jpg",
+                "frog": "assets/textures/frog2.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -47,7 +48,8 @@
                 "wall": "assets/models/wall.obj",
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
-                "taxi": "assets/models/taxi.obj"
+                "taxi": "assets/models/taxi.obj",
+                "frog": "assets/models/frog2.obj"
             },
             "samplers": {
                 "default": {},
@@ -285,6 +287,26 @@
                     ],
                     "texture": "fence",
                     "sampler": "default"
+                },
+                "frog": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "frog",
+                    "sampler": "default"
                 }
             }
         },
@@ -292,39 +314,44 @@
             {
                 "position": [
                     0,
+                    -20,
+                    -20
+                ],
+                "rotation": [
+                    270,
                     0,
-                    10
+                    0
+                ],
+                "scale": [
+                    0.1,
+                    0.1,
+                    0.1
                 ],
                 "components": [
                     {
-                        "type": "Camera"
-                    },
-                    {
-                        "type": "Free Camera Controller"
+                        "type": "Mesh Renderer",
+                        "mesh": "frog",
+                        "material": "frog"
                     }
                 ],
                 "children": [
                     {
                         "position": [
-                            1,
-                            -1,
-                            -1
+                            0,
+                            -75,
+                            150
                         ],
                         "rotation": [
-                            45,
-                            45,
-                            0
-                        ],
-                        "scale": [
-                            0.1,
-                            0.1,
-                            1.0
+                            135,
+                            180,
+                            180
                         ],
                         "components": [
                             {
-                                "type": "Mesh Renderer",
-                                "mesh": "cube",
-                                "material": "metal"
+                                "type": "Camera"
+                            },
+                            {
+                                "type": "Free Frog Controller"
                             }
                         ]
                     }

@@ -4,6 +4,7 @@
 #include "camera.hpp"
 #include "mesh-renderer.hpp"
 #include "free-camera-controller.hpp"
+#include "free-frog-controller.hpp"
 #include "movement.hpp"
 
 
@@ -22,8 +23,10 @@ namespace our {
         } else if (type == MovementComponent::getID()) {
             component = entity->addComponent<MovementComponent>();
         }else if(type==MeshRendererComponent::getID()){
-            //Added De
             component=entity->addComponent<MeshRendererComponent>();
+        }
+        else if(type==FreeFrogControllerComponent::getID()){
+            component=entity->addComponent<FreeFrogControllerComponent>();
         }
         if(component) component->deserialize(data);
     }

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include <application.hpp>
 
 #include <ecs/world.hpp>
@@ -14,7 +14,7 @@
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-
+    int score = 0;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -53,7 +53,7 @@ class Playstate : public our::State
         movementSystem.update(&world, (float)deltaTime);
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);
-        groundSystem.update(&world);
+        groundSystem.update(&world, score);
 
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
@@ -90,4 +90,23 @@ class Playstate : public our::State
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
     }
+    
+    void onImmediateGui() override
+    {
+        // start gui
+        ImGui::Begin("Score", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
+        // set window position
+        ImGui::SetWindowPos(ImVec2(50, 50));
+        // set window size
+        ImGui::SetWindowSize(ImVec2(600, 100));
+        // set font
+        ImGui::SetWindowFontScale(5.0f);
+        // initialize score
+        string score_screen= "Score: " + to_string(score);
+        // initialize color
+        ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), score_screen.c_str());
+        // end gui
+        ImGui::End();
+    }
+
 };

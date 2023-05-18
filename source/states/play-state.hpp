@@ -52,7 +52,7 @@ class Playstate : public our::State
         carsSystem.update(&world); // To control Cars System to appear
         movementSystem.update(&world, (float)deltaTime);
         // cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime);
+        frogController.update(&world, (float)deltaTime, &renderer);
         groundSystem.update(&world, score);
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again

@@ -41,6 +41,7 @@ namespace our
         GLuint postprocessFrameBuffer, postProcessVertexArray;
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
+        bool applyPostProcessing=false;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
@@ -49,6 +50,11 @@ namespace our
         void destroy();
         // This function should be called every frame to draw the given world
         void render(World* world);
+
+        // This function sets the applyPostProcessing
+        void setApplyPostProcessing(bool value){
+            applyPostProcessing=value;
+        }
 
 
     };

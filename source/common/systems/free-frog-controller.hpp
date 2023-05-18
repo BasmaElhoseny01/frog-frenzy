@@ -31,9 +31,9 @@ namespace our
         }
 
         // This should be called every frame to update all entities containing a FreeFrogControllerComponent
-        void update(World *world, float deltaTime)
+        void update(World *world, float deltaTime, ForwardRenderer *forwardRenderer)
         {
-           // First of all, we search for an entity containing both a MeshRendererComponent and a FreeFrogControllerComponent
+            // First of all, we search for an entity containing both a MeshRendererComponent and a FreeFrogControllerComponent
             // As soon as we find one, we break
             // MeshRendererComponent *MeshRenderer = nullptr;
             FreeFrogControllerComponent *controller = nullptr;
@@ -43,7 +43,7 @@ namespace our
                 // MeshRenderer = entity->getComponent<MeshRendererComponent>();
                 controller = entity->getComponent<FreeFrogControllerComponent>();
                 camera = entity->getComponent<CameraComponent>();
-                
+
                 if (camera && controller)
                     break;
             }
@@ -54,7 +54,7 @@ namespace our
 
             // Get the entity that we found via getOwner (we could use controller->getOwner())
             Entity *entity = controller->getOwner();
-            
+
             // We get a reference to the entity's position and rotation [camera]
             glm::vec3 &positionCamera = entity->localTransform.position;
             glm::vec3 &rotationCamera = entity->localTransform.rotation;
@@ -72,22 +72,22 @@ namespace our
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
 
-             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
+            // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                 current_sensitivity *= controller->speedupFactor;
             // left
             if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
             {
-                
+
                 // positionFrog -= right * (deltaTime * current_sensitivity.x);
-               
+
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 rotationFrog.y = glm::half_pi<float>();
-                rotationCamera.x =0;
-                rotationCamera.y =-0.5*glm::half_pi<float>();
-                rotationCamera.z =-glm::half_pi<float>();
-                positionCamera.x =-75;
-                positionCamera.y =0;
+                rotationCamera.x = 0;
+                rotationCamera.y = -0.5 * glm::half_pi<float>();
+                rotationCamera.z = -glm::half_pi<float>();
+                positionCamera.x = -75;
+                positionCamera.y = 0;
                 positionCamera.z = 150;
                 // rotationCamera.z = -90;
             }
@@ -97,32 +97,33 @@ namespace our
                 // positionFrog += right * (deltaTime * current_sensitivity.x);
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 rotationFrog.y = -glm::half_pi<float>();
-                rotationCamera.x =0;
-                rotationCamera.y =0.5*glm::half_pi<float>();
-                rotationCamera.z =glm::half_pi<float>();
-                positionCamera.x =75;
-                positionCamera.y =0;
+                rotationCamera.x = 0;
+                rotationCamera.y = 0.5 * glm::half_pi<float>();
+                rotationCamera.z = glm::half_pi<float>();
+                positionCamera.x = 75;
+                positionCamera.y = 0;
                 positionCamera.z = 150;
             }
             // forward
             if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
-                 positionFrog += up * (deltaTime * current_sensitivity.y);
-                 rotationFrog.y = 0;
-                 rotationCamera.y =glm::pi<float>();
-                 rotationCamera.x =(3.0/4) *glm::pi<float>();
-                 rotationCamera.z =glm::pi<float>();
-                positionCamera.x =0;
-                positionCamera.y =-75;
+                positionFrog += up * (deltaTime * current_sensitivity.y);
+                rotationFrog.y = 0;
+                rotationCamera.y = glm::pi<float>();
+                rotationCamera.x = (3.0 / 4) * glm::pi<float>();
+                rotationCamera.z = glm::pi<float>();
+                positionCamera.x = 0;
+                positionCamera.y = -75;
                 positionCamera.z = 150;
+
+                // Apply GreyPost Processing
+                forwardRenderer->setApplyPostProcessing(true);
             }
-            
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
         void exit()
         {
-          
         }
     };
 

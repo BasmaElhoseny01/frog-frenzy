@@ -7,9 +7,16 @@
 #include <systems/free-camera-controller.hpp>
 #include <systems/free-frog-controller.hpp>
 #include <systems/movement.hpp>
+#include <systems/collision.hpp>
 #include <systems/car.hpp>
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
+#include <irrKlang/irrKlang.h>
+using namespace irrklang;
+
+
+
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
@@ -22,6 +29,8 @@ class Playstate : public our::State
     our::MovementSystem movementSystem;
     our::CarsSystem carsSystem;
     our::GroundSystem groundSystem;
+    our::CollisionSystem collisionSystem;
+    ISoundEngine *engine;
 
     void onInitialize() override
     {
@@ -41,9 +50,18 @@ class Playstate : public our::State
         cameraController.enter(getApp());
         // We initialize the frog controller system since it needs a pointer to the app
         frogController.enter(getApp());
+        // We initialize the collision  system since it needs a pointer to the app
+        collisionSystem.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+        // start the sound engine with default parameters
+         engine= createIrrKlangDevice();
+
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            engine->play2D("./media/getout.ogg", true);
     }
 
     void onDraw(double deltaTime) override
@@ -54,7 +72,7 @@ class Playstate : public our::State
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);
         groundSystem.update(&world, score);
-
+        collisionSystem.update(&world);
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
@@ -89,6 +107,7 @@ class Playstate : public our::State
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+        // engine->drop(); // delete engine
     }
     
     void onImmediateGui() override

@@ -11,7 +11,7 @@
     "scene": {
         "renderer": {
             "sky": "assets/textures/sky100.jpg",
-            "postprocess": "assets/shaders/postprocess/convolution.frag"
+            "postprocess": "assets/shaders/postprocess/blur.frag"
 
         },
         "assets": {

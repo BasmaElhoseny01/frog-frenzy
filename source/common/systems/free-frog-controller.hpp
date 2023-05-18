@@ -78,9 +78,6 @@ namespace our
             // left
             if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
             {
-                
-                // positionFrog -= right * (deltaTime * current_sensitivity.x);
-               
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 rotationFrog.y = glm::half_pi<float>();
                 rotationCamera.x =0;
@@ -92,7 +89,7 @@ namespace our
                 // rotationCamera.z = -90;
             }
             // right
-            if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
+            else if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
             {
                 // positionFrog += right * (deltaTime * current_sensitivity.x);
                 positionFrog += up * (deltaTime * current_sensitivity.y);
@@ -105,7 +102,7 @@ namespace our
                 positionCamera.z = 150;
             }
             // forward
-            if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
+            else if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
                  positionFrog += up * (deltaTime * current_sensitivity.y);
                  rotationFrog.y = 0;

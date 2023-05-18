@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <application.hpp>
-
+#include<iostream>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
@@ -21,7 +21,7 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    int score = 0;
+    int score;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -62,17 +62,20 @@ class Playstate : public our::State
             std::cout << "Could not startup engine" << std::endl;
         else
             engine->play2D("./media/getout.ogg", true);
+        score = 0;// reset score of player
     }
 
     void onDraw(double deltaTime) override
     {
+        groundSystem.update(&world, score);// To rerender ground
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
-        movementSystem.update(&world, (float)deltaTime);
+        collisionSystem.update(&world);// To check collision
+        movementSystem.update(&world, (float)deltaTime); // To update movement component 
         //cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime);
-        groundSystem.update(&world, score);
-        collisionSystem.update(&world);
+        frogController.update(&world, (float)deltaTime);// To control frog movement
+        
+        
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
@@ -97,6 +100,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
+        
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
@@ -107,7 +111,7 @@ class Playstate : public our::State
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
-        // engine->drop(); // delete engine
+        engine->drop(); // delete engine
     }
     
     void onImmediateGui() override

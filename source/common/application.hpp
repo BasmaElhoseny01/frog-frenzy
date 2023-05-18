@@ -30,6 +30,8 @@ namespace our {
         // Each scene will have a pointer to the application that owns it
         Application* application;
         friend Application;
+        
+
     public:
         virtual void onInitialize(){}                   // Called once before the game loop.
         // Called every frame to draw the Immediate GUI (if any).

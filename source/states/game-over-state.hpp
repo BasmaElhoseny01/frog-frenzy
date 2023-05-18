@@ -1,7 +1,7 @@
 #pragma once
 
 #include <application.hpp>
-
+#include <iostream>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <asset-loader.hpp>
@@ -52,6 +52,11 @@ class GameOver : public our::State
     void onDraw(double deltaTime) override
     {
         renderer.render(&world);
+        auto& keyboard = getApp()->getKeyboard();
+        if(keyboard.justPressed(GLFW_KEY_ENTER)){
+            // go to game
+            getApp()->changeState("play");
+        }
     }
 
     void onDestroy() override
@@ -62,5 +67,22 @@ class GameOver : public our::State
         // meshRendererController.exit();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+    }
+     void onImmediateGui() override
+    {
+        // start gui
+        ImGui::Begin("Enter", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
+        // set window position
+        ImGui::SetWindowPos(ImVec2(300, 530));
+        // set window size
+        ImGui::SetWindowSize(ImVec2(800, 100));
+        // set font
+        ImGui::SetWindowFontScale(3.0f);
+        // initialize score
+        string pressEnter= "Press Enter to play again... ";
+        // initialize color
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), pressEnter.c_str());
+        // end gui
+        ImGui::End();
     }
 };

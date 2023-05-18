@@ -119,6 +119,11 @@ namespace our
                 // Apply GreyPost Processing
                 forwardRenderer->setApplyPostProcessing(true);
             }
+            if (app->getKeyboard().justReleased(GLFW_KEY_W) || app->getKeyboard().justReleased(GLFW_KEY_UP))
+            {
+                // Disable GreyPost Processing
+                forwardRenderer->setApplyPostProcessing(false);
+            }
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked

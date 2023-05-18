@@ -11,8 +11,7 @@
     "scene": {
         "renderer": {
             "sky": "assets/textures/sky100.jpg",
-            // "postprocess": "assets/shaders/postprocess/vignette.frag"
-            "postprocess": "assets/shaders/postprocess/grayscale.frag"
+            "postprocess": "assets/shaders/postprocess/vignette.frag"
 
         },
         "assets": {

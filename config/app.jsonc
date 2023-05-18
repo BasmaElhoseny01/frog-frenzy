@@ -36,7 +36,8 @@
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
-                "frog": "assets/textures/frog2.jpg"
+                "frog": "assets/textures/frog2.jpg",
+                "house": "assets/textures/house.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -49,7 +50,8 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
-                "frog": "assets/models/frog2.obj"
+                "frog": "assets/models/frog2.obj",
+                "house": "assets/models/house.obj"
             },
             "samplers": {
                 "default": {},
@@ -306,6 +308,26 @@
                         1
                     ],
                     "texture": "frog",
+                    "sampler": "default"
+                },
+                "house": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "house",
                     "sampler": "default"
                 }
             }
@@ -1488,6 +1510,32 @@
                             0,
                             0
                         ]
+                    }
+                ]
+            },
+            /////////////////////  House  ////////////////////
+            {
+                "name": "house",
+                "scale": [
+                    0.5,
+                    0.5,
+                    0.03
+                ],
+                "position": [
+                    20,
+                    -20,
+                    -50
+                ],
+                "rotation": [
+                    -90,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "house",
+                        "material": "house"
                     }
                 ]
             }

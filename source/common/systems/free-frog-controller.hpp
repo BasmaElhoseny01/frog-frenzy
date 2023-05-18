@@ -76,7 +76,7 @@ namespace our
             if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                 current_sensitivity *= controller->speedupFactor;
             // left
-            if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
+            if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0]>-37)
             {
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 rotationFrog.y = glm::half_pi<float>();
@@ -86,12 +86,10 @@ namespace our
                 positionCamera.x =-75;
                 positionCamera.y =0;
                 positionCamera.z = 150;
-                // rotationCamera.z = -90;
             }
             // right
-            else if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
+            else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))&& positionFrog[0]< 37)
             {
-                // positionFrog += right * (deltaTime * current_sensitivity.x);
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 rotationFrog.y = -glm::half_pi<float>();
                 rotationCamera.x =0;
@@ -104,23 +102,17 @@ namespace our
             // forward
             else if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
-                 positionFrog += up * (deltaTime * current_sensitivity.y);
-                 rotationFrog.y = 0;
-                 rotationCamera.y =glm::pi<float>();
-                 rotationCamera.x =(3.0/4) *glm::pi<float>();
-                 rotationCamera.z =glm::pi<float>();
+                positionFrog += up * (deltaTime * current_sensitivity.y);
+                rotationFrog.y = 0;
+                rotationCamera.y =glm::pi<float>();
+                rotationCamera.x =(3.0/4) *glm::pi<float>();
+                rotationCamera.z =glm::pi<float>();
                 positionCamera.x =0;
                 positionCamera.y =-75;
                 positionCamera.z = 150;
             }
-            
         }
 
-        // When the state exits, it should call this function to ensure the mouse is unlocked
-        void exit()
-        {
-          
-        }
     };
 
 }

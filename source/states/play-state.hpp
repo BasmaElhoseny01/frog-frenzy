@@ -72,8 +72,8 @@ class Playstate : public our::State
         carsSystem.update(&world); // To control Cars System to appear
         collisionSystem.update(&world);// To check collision
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
-        //cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime);// To control frog movement
+        cameraController.update(&world, (float)deltaTime);
+        //frogController.update(&world, (float)deltaTime);// To control frog movement
         
         
 
@@ -105,8 +105,6 @@ class Playstate : public our::State
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
         cameraController.exit();
-         // On exit, we call exit for the frog  controller system to make sure that the mouse is unlocked
-        frogController.exit();
         // Clear the world
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM

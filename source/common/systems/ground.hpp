@@ -33,7 +33,7 @@ namespace our
                 std::string name = entity->name;
                 // If the street component exists
                 if((name=="street"||name=="grass")  &&  (entity->localTransform.position[2]-width) >positionCamera[2] ){
-                    score++;
+                    score++; // inc score
                     for(auto entity2 : world->getEntities()){
                         if((entity2->name=="bus"|| entity2->name=="taxi" )&& (entity2->localTransform.position[2]) > ( entity->localTransform.position[2] - width/2 ) ){
                             // change taxi or bus position

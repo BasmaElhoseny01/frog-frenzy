@@ -51,9 +51,9 @@ namespace our
                             positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            // flagPostProcessing = true;
-                            // forwardRenderer->setApplyPostProcessing(true);
-                            // engine->play2D("./media/scream.mp3", false);
+                            flagPostProcessing = true;
+                            forwardRenderer->setApplyPostProcessing(true);
+                            engine->play2D("./media/scream.mp3", false);
                         }
                 }
                 if((name=="taxi")){
@@ -65,9 +65,9 @@ namespace our
                             positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            // flagPostProcessing = true;
-                            // forwardRenderer->setApplyPostProcessing(true);
-                            //  engine->play2D("./media/scream.mp3", false);
+                            flagPostProcessing = true;
+                            forwardRenderer->setApplyPostProcessing(true);
+                             engine->play2D("./media/scream.mp3", false);
                         }
                 }
             }

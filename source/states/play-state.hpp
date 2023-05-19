@@ -75,8 +75,8 @@ class Playstate : public our::State
         carsSystem.update(&world); // To control Cars System to appear
         collisionSystem.update(&world);// To check collision
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
-        cameraController.update(&world, (float)deltaTime);
-        // frogController.update(&world, (float)deltaTime);// To control frog movement
+        // cameraController.update(&world, (float)deltaTime);
+        frogController.update(&world, (float)deltaTime);// To control frog movement
         
         
 

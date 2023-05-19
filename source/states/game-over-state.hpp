@@ -5,14 +5,19 @@
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <asset-loader.hpp>
+#include <irrKlang/irrKlang.h>
 
+using namespace irrklang;
+
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 // This state shows how to use the ECS framework and deserialization.
 class GameOver : public our::State
 {
 
     our::World world;
     our::ForwardRenderer renderer;
-
+    ISoundEngine *engine;
+    // our::GameOvertSystem gameOver;
     void onInitialize() override
     {
         std::string config_path = "config/game-over.jsonc";
@@ -47,14 +52,24 @@ class GameOver : public our::State
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+         // start the sound engine with default parameters
+         engine= createIrrKlangDevice();
+
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            engine->play2D("./media/ophelia.mp3", true);
+        // gameOver.enter(getApp());
     }
 
     void onDraw(double deltaTime) override
     {
         renderer.render(&world);
+        // gameOver.update();
         auto& keyboard = getApp()->getKeyboard();
         if(keyboard.justPressed(GLFW_KEY_ENTER)){
             // go to game
+            // getApp()->registerState<Playstate>("play");
             getApp()->changeState("play");
         }
     }
@@ -67,6 +82,7 @@ class GameOver : public our::State
         // meshRendererController.exit();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+        engine->drop(); // delete engine
     }
      void onImmediateGui() override
     {

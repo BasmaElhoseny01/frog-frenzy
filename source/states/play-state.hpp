@@ -12,6 +12,7 @@
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
 #include <irrKlang/irrKlang.h>
+
 using namespace irrklang;
 
 
@@ -31,7 +32,7 @@ class Playstate : public our::State
     our::GroundSystem groundSystem;
     our::CollisionSystem collisionSystem;
     ISoundEngine *engine;
-
+    bool flagPostProcessing;
     void onInitialize() override
     {
         // First of all, we get the scene configuration from the app config
@@ -62,18 +63,21 @@ class Playstate : public our::State
             std::cout << "Could not startup engine" << std::endl;
         else
             engine->play2D("./media/getout.ogg", true);
-        score = 0;// reset score of player
+        score = 0; // reset score of player
+        flagPostProcessing = false; // reset bool of PostProcessing
+        renderer.setApplyPostProcessing(false);
     }
 
     void onDraw(double deltaTime) override
     {
-        groundSystem.update(&world, score);// To rerender ground
+        collisionSystem.checkGameOver(flagPostProcessing);// To check game over
+        groundSystem.update(&world, score); // To rerender ground
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
-        collisionSystem.update(&world);// To check collision
+        collisionSystem.update(&world,&renderer,flagPostProcessing,engine);// To check collision
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
-        cameraController.update(&world, (float)deltaTime);
-        //frogController.update(&world, (float)deltaTime);// To control frog movement
+        //cameraController.update(&world, (float)deltaTime);
+        frogController.update(&world, (float)deltaTime);// To control frog movement
         
         
 

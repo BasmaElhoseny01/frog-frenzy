@@ -14,13 +14,12 @@ namespace our
 {
 
     class CollisionSystem {
-        Application *app;         // The application in which the state runs
-        glm::vec3 positionFrog;
-        int width = 20;
-        int height = 40;
-        vector<Entity> cars;
-        Entity *heartEntity = nullptr;
-        Entity *frog = nullptr;
+        Application *app;               // The application in which the state runs
+        glm::vec3 positionFrog;         // position Frog
+        int width = 20;                 // width of ground
+        int height = 40;                // height of ground
+        Entity *heartEntity = nullptr;  // to store heart entity
+        Entity *frogEntity = nullptr;   // to store frog entity
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
@@ -35,12 +34,10 @@ namespace our
                 {
                     // get position of frog
                     positionFrog = entity->localTransform.position;
-                    frog = entity;
+                    frogEntity = entity;
                     break;
                 }
             }
-            bool flag = false;
-
             HeartComponent *heart = nullptr;
             ScopeComponent *scopeController = nullptr;
             for(auto entity : world->getEntities()){
@@ -63,23 +60,31 @@ namespace our
                     if (positionFrog.x >= car_min.x && positionFrog.x <= car_max.x &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
+                            // check id to know which heart selected
                             if(id==2){
                                 flagPostProcessing = true;
                                 forwardRenderer->setApplyPostProcessing(true);
                             }else{
+                                // change position of heart selected
                                 heartEntity->localTransform.position[1] = 100;
-                                frog->localTransform.position[2] -= height;
+                                // change frog position after crash car
+                                frogEntity->localTransform.position[2] -= height;
                             }
+                            // play sound
                             engine->play2D("./media/scream.mp3", false);
+                            // inc id after crash
                             id++;
                         }
                 }
             }
         }
-
+        // check if game over
         void checkGameOver(bool flagPostProcessing){
+            // check if game is over or not
             if(flagPostProcessing){
+                // wait to apply filter 2 sec
                 _sleep(1500);
+                // change to game over state
                 app->registerState<GameOver>("game-over");
                 app->changeState("game-over");
             }

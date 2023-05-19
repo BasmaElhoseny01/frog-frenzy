@@ -63,10 +63,10 @@ class Playstate : public our::State
         // start the sound engine with default parameters
         engine= createIrrKlangDevice();
 
-        // if (!engine)
-        //     std::cout << "Could not startup engine" << std::endl;
-        // else
-        //     engine->play2D("./media/getout.ogg", true);
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            engine->play2D("./media/getout.ogg", true);
         score = 0; // reset score of player
         flagPostProcessing = false; // reset bool of PostProcessing
         renderer.setApplyPostProcessing(false);

@@ -15,8 +15,8 @@ namespace our
     // This system is added as a simple example for how use the ECS framework to implement logic.
     class CarsSystem
     {
-        int length = 80;
-        int start = 50;
+        int length = 80; // length of max postion which can reach
+        int start = 50; // start postion which rerender it again
 
     public:
         // This should be called every frame to update all entities containing a MovementComponent.
@@ -25,12 +25,15 @@ namespace our
             for (auto entity : world->getEntities())
             {
                 if((entity->name=="car"|| entity->name=="taxi")){
+                    // rerender cars after reach max border of street
                     if(entity->localTransform.position[0] >length)
                     {
+                        // render to left again
                         entity->localTransform.position[0] = -start;
                     }
                     else if(entity->localTransform.position[0] < -length)
                     {
+                        // render to right again
                         entity->localTransform.position[0] = start;
                     }
                 }

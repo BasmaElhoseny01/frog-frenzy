@@ -78,11 +78,15 @@ namespace our
             // left
             if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0]>-37)
             {
+                // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
+                // change rotation of frog to look left
                 rotationFrog.y = glm::half_pi<float>();
+                // change rotation of camera to be with frog
                 rotationCamera.x =0;
                 rotationCamera.y =-0.5*glm::half_pi<float>();
                 rotationCamera.z =-glm::half_pi<float>();
+                // change postion of camera to be with frog
                 positionCamera.x =-75;
                 positionCamera.y =0;
                 positionCamera.z = 150;
@@ -90,11 +94,15 @@ namespace our
             // right
             else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))&& positionFrog[0]< 37)
             {
+                // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
+                // change rotation of frog to look right
                 rotationFrog.y = -glm::half_pi<float>();
+                // change rotation of camera to be with frog
                 rotationCamera.x =0;
                 rotationCamera.y =0.5*glm::half_pi<float>();
                 rotationCamera.z =glm::half_pi<float>();
+                // change postion of camera to be with frog
                 positionCamera.x =75;
                 positionCamera.y =0;
                 positionCamera.z = 150;
@@ -102,11 +110,15 @@ namespace our
             // forward
             else if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
+                // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
+                // change rotation of frog to look forward
                 rotationFrog.y = 0;
+                // change rotation of camera to be with frog
                 rotationCamera.y =glm::pi<float>();
                 rotationCamera.x =(3.0/4) *glm::pi<float>();
                 rotationCamera.z =glm::pi<float>();
+                // change postion of camera to be with frog
                 positionCamera.x =0;
                 positionCamera.y =-75;
                 positionCamera.z = 150;

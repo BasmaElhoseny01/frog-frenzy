@@ -27,26 +27,22 @@
             "textures": {
                 "moon": "assets/textures/moon.jpg",
                 "grass": "assets/textures/grass_ground_d.jpg",
-                // "grass": "assets/textures/grass.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
+                "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
                 "bus": "assets/textures/bus.jpg",
                 "wall": "assets/textures/wall.jpg",
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
-                "lake": "assets/textures/lake.png",
-                "stone": "assets/textures/stone.png",
                 "frog": "assets/textures/frog2.jpg",
-                "duck": "assets/textures/duck.jpg",
-                "monkey": "assets/textures/monkey.png",
-                "bird": "assets/textures/bird.jpg",
-                "heart": "assets/textures/heart.png"
-
+                "heart": "assets/textures/heart.png",
+                "white": "assets/textures/white.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
+                "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
@@ -55,14 +51,8 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
-                // "lake": "assets/models/lake.obj",
-                "stone": "assets/models/stone.obj",
                 "frog": "assets/models/frog2.obj",
-                "duck": "assets/models/duck.obj",
-                "monkey": "assets/models/monkey.obj",
-                "bird": "assets/models/bird.obj",
                 "heart": "assets/models/heart.obj"
-
             },
             "samplers": {
                 "default": {},
@@ -159,6 +149,26 @@
                         1
                     ],
                     "texture": "street",
+                    "sampler": "default"
+                },
+                "monkey": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "monkey",
                     "sampler": "default"
                 },
                 "moon": {
@@ -261,6 +271,33 @@
                     "texture": "hole",
                     "sampler": "default"
                 },
+                "white": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        0.7
+                    ],
+                    "texture": "hole",
+                    "sampler": "default"
+                },
                 "fence": {
                     "type": "textured",
                     "shader": "textured",
@@ -279,46 +316,6 @@
                         1
                     ],
                     "texture": "fence",
-                    "sampler": "default"
-                },
-                "lake": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "lake",
-                    "sampler": "default"
-                },
-                "stone": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "stone",
                     "sampler": "default"
                 },
                 "frog": {
@@ -341,91 +338,31 @@
                     "texture": "frog",
                     "sampler": "default"
                 },
-                "duck": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "duck",
-                    "sampler": "default"
-                },
-                "monkey": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "monkey",
-                    "sampler": "default"
-                },
-                "bird": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "bird",
-                    "sampler": "default"
-                },
                 "heart": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
+                "type": "textured",
+                "shader": "textured",
+                "pipelineState": {
+                    "faceCulling": {
+                        "enabled": false
                     },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "heart",
-                    "sampler": "default"
-                }
+                    "depthTesting": {
+                        "enabled": true
+                    }
+                },
+                "tint": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "texture": "heart",
+                "sampler": "default"
             }
+        }
         },
         "world": [
             {
-                "name": "frog",
+                "name":"frog",
                 "position": [
                     0,
                     -20,
@@ -446,12 +383,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "frog",
                         "material": "frog"
-                        // "mesh": "duck",
-                        // "material": "duck"
-                        // "mesh": "monkey",
-                        // "material": "monkey"
-                        // "mesh": "bird",
-                        // "material": "bird"
                     }
                 ],
                 "children": [
@@ -472,6 +403,118 @@
                             },
                             {
                                 "type": "Free Frog Controller"
+                            }
+                        ],
+                        "children":[
+                            {
+                                "name": "heart",
+                                "position": [
+                                    40,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "heart",
+                                "position": [
+                                    37,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "heart",
+                                "position": [
+                                    34,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    }
+                                ]
+                            },{
+                                "scale": [
+                                    3,
+                                    1,
+                                    1
+                                ],
+                                "position": [
+                                    36,
+                                    22,
+                                    -26
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "hole",
+                                        "material": "white"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 2
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -549,57 +592,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "grass"
-                    }
-                ]
-            },
-            {
-                "name": "lake",
-                "position": [
-                    0,
-                    -19.5,
-                    -80
-                ],
-                "rotation": [
-                    -90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    20,
-                    10,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "lake"
-                    }
-                ]
-            },
-            {
-                "name": "stone",
-                "position": [
-                    0,
-                    -19.5,
-                    -80
-                ],
-                "rotation": [
-                    -90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    1,1,1
-                    // 20,
-                    // 10,
-                    // 1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "stone",
-                        "material": "stone"
                     }
                 ]
             },
@@ -915,17 +907,10 @@
                         "material": "hole"
                     }
                 ]
-            },
-            {
+            }
+            ,{
                 "name": "bus",
-                "scale": [
-                    // 0.02,
-                    // 0.02,
-                    // 0.03
-                    0.015,
-                    0.015,
-                    0.015
-                ],
+                "scale": [0.02,0.02,0.03],
                 "position": [
                     50,
                     -20,
@@ -951,8 +936,8 @@
                         ]
                     }
                 ]
-            },
-            {
+            }
+            , {
                 "name": "taxi",
                 "scale": [
                     0.02,
@@ -984,8 +969,8 @@
                         ]
                     }
                 ]
-            },
-            {
+            }
+            ,{
                 "name": "taxi",
                 "scale": [
                     0.02,

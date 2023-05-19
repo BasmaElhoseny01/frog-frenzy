@@ -6,6 +6,7 @@
 #include <systems/forward-renderer.hpp>
 #include <asset-loader.hpp>
 #include <irrKlang/irrKlang.h>
+#include <systems/game-over-controller.hpp>
 
 using namespace irrklang;
 
@@ -17,7 +18,7 @@ class GameOver : public our::State
     our::World world;
     our::ForwardRenderer renderer;
     ISoundEngine *engine;
-    // our::GameOvertSystem gameOver;
+    our::GameOverSystem gameOver;
     void onInitialize() override
     {
         std::string config_path = "config/game-over.jsonc";
@@ -47,6 +48,7 @@ class GameOver : public our::State
         {
             world.deserialize(config["world"]);
         }
+        gameOver.enter(getApp());
         // We initialize the mesh renderer controller system since it needs a pointer to the app
         // meshRendererController.enter(getApp());
         // Then we initialize the renderer
@@ -59,19 +61,19 @@ class GameOver : public our::State
             std::cout << "Could not startup engine" << std::endl;
         else
             engine->play2D("./media/ophelia.mp3", true);
-        // gameOver.enter(getApp());
+     
     }
 
     void onDraw(double deltaTime) override
     {
         renderer.render(&world);
-        // gameOver.update();
-        auto& keyboard = getApp()->getKeyboard();
-        if(keyboard.justPressed(GLFW_KEY_ENTER)){
-            // go to game
-            // getApp()->registerState<Playstate>("play");
-            getApp()->changeState("play");
-        }
+        gameOver.update();
+        // auto& keyboard = getApp()->getKeyboard();
+        // if(keyboard.justPressed(GLFW_KEY_ENTER)){
+        //     // go to game
+        //     getApp()->registerState<Playstate>("play");
+        //     getApp()->changeState("play");
+        // }
     }
 
     void onDestroy() override
@@ -80,6 +82,8 @@ class GameOver : public our::State
         renderer.destroy();
         // On exit, we call exit for the meshRenderer controller system to make sure that the mouse is unlocked
         // meshRendererController.exit();
+        // Clear the world
+        world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
         engine->drop(); // delete engine

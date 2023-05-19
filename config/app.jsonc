@@ -36,7 +36,9 @@
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
-                "frog": "assets/textures/frog2.jpg"
+                "frog": "assets/textures/frog2.jpg",
+                "heart": "assets/textures/heart.png",
+                "white": "assets/textures/white.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -49,7 +51,8 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
-                "frog": "assets/models/frog2.obj"
+                "frog": "assets/models/frog2.obj",
+                "heart": "assets/models/heart.obj"
             },
             "samplers": {
                 "default": {},
@@ -268,6 +271,33 @@
                     "texture": "hole",
                     "sampler": "default"
                 },
+                "white": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        0.7
+                    ],
+                    "texture": "hole",
+                    "sampler": "default"
+                },
                 "fence": {
                     "type": "textured",
                     "shader": "textured",
@@ -307,8 +337,28 @@
                     ],
                     "texture": "frog",
                     "sampler": "default"
-                }
+                },
+                "heart": {
+                "type": "textured",
+                "shader": "textured",
+                "pipelineState": {
+                    "faceCulling": {
+                        "enabled": false
+                    },
+                    "depthTesting": {
+                        "enabled": true
+                    }
+                },
+                "tint": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "texture": "heart",
+                "sampler": "default"
             }
+        }
         },
         "world": [
             {
@@ -353,6 +403,118 @@
                             },
                             {
                                 "type": "Free Frog Controller"
+                            }
+                        ],
+                        "children":[
+                            {
+                                "name": "heart",
+                                "position": [
+                                    40,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "heart",
+                                "position": [
+                                    37,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "heart",
+                                "position": [
+                                    34,
+                                    20,
+                                    -25
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "scale": [
+                                    0.06,
+                                    0.06,
+                                    0.06
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "heart",
+                                        "material": "heart"
+                                    }
+                                ]
+                            },{
+                                "scale": [
+                                    3,
+                                    1,
+                                    1
+                                ],
+                                "position": [
+                                    36,
+                                    22,
+                                    -26
+                                ],
+                                "rotation": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "hole",
+                                        "material": "white"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 2
+                                    }
+                                ]
                             }
                         ]
                     }

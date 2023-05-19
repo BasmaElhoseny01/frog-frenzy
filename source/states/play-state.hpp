@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <application.hpp>
-#include<iostream>
+#include <iostream>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
@@ -33,6 +33,7 @@ class Playstate : public our::State
     our::CollisionSystem collisionSystem;
     ISoundEngine *engine;
     bool flagPostProcessing;
+    int id ;
     void onInitialize() override
     {
         // First of all, we get the scene configuration from the app config
@@ -57,7 +58,7 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
         // start the sound engine with default parameters
-         engine= createIrrKlangDevice();
+        engine= createIrrKlangDevice();
 
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
@@ -66,6 +67,7 @@ class Playstate : public our::State
         score = 0; // reset score of player
         flagPostProcessing = false; // reset bool of PostProcessing
         renderer.setApplyPostProcessing(false);
+        id = 0;// start from zero
     }
 
     void onDraw(double deltaTime) override
@@ -74,7 +76,7 @@ class Playstate : public our::State
         groundSystem.update(&world, score); // To rerender ground
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
-        collisionSystem.update(&world,&renderer,flagPostProcessing,engine);// To check collision
+        collisionSystem.update(&world,&renderer,flagPostProcessing,engine,id);// To check collision
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);// To control frog movement
@@ -104,7 +106,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
-        
+        collisionSystem.exit();
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked

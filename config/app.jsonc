@@ -137,9 +137,9 @@
                     ],
                     "sampler": "repeated",
                     "albedo": "grass",
-                    "specular": "grass",
-                    "roughness": "black",
-                    "emissive": "black",
+                    "specular": "specular",
+                    "roughness": "roughness",
+                    "emissive": "grass",
                     "ambient_occlusion": "grass"
                 },
                 "street": {
@@ -208,8 +208,8 @@
                     // "ambient_occlusion": "moon"
                 },
                 "bus": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighting",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -224,12 +224,16 @@
                         1,
                         1
                     ],
-                    "texture": "bus",
-                    "sampler": "default"
+                    "sampler": "default",
+                    "albedo": "bus",
+                    "specular": "white",
+                    "roughness": "black",
+                    "emissive": "bus",
+                    "ambient_occlusion": "bus"
                 },
                 "taxi": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighting",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -244,8 +248,12 @@
                         1,
                         1
                     ],
-                    "texture": "taxi",
-                    "sampler": "default"
+                    "sampler": "default",
+                    "albedo": "taxi",
+                    "specular": "white",
+                    "roughness": "black",
+                    "emissive": "taxi",
+                    "ambient_occlusion": "taxi"
                 },
                 "wall": {
                     "type": "textured",
@@ -1585,12 +1593,28 @@
                     },
                     {
                         "type": "Lighting",
-                        "kind": 1,
+                        "kind": "Point",
                         "direction": [2, -1, 2],
-                        "diffuse": [0.053725, 0.00811764, 0.094117647],
-                        "specular": [0.53725, 0.811764, 0.94117647],
-                        "attenuation": [1, 0.00095, 0.000095],
-                        "cone_angles": [20, 50]
+                        "color": [1, 1, 1],
+                        "attenuation": [1, 1, 1],
+                        "cone_angles.inner": 90,
+                        "cone_angles.outer": 50
+                    }
+                ]
+            },
+            {
+                "position": [0, 0, 10],
+                "rotation": [0, 0, 0],
+                "scale": [0, 0, 0],
+                "components": [
+                    {
+                        "type": "Lighting",
+                        "kind": "Directional",
+                        "direction": [2, -1, 2],
+                        "color": [100, 100, 100],
+                        "attenuation": [1, 1, 1],
+                        "cone_angles.inner": 90,
+                        "cone_angles.outer": 50
                     }
                 ]
             }

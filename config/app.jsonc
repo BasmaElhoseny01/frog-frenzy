@@ -56,7 +56,6 @@
                 "duck": "assets/models/duck.obj",
                 "monkey": "assets/models/monkey.obj",
                 "bird": "assets/models/bird.obj"
-
             },
             "samplers": {
                 "default": {},

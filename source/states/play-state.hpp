@@ -10,6 +10,7 @@
 #include <systems/collision.hpp>
 #include <systems/car.hpp>
 #include <systems/ground.hpp>
+#include <systems/lake.hpp>
 #include <asset-loader.hpp>
 #include <irrKlang/irrKlang.h>
 
@@ -31,6 +32,7 @@ class Playstate : public our::State
     our::CarsSystem carsSystem;
     our::GroundSystem groundSystem;
     our::CollisionSystem collisionSystem;
+    our::LakeSystem lakeSystem;
     ISoundEngine *engine;
     bool flagPostProcessing;
     void onInitialize() override
@@ -75,6 +77,7 @@ class Playstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
         collisionSystem.update(&world,&renderer,flagPostProcessing,engine);// To check collision
+        lakeSystem.update(&world,&renderer,flagPostProcessing,engine);// To check lake
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);// To control frog movement

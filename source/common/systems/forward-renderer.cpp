@@ -149,6 +149,7 @@ namespace our
         CameraComponent *camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
+        Lights.clear();
         for (auto entity : world->getEntities())
         {
             // If we hadn't found a camera yet, we look for a camera in this entity
@@ -173,6 +174,11 @@ namespace our
                     // Otherwise, we add it to the opaque command list
                     opaqueCommands.push_back(command);
                 }
+            }
+            // If this entity has a light component
+            if (auto lightComp = entity->getComponent<LightingComponent>(); lightComp)
+            {
+                Lights.push_back(lightComp);
             }
         }
         // cout << "size for entities list" << world->getEntities().size() << "Size of Marked for removal" << world->getmarkedForRemoval().size() << endl;
@@ -231,6 +237,30 @@ namespace our
         {
             it.material->setup();                                        // set up material
             it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
+
+            if(auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
+            {
+
+                it.material->shader->set("VP", VP);
+
+                it.material->shader->set("camera_position", eyeTrans);
+
+                it.material->shader->set("M", M);
+
+                it.material->shader->set("M_IT", glm::transpose(glm::inverse(M)));
+
+                it.material->shader->set("light_count", (GLint)Lights.size());
+                
+                for(int i = 0; i<Lights.size(); i++) {
+                    it.material->shader->set("lights["+std::to_string(i)+"].type", Lights[i]->kind);
+                    it.material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->position);
+                    it.material->shader->set("lights["+std::to_string(i)+"].direction", Lights[i]->direction);
+                    it.material->shader->set("lights["+std::to_string(i)+"].color", Lights[i]->color);
+                    it.material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
+                    it.material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
+                }
+
+            }
             it.mesh->draw();                                             // draw
         }
         // If there is a sky material, draw the sky

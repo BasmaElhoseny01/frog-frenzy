@@ -6,6 +6,7 @@
 #include "free-camera-controller.hpp"
 #include "free-frog-controller.hpp"
 #include "movement.hpp"
+#include "lighting.hpp"
 
 
 namespace our {
@@ -27,6 +28,9 @@ namespace our {
         }
         else if(type==FreeFrogControllerComponent::getID()){
             component=entity->addComponent<FreeFrogControllerComponent>();
+        }
+        else if(type==LightingComponent::getID()){
+            component=entity->addComponent<LightingComponent>();
         }
         if(component) component->deserialize(data);
     }

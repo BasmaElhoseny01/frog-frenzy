@@ -10,7 +10,7 @@
     },
     "scene": {
         "renderer": {
-            "sky": "assets/textures/sky100.jpg",
+            "sky": "assets/textures/nightt.jpg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets": {
@@ -22,6 +22,10 @@
                 "textured": {
                     "vs": "assets/shaders/textured.vert",
                     "fs": "assets/shaders/textured.frag"
+                },
+                "lighting": {
+                    "vs": "assets/shaders/simple.vert",
+                    "fs": "assets/shaders/simple.frag"
                 }
             },
             "textures": {
@@ -36,7 +40,12 @@
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
-                "frog": "assets/textures/frog2.jpg"
+                "frog": "assets/textures/frog2.jpg",
+                "albedo": "assets/images/metal/albedo.jpg",
+                "specular": "assets/images/metal/specular.jpg",
+                "roughness": "assets/images/metal/roughness.jpg",
+                "black": "assets/images/metal/black.jpg",
+                "white": "assets/images/metal/white.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -49,7 +58,8 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
-                "frog": "assets/models/frog2.obj"
+                "frog": "assets/models/frog2.obj",
+                "lamp": "assets/models/Street_Lamp.obj"
             },
             "samplers": {
                 "default": {},
@@ -307,6 +317,24 @@
                     ],
                     "texture": "frog",
                     "sampler": "default"
+                },
+                "lamp": {
+                    "type": "lighting",
+                    "shader": "lighting",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1], // me4 htt2ry
+                    "albedo": "albedo",
+                    "specular": "specular",
+                    "roughness": "roughness",
+                    "ambient_occlusion": "black",
+                    "emissive": "white"
                 }
             }
         },
@@ -358,6 +386,47 @@
                     }
                 ]
             },
+            // {
+            //     "position": [
+            //         0,
+            //         0,
+            //         10
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Camera"
+            //         },
+            //         {
+            //             "type": "Free Camera Controller"
+            //         }
+            //     ],
+            //     "children": [
+            //         {
+            //             "position": [
+            //                 1,
+            //                 -1,
+            //                 -1
+            //             ],
+            //             "rotation": [
+            //                 45,
+            //                 45,
+            //                 0
+            //             ],
+            //             "scale": [
+            //                 0.1,
+            //                 0.1,
+            //                 1.0
+            //             ],
+            //             "components": [
+            //                 {
+            //                     "type": "Mesh Renderer",
+            //                     "mesh": "cube",
+            //                     "material": "metal"
+            //                 }
+            //             ]
+            //         }
+            //     ]
+            // },
             // {
             //     "name": "fence",
             //     "position": [
@@ -1489,6 +1558,65 @@
                             0
                         ]
                     }
+                ]
+            },
+            {
+                "position": [0, 0, -50],
+                "rotation": [45, 45, 0],
+                "scale": [20, 20, 20],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "sphere",
+                        "material": "moon"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 0, 0]
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": "0",
+                        "position": [10, 0, 0],
+                        "direction": [10, 0, 0],
+                        "color": [10, 0, 0],
+                        "attenuation": [10, 0, 0],
+                        "cone_angles": [10, 0, 0]
+                    }
+                ]
+            },
+            {
+                "name": "lamp",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    -5,
+                    -20,
+                    -20
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "lamp",
+                        "material": "hole"
+                    }
+                    // {
+                    //     "type": "Lighting",
+                    //     "kind": "2",
+                    //     "position": [10, 0, 0],
+                    //     "direction": [10, 0, 0],
+                    //     "color": [10, 0, 0],
+                    //     "attenuation": [10, 0, 0],
+                    //     "cone_angles": [10, 0, 0]
+                    // }
                 ]
             }
         ]

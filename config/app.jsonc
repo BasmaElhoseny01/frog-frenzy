@@ -31,14 +31,15 @@
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
-                "bus": "assets/textures/bus.jpg",
+                "bus": "assets/textures/car.jpg",
                 "wall": "assets/textures/wall.jpg",
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
                 "frog": "assets/textures/frog2.jpg",
                 "heart": "assets/textures/heart.png",
-                "white": "assets/textures/white.png"
+                "white": "assets/textures/white.png",
+                "lake": "assets/textures/lake.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -46,7 +47,7 @@
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
-                "bus": "assets/models/bus.obj",
+                "bus": "assets/models/car.obj",
                 "wall": "assets/models/wall.obj",
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
@@ -339,25 +340,45 @@
                     "sampler": "default"
                 },
                 "heart": {
-                "type": "textured",
-                "shader": "textured",
-                "pipelineState": {
-                    "faceCulling": {
-                        "enabled": false
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
                     },
-                    "depthTesting": {
-                        "enabled": true
-                    }
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "heart",
+                    "sampler": "default"
                 },
-                "tint": [
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                "texture": "heart",
-                "sampler": "default"
-            }
+                "lake": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "lake",
+                    "sampler": "default"
+                }
         }
         },
         "world": [
@@ -366,7 +387,7 @@
                 "position": [
                     0,
                     -20,
-                    -20
+                    -10
                 ],
                 "rotation": [
                     270,
@@ -545,6 +566,106 @@
             //         }
             //     ]
             // },
+            {
+                "name": "lake",
+                "position": [
+                    80,
+                    -20,
+                    -80
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "lake"
+                    }
+                ]
+            },
+            {
+                "name": "lake",
+                "position": [
+                    -80,
+                    -20,
+                    -80
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "lake"
+                    }
+                ]
+            },
+            {
+                "name": "lake",
+                "position": [
+                    -80,
+                    -20,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "lake"
+                    }
+                ]
+            },
+            {
+                "name": "lake",
+                "position": [
+                    80,
+                    -20,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    40,
+                    20,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "lake"
+                    }
+                ]
+            },
             {
                 "name": "grass",
                 "position": [
@@ -801,6 +922,56 @@
                     0.15
                 ],
                 "position": [
+                    -60,
+                    -25,
+                    -15
+                ],
+               "rotation": [
+                    -90,
+                    0,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
+                    60,
+                    -25,
+                    -15
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
                     -40,
                     -25,
                     -40
@@ -901,7 +1072,7 @@
                     1
                 ],
                 "position": [
-                    38,
+                    37.5,
                     -15,
                     -26
                 ],
@@ -926,7 +1097,7 @@
                     1
                 ],
                 "position": [
-                    38,
+                    37.5,
                     -15,
                     -45
                 ],
@@ -945,16 +1116,19 @@
             }
             ,{
                 "name": "bus",
-                "scale": [0.02,0.02,0.03],
+                "scale": [
+                    0.02,
+                    0.03,
+                    0.03],
                 "position": [
                     50,
-                    -20,
+                    -18,
                     -25
                 ],
                 "rotation": [
-                    -90,
+                    270,
                     180,
-                    0
+                    90
                 ],
                 "components": [
                     {
@@ -1339,6 +1513,56 @@
                 ]
             },
             ///////////// fist way  street 2 ////////////////////
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
+                    -60,
+                    -25,
+                    -95
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "name": "wall",
+                "scale": [
+                    0.112,
+                    0.1,
+                    0.15
+                ],
+                "position": [
+                    60,
+                    -25,
+                    -95
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    180
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    }
+                ]
+            },
             {
                 "name": "wall",
                 "scale": [

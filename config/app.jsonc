@@ -29,19 +29,20 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
                 "bus": "assets/textures/bus.jpg",
                 "wall": "assets/textures/wall.jpg",
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
+                "lake": "assets/textures/lake.png",
                 "frog": "assets/textures/frog2.jpg",
-                "lake": "assets/textures/lake.png"
+                "duck": "assets/textures/duck.jpg",
+                "monkey": "assets/textures/monkey.png",
+                "bird": "assets/textures/bird.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
-                "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
@@ -50,8 +51,11 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
+                "lake": "assets/models/lake.obj",
                 "frog": "assets/models/frog2.obj",
-                "lake": "assets/models/lake.obj"
+                "duck": "assets/models/duck.obj",
+                "monkey": "assets/models/monkey.obj",
+                "bird": "assets/models/bird.obj"
 
             },
             "samplers": {
@@ -149,26 +153,6 @@
                         1
                     ],
                     "texture": "street",
-                    "sampler": "default"
-                },
-                "monkey": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "monkey",
                     "sampler": "default"
                 },
                 "moon": {
@@ -291,6 +275,26 @@
                     "texture": "fence",
                     "sampler": "default"
                 },
+                "lake": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "lake",
+                    "sampler": "default"
+                },
                 "frog": {
                     "type": "textured",
                     "shader": "textured",
@@ -311,7 +315,7 @@
                     "texture": "frog",
                     "sampler": "default"
                 },
-                "lake": {
+                "duck": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -328,14 +332,54 @@
                         1,
                         1
                     ],
-                    "texture": "lake",
+                    "texture": "duck",
+                    "sampler": "default"
+                },
+                "monkey": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "monkey",
+                    "sampler": "default"
+                },
+                "bird": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "bird",
                     "sampler": "default"
                 }
             }
         },
         "world": [
             {
-                "name":"frog",
+                "name": "frog",
                 "position": [
                     0,
                     -20,
@@ -356,6 +400,12 @@
                         "type": "Mesh Renderer",
                         "mesh": "frog",
                         "material": "frog"
+                        // "mesh": "duck",
+                        // "material": "duck"
+                        // "mesh": "monkey",
+                        // "material": "monkey"
+                        // "mesh": "bird",
+                        // "material": "bird"
                     }
                 ],
                 "children": [
@@ -793,10 +843,14 @@
                         "material": "hole"
                     }
                 ]
-            }
-            ,{
+            },
+            {
                 "name": "bus",
-                "scale": [0.02,0.02,0.03],
+                "scale": [
+                    0.02,
+                    0.02,
+                    0.03
+                ],
                 "position": [
                     50,
                     -20,
@@ -822,8 +876,8 @@
                         ]
                     }
                 ]
-            }
-            , {
+            },
+            {
                 "name": "taxi",
                 "scale": [
                     0.02,
@@ -855,8 +909,8 @@
                         ]
                     }
                 ]
-            }
-            ,{
+            },
+            {
                 "name": "taxi",
                 "scale": [
                     0.02,

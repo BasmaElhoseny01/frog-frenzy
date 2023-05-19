@@ -53,8 +53,7 @@
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
                 "frog": "assets/models/frog2.obj",
-                "heart": "assets/models/heart.obj",
-                "lake": "assets/textures/lake.obj"
+                "heart": "assets/models/heart.obj"
             },
             "samplers": {
                 "default": {},

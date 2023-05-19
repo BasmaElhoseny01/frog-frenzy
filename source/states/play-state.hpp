@@ -34,6 +34,7 @@ class Playstate : public our::State
 
     void onInitialize() override
     {
+        std::cout<<"initializing"<<std::endl;
         // First of all, we get the scene configuration from the app config
         auto &config = getApp()->getConfig()["scene"];
         // If we have assets in the scene config, we deserialize them
@@ -42,6 +43,7 @@ class Playstate : public our::State
             our::deserializeAllAssets(config["assets"]);
         }
         // If we have a world in the scene config, we use it to populate our world
+        std::cout<<"*********************************** initializing2 ***********************************"<<std::endl;
         if (config.contains("world"))
         {
             world.deserialize(config["world"]);
@@ -67,13 +69,14 @@ class Playstate : public our::State
 
     void onDraw(double deltaTime) override
     {
+        // std::cout<<"hello"<<std::endl;
         groundSystem.update(&world, score);// To rerender ground
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
         collisionSystem.update(&world);// To check collision
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
-        // cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime);// To control frog movement
+        cameraController.update(&world, (float)deltaTime);
+        // frogController.update(&world, (float)deltaTime);// To control frog movement
         
         
 

@@ -16,6 +16,8 @@ namespace our {
     inline void deserializeComponent(const nlohmann::json& data, Entity* entity){
         std::string type = data.value("type", "");
         Component* component = nullptr;
+        std::cout<<"*************"<<type<<"****************"<<std::endl;
+        
         //TODO: (Req 8) Add an option to deserialize a "MeshRendererComponent" to the following if-else statement
         if(type == CameraComponent::getID()){
             component = entity->addComponent<CameraComponent>();
@@ -30,9 +32,13 @@ namespace our {
             component=entity->addComponent<FreeFrogControllerComponent>();
         }
         else if(type==LightingComponent::getID()){
+            std::cout<<"************* added light ****************"<<std::endl;
             component=entity->addComponent<LightingComponent>();
+            std::cout<<"************* added light 2 ****************"<<std::endl;
         }
+        std::cout<<"************* out ****************"<<std::endl;
         if(component) component->deserialize(data);
+        std::cout<<"************* out 2 ****************"<<std::endl;
     }
 
 }

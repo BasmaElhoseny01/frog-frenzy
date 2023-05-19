@@ -23,6 +23,12 @@ namespace our {
         transparent = data.value("transparent", false);
     }
 
+    // This function returns the type of material
+    std::string Material::material_type()
+    {
+        return "";
+    }
+
     // This function should call the setup of its parent and
     // set the "tint" uniform to the value in the member variable tint 
     void TintedMaterial::setup() const {
@@ -38,6 +44,11 @@ namespace our {
         tint = data.value("tint", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
     }
 
+    std::string TintedMaterial::material_type()
+    {
+        return "tint";
+    }
+
     // This function should call the setup of its parent and
     // set the "alphaThreshold" uniform to the value in the member variable alphaThreshold
     // Then it should bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex" 
@@ -45,7 +56,7 @@ namespace our {
         //TODO: (Req 7) Write this function
         TintedMaterial::setup();// setup of its parent
         shader->set("alphaThreshold" , alphaThreshold);// set alphaThreshold value
-        glActiveTexture(GL_TEXTURE0);//selects which texture unit subsequent texture state calls will affect
+        // glActiveTexture(GL_TEXTURE0);//selects which texture unit subsequent texture state calls will affect
         texture->bind();// bind texture
         sampler->bind(0);// bind sampler by giving it textureUnit 0
         shader->set("tex", 0);// set tex value
@@ -60,9 +71,15 @@ namespace our {
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
     }
 
+    std::string TexturedMaterial::material_type()
+    {
+        return "textured";
+    }
 
     void LightingMaterial::setup() const {
-        Material::setup();// setup of its parent
+        TintedMaterial::setup();
+        this->shader->set("alphaThreshold", alphaThreshold);
+        this->sampler->bind(0);
         //TODO: (Req 7) Write this function
         if(albedo != nullptr) {
             glActiveTexture(GL_TEXTURE0);//selects which texture unit subsequent texture state calls will affect
@@ -95,18 +112,26 @@ namespace our {
             shader->set("material.emissive", 4);
         }
         // shader->set("tex", 0);// set tex value
+        glActiveTexture(GL_TEXTURE0);
     }
 
     // This function read the material data from a json object
     void LightingMaterial::deserialize(const nlohmann::json& data){
-        Material::deserialize(data);
+        TexturedMaterial::deserialize(data);
         if(!data.is_object()) return;
         albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
         specular = AssetLoader<Texture2D>::get(data.value("specular", ""));
         roughness = AssetLoader<Texture2D>::get(data.value("roughness", ""));
         ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", ""));
         emissive = AssetLoader<Texture2D>::get(data.value("emissive", ""));
+        // sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
         
+    }
+
+    // This function returns the type of material
+    std::string LightingMaterial::material_type()
+    {
+        return "light";
     }
 
 }

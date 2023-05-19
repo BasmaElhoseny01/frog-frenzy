@@ -10,8 +10,8 @@
     },
     "scene": {
         "renderer": {
-            "sky": "assets/textures/nightt.jpg",
-            "postprocess": "assets/shaders/postprocess/vignette.frag"
+            "sky": "assets/textures/night.jpg"
+            // "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets": {
             "shaders": {
@@ -179,8 +179,8 @@
                     "sampler": "default"
                 },
                 "moon": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighting",
+                    "shader": "lighting",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -197,6 +197,11 @@
                     ],
                     "texture": "moon",
                     "sampler": "default"
+                    // "albedo": "albedo",
+                    // "specular": "specular",
+                    // "roughness": "roughness",
+                    // "emissive": "black",
+                    // "ambient_occlusion": "white"
                 },
                 "bus": {
                     "type": "textured",
@@ -339,94 +344,94 @@
             }
         },
         "world": [
-            {
-                "name":"frog",
-                "position": [
-                    0,
-                    -20,
-                    -20
-                ],
-                "rotation": [
-                    270,
-                    0,
-                    0
-                ],
-                "scale": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "frog",
-                        "material": "frog"
-                    }
-                ],
-                "children": [
-                    {
-                        "position": [
-                            0,
-                            -75,
-                            150
-                        ],
-                        "rotation": [
-                            135,
-                            180,
-                            180
-                        ],
-                        "components": [
-                            {
-                                "type": "Camera"
-                            },
-                            {
-                                "type": "Free Frog Controller"
-                            }
-                        ]
-                    }
-                ]
-            },
             // {
+            //     "name":"frog",
             //     "position": [
             //         0,
+            //         -20,
+            //         -20
+            //     ],
+            //     "rotation": [
+            //         270,
             //         0,
-            //         10
+            //         0
+            //     ],
+            //     "scale": [
+            //         0.1,
+            //         0.1,
+            //         0.1
             //     ],
             //     "components": [
             //         {
-            //             "type": "Camera"
-            //         },
-            //         {
-            //             "type": "Free Camera Controller"
+            //             "type": "Mesh Renderer",
+            //             "mesh": "frog",
+            //             "material": "frog"
             //         }
             //     ],
             //     "children": [
             //         {
             //             "position": [
-            //                 1,
-            //                 -1,
-            //                 -1
+            //                 0,
+            //                 -75,
+            //                 150
             //             ],
             //             "rotation": [
-            //                 45,
-            //                 45,
-            //                 0
-            //             ],
-            //             "scale": [
-            //                 0.1,
-            //                 0.1,
-            //                 1.0
+            //                 135,
+            //                 180,
+            //                 180
             //             ],
             //             "components": [
             //                 {
-            //                     "type": "Mesh Renderer",
-            //                     "mesh": "cube",
-            //                     "material": "metal"
+            //                     "type": "Camera"
+            //                 },
+            //                 {
+            //                     "type": "Free Frog Controller"
             //                 }
             //             ]
             //         }
             //     ]
             // },
+            {
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "rotation": [
+                            45,
+                            45,
+                            0
+                        ],
+                        "scale": [
+                            0.1,
+                            0.1,
+                            1.0
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "cube",
+                                "material": "metal"
+                            }
+                        ]
+                    }
+                ]
+            },
             // {
             //     "name": "fence",
             //     "position": [
@@ -1561,7 +1566,7 @@
                 ]
             },
             {
-                "position": [0, 0, -50],
+                "position": [0, 0, -100],
                 "rotation": [45, 45, 0],
                 "scale": [20, 20, 20],
                 "components": [
@@ -1572,53 +1577,52 @@
                     },
                     {
                         "type": "Movement",
-                        "angularVelocity": [0, 0, 0]
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": "0",
-                        "position": [10, 0, 0],
-                        "direction": [10, 0, 0],
-                        "color": [10, 0, 0],
-                        "attenuation": [10, 0, 0],
-                        "cone_angles": [10, 0, 0]
-                    }
-                ]
-            },
-            {
-                "name": "lamp",
-                "scale": [
-                    0.008,
-                    0.008,
-                    0.008
-                ],
-                "position": [
-                    -5,
-                    -20,
-                    -20
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "lamp",
-                        "material": "hole"
+                        "angularVelocity": [0, 20, 0]
                     }
                     // {
                     //     "type": "Lighting",
-                    //     "kind": "2",
-                    //     "position": [10, 0, 0],
-                    //     "direction": [10, 0, 0],
-                    //     "color": [10, 0, 0],
-                    //     "attenuation": [10, 0, 0],
-                    //     "cone_angles": [10, 0, 0]
+                    //     "kind": 0,
+                    //     "position": [0, 0, -100],
+                    //     "direction": [2, -1, 2],
+                    //     "color": [0.2, 0.5, 1],
+                    //     "attenuation": [0, 1, 0]
                     // }
                 ]
             }
+            // {
+            //     "name": "lamp",
+            //     "scale": [
+            //         0.008,
+            //         0.008,
+            //         0.008
+            //     ],
+            //     "position": [
+            //         -5,
+            //         -20,
+            //         -20
+            //     ],
+            //     "rotation": [
+            //         0,
+            //         0,
+            //         0
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "lamp",
+            //             "material": "hole"
+            //         }
+            //         // {
+            //         //     "type": "Lighting",
+            //         //     "kind": "2",
+            //         //     "position": [10, 0, 0],
+            //         //     "direction": [10, 0, 0],
+            //         //     "color": [10, 0, 0],
+            //         //     "attenuation": [10, 0, 0],
+            //         //     "cone_angles": [10, 0, 0]
+            //         // }
+            //     ]
+            // }
         ]
     }
 }

@@ -150,6 +150,7 @@ namespace our
         opaqueCommands.clear();
         transparentCommands.clear();
         Lights.clear();
+
         for (auto entity : world->getEntities())
         {
             // If we hadn't found a camera yet, we look for a camera in this entity
@@ -178,6 +179,7 @@ namespace our
             // If this entity has a light component
             if (auto lightComp = entity->getComponent<LightingComponent>(); lightComp)
             {
+                // std::cout<<"******************** we have light comp **************"<< std::endl;
                 Lights.push_back(lightComp);
             }
         }
@@ -238,9 +240,10 @@ namespace our
             it.material->setup();                                        // set up material
             it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
 
-            if(auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
-            {
 
+            if(it.material->material_type() == "light")
+            {
+                // std::cout<<"*************** hiii *************"<<std::endl;
                 it.material->shader->set("VP", VP);
 
                 it.material->shader->set("camera_position", eyeTrans);
@@ -250,6 +253,10 @@ namespace our
                 it.material->shader->set("M_IT", glm::transpose(glm::inverse(M)));
 
                 it.material->shader->set("light_count", (GLint)Lights.size());
+
+                it.material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                it.material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                it.material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
                 
                 for(int i = 0; i<Lights.size(); i++) {
                     it.material->shader->set("lights["+std::to_string(i)+"].type", Lights[i]->kind);
@@ -295,6 +302,37 @@ namespace our
         {
             it.material->setup();                                        // set up material
             it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
+
+            // std::cout<<"*****************"<<it.material->material_type()<<"*******************"<<std::endl;
+            if(it.material->material_type() == "light")
+            {
+                // std::cout<<"*************** hiii *************"<<std::endl;
+                it.material->shader->set("VP", VP);
+
+                it.material->shader->set("camera_position", eyeTrans);
+
+                it.material->shader->set("M", M);
+
+                it.material->shader->set("M_IT", glm::transpose(glm::inverse(M)));
+
+                it.material->shader->set("light_count", (GLint)Lights.size());
+
+                it.material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                it.material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                it.material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+                
+                for(int i = 0; i<Lights.size(); i++) {
+                    it.material->shader->set("lights["+std::to_string(i)+"].type", Lights[i]->kind);
+                    it.material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->position);
+                    it.material->shader->set("lights["+std::to_string(i)+"].direction", Lights[i]->direction);
+                    it.material->shader->set("lights["+std::to_string(i)+"].color", Lights[i]->color);
+                    it.material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
+                    it.material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
+                }
+
+            }
+
+
             it.mesh->draw();                                             // draw
         }
 

@@ -26,6 +26,8 @@ namespace our {
         virtual void setup() const;
         // This function read a material from a json object
         virtual void deserialize(const nlohmann::json& data);
+
+        virtual std::string material_type();
     };
 
     // This material adds a uniform for a tint (a color that will be sent to the shader)
@@ -36,6 +38,7 @@ namespace our {
 
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
+        std::string material_type();
     };
 
     // This material adds two uniforms (besides the tint from Tinted Material)
@@ -51,10 +54,11 @@ namespace our {
 
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
+        std::string material_type();
     };
 
 
-    class LightingMaterial : public Material {
+    class LightingMaterial : public TexturedMaterial {
     public:
         Texture2D* albedo;
         Texture2D* specular;
@@ -62,11 +66,10 @@ namespace our {
         Texture2D* ambient_occlusion;
         Texture2D* emissive;
 
-        Sampler* sampler=new Sampler();
-        float alphaThreshold;
-
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
+
+        std::string material_type();
     };
 
 
@@ -82,7 +85,4 @@ namespace our {
             return new Material();
         }
     }
-
-
-
 }

@@ -15,6 +15,8 @@ namespace our
             // TODO: (Req 8) Create an entity, make its parent "parent" and call its deserialize with "entityData".
             Entity *newEntity = World::add(); // Make new Entity + Add this Entity to the world
             newEntity->parent = parent;
+            std::cout<<"*********************************** initializing2 ***********************************"<<std::endl;
+            
             newEntity->deserialize(entityData);
             if (entityData.contains("children"))
             {

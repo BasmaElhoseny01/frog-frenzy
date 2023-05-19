@@ -29,11 +29,16 @@ namespace our {
     void Entity::deserialize(const nlohmann::json& data){
         if(!data.is_object()) return;
         name = data.value("name", name);
+        std::cout<<"*********************************** initializing3 ***********************************"<<std::endl;
+
         localTransform.deserialize(data);
+        std::cout<<"*********************************** initializing4 ***********************************"<<std::endl;
+
         if(data.contains("components")){
             if(const auto& components = data["components"]; components.is_array()){
                 for(auto& component: components){
                     deserializeComponent(component, this);
+                    std::cout<<"*********************************** initializing5 ***********************************"<<std::endl;
                 }
             }
         }

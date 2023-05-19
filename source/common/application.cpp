@@ -165,6 +165,7 @@ int our::Application::run(int run_for_frames) {
 
     auto win_config = getWindowConfiguration();             // Returns the WindowConfiguration current struct instance.
 
+
     // Create a window with the given "WindowConfiguration" attributes.
     // If it should be fullscreen, monitor should point to one of the monitors (e.g. primary monitor), otherwise it should be null
     GLFWmonitor* monitor = win_config.isFullscreen ? glfwGetPrimaryMonitor() : nullptr;
@@ -199,7 +200,6 @@ int our::Application::run(int run_for_frames) {
     setupCallbacks();
     keyboard.enable(window);
     mouse.enable(window);
-
     // Start the ImGui context and set dark style (just my preference :D)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();

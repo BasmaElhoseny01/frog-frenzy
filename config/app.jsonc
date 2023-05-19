@@ -226,6 +226,7 @@
                         1
                     ],
                     "sampler": "default",
+                    "texture": "bus",
                     "albedo": "bus",
                     "specular": "white",
                     "roughness": "black",
@@ -250,6 +251,7 @@
                         1
                     ],
                     "sampler": "default",
+                    "texture": "taxi",
                     "albedo": "taxi",
                     "specular": "white",
                     "roughness": "black",
@@ -349,10 +351,10 @@
                     },
                     "tint": [1, 1, 1, 1], // me4 htt2ry
                     "albedo": "albedo",
-                    "specular": "specular",
-                    "roughness": "roughness",
-                    "ambient_occlusion": "black",
-                    "emissive": "white"
+                    "specular": "white",
+                    "roughness": "black",
+                    "ambient_occlusion": "albedo",
+                    "emissive": "black"
                 }
             }
         },
@@ -1590,69 +1592,69 @@
                     },
                     {
                         "type": "Movement",
-                        "angularVelocity": [0, 20, 0]
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": "Point",
-                        "direction": [2, -1, 2],
-                        "color": [1, 1, 1],
-                        "attenuation": [1, 1, 1],
-                        "cone_angles.inner": 90,
-                        "cone_angles.outer": 50
+                        "angularVelocity": [10, 10, 0]
                     }
+                    // {
+                    //     "type": "Lighting",
+                    //     "kind": 1,
+                    //     "direction": [2, 0, 50],
+                    //     "color": [1, 1, 1],
+                    //     "attenuation": [1, 1, 1],
+                    //     "cone_angles.inner": 90,
+                    //     "cone_angles.outer": 50
+                    // }
                 ]
             },
-            {
-                "position": [0, 0, 10],
-                "rotation": [0, 0, 0],
-                "scale": [0, 0, 0],
-                "components": [
-                    {
-                        "type": "Lighting",
-                        "kind": "Directional",
-                        "direction": [2, -1, 2],
-                        "color": [100, 100, 100],
-                        "attenuation": [1, 1, 1],
-                        "cone_angles.inner": 90,
-                        "cone_angles.outer": 50
-                    }
-                ]
-            }
             // {
-            //     "name": "lamp",
-            //     "scale": [
-            //         0.008,
-            //         0.008,
-            //         0.008
-            //     ],
-            //     "position": [
-            //         -5,
-            //         -20,
-            //         -20
-            //     ],
-            //     "rotation": [
-            //         0,
-            //         0,
-            //         0
-            //     ],
+            //     "position": [0, 0, 10],
+            //     "rotation": [0, 0, 0],
+            //     "scale": [0, 0, 0],
             //     "components": [
             //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "lamp",
-            //             "material": "hole"
-            //         },
-            //         {
             //             "type": "Lighting",
-            //             "kind": 2,
-            //             "position": [10, 0, 0],
-            //             "direction": [10, 0, 0],
-            //             "color": [10, 0, 0],
-            //             "attenuation": [10, 0, 0],
-            //             "cone_angles": [10, 0, 0]
+            //             "kind": 0,
+            //             "direction": [10, -1, 0],
+            //             "color": [1, 1, 1],
+            //             "attenuation": [1, 1, 1],
+            //             "cone_angles.inner": 90,
+            //             "cone_angles.outer": 50
             //         }
             //     ]
             // }
+            {
+                "name": "lamp",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    -5,
+                    -20,
+                    -20
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "lamp",
+                        "material": "lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 2
+                        // "direction": [0, -1, 0],
+                        // "color": [10, 0, 0],
+                        // "attenuation": [0.0095, 0.0095, 0.00095],
+                        // "cone_angles.inner": 20,
+                        // "cone_angles.outer": 50
+                    }
+                ]
+            }
         ]
     }
 }

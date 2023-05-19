@@ -41,8 +41,7 @@ namespace our
     void TintedMaterial::deserialize(const nlohmann::json &data)
     {
         Material::deserialize(data);
-        if (!data.is_object())
-            return;
+        if (!data.is_object()) return;
         tint = data.value("tint", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
     }
 
@@ -64,8 +63,7 @@ namespace our
     void TexturedMaterial::deserialize(const nlohmann::json &data)
     {
         TintedMaterial::deserialize(data);
-        if (!data.is_object())
-            return;
+        if (!data.is_object()) return;
         alphaThreshold = data.value("alphaThreshold", 0.0f);
         texture = AssetLoader<Texture2D>::get(data.value("texture", ""));
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
@@ -74,9 +72,16 @@ namespace our
     // setup of the lightMaterial to create the needed textures based on the type
     void LightingMaterial::setup() const
     {
-
-        // TexturedMaterial::setup();
         Material::setup();
+        // TexturedMaterial::setup();
+
+        if (albedo != nullptr)
+        {
+            glActiveTexture(GL_TEXTURE0);
+            albedo->bind();
+            sampler->bind(0);
+            shader->set("material.albedo", 0);
+        }
 
         if (specular != nullptr)
         {
@@ -122,16 +127,6 @@ namespace our
             sampler->bind(4);
             shader->set("material.ambient_occlusion", 4);
         }
-        if (albedo != nullptr)
-        {
-            // select an active texture unit -> 5
-            glActiveTexture(GL_TEXTURE0);
-            // bind the texture to unit 5
-            albedo->bind();
-            // bind the sampler to unit 5
-            sampler->bind(0);
-            shader->set("material.albedo", 0);
-        }
     }
 
     // This function read the material data from a json object
@@ -139,8 +134,7 @@ namespace our
     {
         Material::deserialize(data);
         // TexturedMaterial::deserialize(data);
-        if (!data.is_object())
-            return;
+        if (!data.is_object()) return;
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
         albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
         specular = AssetLoader<Texture2D>::get(data.value("specular", ""));

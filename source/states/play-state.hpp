@@ -43,7 +43,7 @@ class Playstate : public our::State
             our::deserializeAllAssets(config["assets"]);
         }
         // If we have a world in the scene config, we use it to populate our world
-        std::cout<<"*********************************** initializing2 ***********************************"<<std::endl;
+        // std::cout<<"*********************************** initializing2 ***********************************"<<std::endl;
         if (config.contains("world"))
         {
             world.deserialize(config["world"]);

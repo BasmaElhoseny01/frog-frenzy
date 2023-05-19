@@ -82,6 +82,8 @@ set(COMMON_SOURCES
         source/common/components/component-deserializer.hpp
         source/common/components/heart.hpp
         source/common/components/heart.cpp
+        source/common/components/collision.hpp
+        source/common/components/collision.cpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp

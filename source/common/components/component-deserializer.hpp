@@ -7,6 +7,7 @@
 #include "free-frog-controller.hpp"
 #include "movement.hpp"
 #include "heart.hpp"
+#include "scope.hpp"
 
 
 namespace our {
@@ -31,6 +32,9 @@ namespace our {
         }
         else if(type==HeartComponent::getID()){
             component=entity->addComponent<HeartComponent>();
+        }
+        else if(type==ScopeComponent::getID()){
+            component=entity->addComponent<ScopeComponent>();
         }
         if(component) component->deserialize(data);
     }

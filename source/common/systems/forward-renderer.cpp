@@ -176,7 +176,7 @@ namespace our
             }
         }
         // cout << "size for entities list" << world->getEntities().size() << "Size of Marked for removal" << world->getmarkedForRemoval().size() << endl;
-   
+
         // If there is no camera, we return (we cannot render without a camera)
         if (camera == nullptr)
             return;
@@ -217,7 +217,7 @@ namespace our
         glColorMask(true, true, true, true); // enable  writing of frame buffer color components
         glDepthMask(true);                   // enable writing into the depth buffer
         // If there is a postprocess material, bind the framebuffer
-        if (postprocessMaterial&&applyPostProcessing)
+        if (postprocessMaterial &&applyPostProcessing)
         {
             // TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
@@ -283,7 +283,8 @@ namespace our
             glDrawArrays(GL_TRIANGLES, 0, 3);
         }
     }
-     void ForwardRenderer::setApplyPostProcessing(bool value){
-        applyPostProcessing=value;
-     }
+    void ForwardRenderer::setApplyPostProcessing(bool value)
+    {
+        applyPostProcessing = value;
+    }
 }

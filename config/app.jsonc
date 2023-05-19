@@ -570,6 +570,7 @@
                     }
                 ]
             },
+            //Garden 2
             {
                 "name": "grass",
                 "position": [
@@ -592,6 +593,40 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "grass"
+                    }
+                ]
+            },
+            {
+                "name": "heart",
+                "position": [
+                    0,
+                    -20,
+                    -80
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "heart",
+                        "material": "heart"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [0, 45, 0]
+                    },
+                    {
+                        "type":"Scope",
+                        "size":[1, 0, 1]
                     }
                 ]
             },

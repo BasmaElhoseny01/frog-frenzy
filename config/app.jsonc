@@ -11,8 +11,7 @@
     "scene": {
         "renderer": {
             "sky": "assets/textures/sky100.jpg",
-            "postprocess": "assets/shaders/postprocess/distortion.frag"
-
+            "postprocess": "assets/shaders/postprocess/blur.frag"
         },
         "assets": {
             "shaders": {
@@ -33,11 +32,9 @@
                 "monkey": "assets/textures/monkey.png",
                 "street": "assets/textures/street.jpg",
                 "bus": "assets/textures/bus.jpg",
-                // "bus": "assets/textures/taxi.jpg",
                 "wall": "assets/textures/wall.jpg",
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
-                // "fenceMetal": "assets/textures/FenceMetal.png",
                 "taxi": "assets/textures/taxi.jpg",
                 "frog": "assets/textures/frog2.jpg"
             },
@@ -48,11 +45,9 @@
                 "sphere": "assets/models/sphere.obj",
                 "street": "assets/models/street.obj",
                 "bus": "assets/models/bus.obj",
-                // "bus": "assets/models/taxi.obj",
                 "wall": "assets/models/wall.obj",
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
-                // "fenceMetal": "assets/models/FenceMetal.obj",
                 "taxi": "assets/models/taxi.obj",
                 "frog": "assets/models/frog2.obj"
             },
@@ -293,26 +288,6 @@
                     "texture": "fence",
                     "sampler": "default"
                 },
-                "fenceMetal": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "fenceMetal",
-                    "sampler": "default"
-                },
                 "frog": {
                     "type": "textured",
                     "shader": "textured",
@@ -383,6 +358,31 @@
                     }
                 ]
             },
+            // {
+            //     "name": "fence",
+            //     "position": [
+            //         0,
+            //         2,
+            //         0
+            //     ],
+            //     "rotation": [
+            //         90,
+            //         0,
+            //         0
+            //     ],
+            //     "scale": [
+            //         1,
+            //         1,
+            //         1
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "plane",
+            //             "material": "fence"
+            //         }
+            //     ]
+            // },
             {
                 "name": "grass",
                 "position": [
@@ -605,7 +605,7 @@
                 ],
                 "position": [
                     -40,
-                    -22,
+                    -25,
                     -40
                 ],
                 "rotation": [
@@ -680,7 +680,7 @@
                 ],
                 "position": [
                     40,
-                    -22,
+                    -25,
                     -40
                 ],
                 "rotation": [
@@ -1151,7 +1151,7 @@
                 ],
                 "position": [
                     -40,
-                    -22,
+                    -25,
                     -120
                 ],
                 "rotation": [
@@ -1226,7 +1226,7 @@
                 ],
                 "position": [
                     40,
-                    -22,
+                    -25,
                     -120
                 ],
                 "rotation": [
@@ -1389,7 +1389,7 @@
                 ],
                 "rotation": [
                     -90,
-                    0,
+                    180,
                     0
                 ],
                 "components": [

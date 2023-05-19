@@ -6,6 +6,7 @@
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 #include "../../states/game-over-state.hpp"
+#include <imgui.h>
 
 namespace our
 {
@@ -24,11 +25,7 @@ namespace our
             this->app = app;
         }
         // This should be called every frame to update all entities containing a StreetComponent.
-        void update(World* world) {
-            if(true){
-                //sleep 10
-                // game over
-            }
+        void update(World* world,ForwardRenderer *forwardRenderer, bool& flagPostProcessing,ISoundEngine *engine) {
             // For each entity in the world
             for(auto entity : world->getEntities()){
                 if (entity->name=="frog")
@@ -54,14 +51,12 @@ namespace our
                             positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            //set bool true
-                            // app->registerState<GameOver>("game-over");
-                            // app->changeState("game-over");
+                            flagPostProcessing = true;
+                            forwardRenderer->setApplyPostProcessing(true);
+                            engine->play2D("./media/scream.mp3", false);
                         }
                 }
                 if((name=="taxi")){
-                 
-
                     // get the car's max and min position
                     glm::vec3 taxi_size =  glm::vec3(6, 0, 3);
                     glm::vec3 car_max = car_position + (taxi_size  );
@@ -70,10 +65,19 @@ namespace our
                             positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            app->registerState<GameOver>("game-over");
-                            app->changeState("game-over");
+                            flagPostProcessing = true;
+                            forwardRenderer->setApplyPostProcessing(true);
+                             engine->play2D("./media/scream.mp3", false);
                         }
                 }
+            }
+        }
+
+        void checkGameOver(bool flagPostProcessing){
+            if(flagPostProcessing){
+                _sleep(1500);
+                app->registerState<GameOver>("game-over");
+                app->changeState("game-over");
             }
         }
 

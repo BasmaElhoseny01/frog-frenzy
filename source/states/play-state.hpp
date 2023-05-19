@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <application.hpp>
-#include <iostream>
+#include<iostream>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
@@ -12,7 +12,10 @@
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
 #include <irrKlang/irrKlang.h>
+
 using namespace irrklang;
+
+
 
 #pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
@@ -29,7 +32,7 @@ class Playstate : public our::State
     our::GroundSystem groundSystem;
     our::CollisionSystem collisionSystem;
     ISoundEngine *engine;
-
+    bool flagPostProcessing;
     void onInitialize() override
     {
         // First of all, we get the scene configuration from the app config
@@ -54,25 +57,29 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
         // start the sound engine with default parameters
-        engine = createIrrKlangDevice();
+         engine= createIrrKlangDevice();
 
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            cout<"bbb";
-            // engine->play2D("./media/getout.ogg", true);
+            engine->play2D("./media/getout.ogg", true);
         score = 0; // reset score of player
+        flagPostProcessing = false; // reset bool of PostProcessing
+        renderer.setApplyPostProcessing(false);
     }
 
     void onDraw(double deltaTime) override
     {
+        collisionSystem.checkGameOver(flagPostProcessing);// To check game over
         groundSystem.update(&world, score); // To rerender ground
         // Here, we just run a bunch of systems to control the world logic
-        carsSystem.update(&world);                       // To control Cars System to appear
-        collisionSystem.update(&world);                  // To check collision
-        movementSystem.update(&world, (float)deltaTime); // To update movement component
-        // cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime); // To control frog movement
+        carsSystem.update(&world); // To control Cars System to appear
+        collisionSystem.update(&world,&renderer,flagPostProcessing,engine);// To check collision
+        movementSystem.update(&world, (float)deltaTime); // To update movement component 
+        //cameraController.update(&world, (float)deltaTime);
+        frogController.update(&world, (float)deltaTime);// To control frog movement
+        
+        
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
@@ -80,6 +87,8 @@ class Playstate : public our::State
         world.hideMarkedEntities();
         world.unhideMarkedEntities();
 
+
+       
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
 
@@ -95,7 +104,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
-
+        
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
@@ -106,7 +115,7 @@ class Playstate : public our::State
         our::clearAllAssets();
         engine->drop(); // delete engine
     }
-
+    
     void onImmediateGui() override
     {
         // start gui
@@ -118,10 +127,11 @@ class Playstate : public our::State
         // set font
         ImGui::SetWindowFontScale(5.0f);
         // initialize score
-        string score_screen = "Score: " + to_string(score);
+        string score_screen= "Score: " + to_string(score);
         // initialize color
         ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), score_screen.c_str());
         // end gui
         ImGui::End();
     }
+
 };

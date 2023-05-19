@@ -217,9 +217,8 @@ namespace our
         glColorMask(true, true, true, true); // enable  writing of frame buffer color components
         glDepthMask(true);                   // enable writing into the depth buffer
         // If there is a postprocess material, bind the framebuffer
-        if (postprocessMaterial &&applyPostProcessing)
+        if (postprocessMaterial&&applyPostProcessing)
         {
-            //Only if we set the post processing :D
             // TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
         }
@@ -270,8 +269,7 @@ namespace our
         }
 
         // If there is a postprocess material, apply postprocessing
-        //The post processing is applies only if we set the bool to true
-        if (postprocessMaterial && applyPostProcessing)
+        if (postprocessMaterial&&applyPostProcessing)
         {
             // TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
@@ -285,5 +283,7 @@ namespace our
             glDrawArrays(GL_TRIANGLES, 0, 3);
         }
     }
-
+     void ForwardRenderer::setApplyPostProcessing(bool value){
+        applyPostProcessing=value;
+     }
 }

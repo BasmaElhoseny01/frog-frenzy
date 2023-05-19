@@ -507,6 +507,10 @@
                                         "type": "Mesh Renderer",
                                         "mesh": "heart",
                                         "material": "heart"
+                                    },
+                                    {
+                                        "type": "Heart",
+                                        "id": 2
                                     }
                                 ]
                             },{
@@ -530,10 +534,6 @@
                                         "type": "Mesh Renderer",
                                         "mesh": "hole",
                                         "material": "white"
-                                    },
-                                    {
-                                        "type": "Heart",
-                                        "id": 2
                                     }
                                 ]
                             }
@@ -718,7 +718,7 @@
                 ]
             },
             {
-                "name": "heart",
+                "name": "heart gain",
                 "position": [
                     0,
                     -20,

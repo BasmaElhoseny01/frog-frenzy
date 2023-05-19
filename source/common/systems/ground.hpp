@@ -44,6 +44,18 @@ namespace our
                     // change grass or street position
                     entity->localTransform.position[2] -= height * 4;
                 }
+                else if(name=="heart gain" && (entity->localTransform.position[2]-width) >positionCamera[2] ){
+                        int x_old = entity->localTransform.position[0];
+                        int x_rand = 0 + (std::rand() % (35 + 1)); // random number from 0-35
+                        if (x_old > 0)
+                        {
+                            x_rand *= -1;
+                        }
+                        entity->localTransform.position[0] += x_rand;
+                        // change z [60-100]
+                        int z_rand = 60 + (std::rand() % (100 + 1 - 60));
+                        entity->localTransform.position[2] -= z_rand;
+                }
             }
         }
 

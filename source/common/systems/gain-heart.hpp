@@ -8,7 +8,7 @@
 #include "../../states/game-over-state.hpp"
 #include "../../states/play-state.hpp"
 #include "../ecs/entity.hpp"
-
+#include "../components/heart.hpp"
 #include <iostream>
 using namespace std;
 #include "glm/gtx/string_cast.hpp"
@@ -40,7 +40,7 @@ namespace our
             {
                 // Get name of entity
                 std::string name = entity->name;
-                if (name == "heart")
+                if (name == "heart gain")
                 {
                     // If Already there is
                     //  get the heart's position
@@ -93,13 +93,21 @@ namespace our
                             }
                             entity->localTransform.position[0] += x_rand;
                             cout << "x_rand" << x_rand << endl;
-                            // change z [70-100]
+                            // change z [60-100]
                             int z_rand = 60 + (std::rand() % (100 + 1 - 60));
                             entity->localTransform.position[2] -= z_rand;
                             cout << "z_rand" << z_rand << endl;
                             cout << "Frog Postion:" << glm::to_string(positionFrog) << endl;
                         }
                     }
+                }
+            }
+            HeartComponent *heart = nullptr;
+            for (auto entity : world->getEntities()){
+                heart = entity->getComponent<HeartComponent>();
+                if(heart && heart->id==id){
+                    entity->localTransform.position.y = 20;
+                    break;
                 }
             }
         }

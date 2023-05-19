@@ -84,6 +84,8 @@ set(COMMON_SOURCES
         source/common/components/heart.cpp
         source/common/components/collision.hpp
         source/common/components/collision.cpp
+        source/common/components/scope.hpp
+        source/common/components/scope.cpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
@@ -92,6 +94,7 @@ set(COMMON_SOURCES
         source/common/systems/ground.hpp
         source/common/systems/free-frog-controller.hpp
         source/common/systems/collision.hpp
+        source/common/systems/gain-heart.hpp
         source/common/systems/game-over-controller.hpp
 )
 

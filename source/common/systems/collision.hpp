@@ -1,6 +1,7 @@
 #pragma once
 #include "../ecs/world.hpp"
 #include "../components/heart.hpp"
+#include "../components/scope.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
@@ -41,6 +42,7 @@ namespace our
             bool flag = false;
 
             HeartComponent *heart = nullptr;
+            ScopeComponent *scopeController = nullptr;
             for(auto entity : world->getEntities()){
                 // Get name of entity
                 std::string name = entity->name;
@@ -48,44 +50,30 @@ namespace our
                 glm::vec3 car_position = entity->localTransform.position;
                 // If the bus or taxi component exists
                 heart = entity->getComponent<HeartComponent>();
+                scopeController = entity->getComponent<ScopeComponent>();
                 if(heart && heart->id==id){
                     heartEntity = entity;
+                    continue;
                 }
-                if((name=="bus")){
+                if((name=="car" || name=="taxi" ) && scopeController){
                     // get the car's max and min position
-                    glm::vec3 bus_size =  glm::vec3(13, 0, 3);
-                    glm::vec3 car_max = car_position + (bus_size  );
-                    glm::vec3 car_min = car_position - (bus_size );
+                    glm::vec3 car_size = scopeController->component_size;
+                    glm::vec3 car_max = car_position + (car_size  );
+                    glm::vec3 car_min = car_position - (car_size );
                     if (positionFrog.x >= car_min.x && positionFrog.x <= car_max.x &&
-                            positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            flag = true;
+                            if(id==2){
+                                flagPostProcessing = true;
+                                forwardRenderer->setApplyPostProcessing(true);
+                            }else{
+                                heartEntity->localTransform.position[1] = 100;
+                                frog->localTransform.position[2] -= height;
+                            }
+                            engine->play2D("./media/scream.mp3", false);
+                            id++;
                         }
                 }
-                if((name=="taxi")){
-                    // get the car's max and min position
-                    glm::vec3 taxi_size =  glm::vec3(6, 0, 3);
-                    glm::vec3 car_max = car_position + (taxi_size  );
-                    glm::vec3 car_min = car_position - (taxi_size );
-                    if (positionFrog.x >= car_min.x && positionFrog.x <= car_max.x &&
-                            positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
-                            positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
-                        {
-                            flag = true;
-                        }
-                }
-            }
-            if(flag){
-                if(id==2){
-                    flagPostProcessing = true;
-                    forwardRenderer->setApplyPostProcessing(true);
-                }else{
-                    heartEntity->localTransform.position[1] = 100;
-                    frog->localTransform.position[2] -= height;
-                }
-                engine->play2D("./media/scream.mp3", false);
-                id++;
             }
         }
 
@@ -94,8 +82,6 @@ namespace our
                 _sleep(1500);
                 app->registerState<GameOver>("game-over");
                 app->changeState("game-over");
-                // app->registerState<Playstate>("play");
-                // app->changeState("play");
             }
         }
         void exit(){

@@ -24,7 +24,7 @@ namespace our
         {
             for (auto entity : world->getEntities())
             {
-                if((entity->name=="bus"|| entity->name=="taxi")){
+                if((entity->name=="car"|| entity->name=="taxi")){
                     if(entity->localTransform.position[0] >length)
                     {
                         entity->localTransform.position[0] = -start;

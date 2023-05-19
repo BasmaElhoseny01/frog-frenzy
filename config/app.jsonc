@@ -36,7 +36,8 @@
                 "hole": "assets/textures/hole.jpg",
                 "fence": "assets/textures/fence.jpg",
                 "taxi": "assets/textures/taxi.jpg",
-                "frog": "assets/textures/frog2.jpg"
+                "frog": "assets/textures/frog2.jpg",
+                "lake": "assets/textures/lake.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -49,7 +50,9 @@
                 "hole": "assets/models/hole.obj",
                 "fence": "assets/models/fence.obj",
                 "taxi": "assets/models/taxi.obj",
-                "frog": "assets/models/frog2.obj"
+                "frog": "assets/models/frog2.obj",
+                "lake": "assets/models/lake.obj"
+
             },
             "samplers": {
                 "default": {},
@@ -307,6 +310,26 @@
                     ],
                     "texture": "frog",
                     "sampler": "default"
+                },
+                "lake": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "lake",
+                    "sampler": "default"
                 }
             }
         },
@@ -430,6 +453,31 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "grass"
+                    }
+                ]
+            },
+            {
+                "name": "lake",
+                "position": [
+                    0,
+                    -19.5,
+                    -80
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    20,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "lake"
                     }
                 ]
             },

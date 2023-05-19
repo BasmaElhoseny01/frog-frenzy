@@ -1,0 +1,174 @@
+{
+    "start-scene": "game-over",
+    "window": {
+        "title": "Frogger",
+        "size": {
+            "width": 1224,
+            "height": 720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer": {
+            "sky": "assets/textures/hole.jpg"
+        },
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
+                },
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
+                }
+            },
+            "textures": {
+                "cover": "assets/textures/cover.png",
+                "hole": "assets/textures/white.png"
+            },
+            "meshes": {
+                "plane": "assets/models/plane.obj",
+                "hole": "assets/models/hole.obj"
+            },
+            "samplers": {
+                "default": {},
+                "pixelated": {
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials": {
+                "cover": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "cover",
+                    "sampler": "default"
+                },
+                "white": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        0.7
+                    ],
+                    "texture": "hole",
+                    "sampler": "default"
+                }
+            }
+        },
+        "world": [
+            {
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
+                "rotation": [
+                    45,
+                    90,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Camera",
+                        "eye": [
+                            4,
+                            1,
+                            5
+                        ],
+                        "center": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "up": [
+                            0,
+                            1,
+                            0
+                        ],
+                        "fov": 90,
+                        "near": 0.01,
+                        "far": 1000
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [
+                            0.0,
+                            0,
+                            -5.5
+                        ],
+                        "scale": [
+                            10,
+                            8,
+                            2
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "plane",
+                                "material": "cover"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "background",
+                        "scale": [
+                            1.75,
+                            0.35,
+                            1
+                        ],
+                        "position": [
+                            -2,
+                            -4,
+                            -5
+                        ],
+                        "rotation": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "hole",
+                                "material": "white"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

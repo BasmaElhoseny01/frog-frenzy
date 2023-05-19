@@ -8,7 +8,6 @@
 #include <systems/free-frog-controller.hpp>
 #include <systems/movement.hpp>
 #include <systems/collision.hpp>
-#include <systems/gain-heart.hpp>
 #include <systems/car.hpp>
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
@@ -32,8 +31,6 @@ class Playstate : public our::State
     our::CarsSystem carsSystem;
     our::GroundSystem groundSystem;
     our::CollisionSystem collisionSystem;
-    our::GainHeartSystem gainHeartSystem;
-
     ISoundEngine *engine;
     bool flagPostProcessing;
     int id ;
@@ -80,7 +77,6 @@ class Playstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world); // To control Cars System to appear
         collisionSystem.update(&world,&renderer,flagPostProcessing,engine,id);// To check collision
-        gainHeartSystem.update(&world,id);// To check Gaining new Heart
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);// To control frog movement
@@ -111,7 +107,6 @@ class Playstate : public our::State
     void onDestroy() override
     {
         collisionSystem.exit();
-        gainHeartSystem.exit();
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked

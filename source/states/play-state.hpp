@@ -1,20 +1,25 @@
 #pragma once
 #include <string>
 #include <application.hpp>
-
+#include <iostream>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
 #include <systems/free-frog-controller.hpp>
 #include <systems/movement.hpp>
+#include <systems/collision.hpp>
 #include <systems/car.hpp>
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
+#include <irrKlang/irrKlang.h>
+using namespace irrklang;
+
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    int score = 0;
+    int score;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -22,6 +27,8 @@ class Playstate : public our::State
     our::MovementSystem movementSystem;
     our::CarsSystem carsSystem;
     our::GroundSystem groundSystem;
+    our::CollisionSystem collisionSystem;
+    ISoundEngine *engine;
 
     void onInitialize() override
     {
@@ -41,19 +48,31 @@ class Playstate : public our::State
         cameraController.enter(getApp());
         // We initialize the frog controller system since it needs a pointer to the app
         frogController.enter(getApp());
+        // We initialize the collision  system since it needs a pointer to the app
+        collisionSystem.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+        // start the sound engine with default parameters
+        engine = createIrrKlangDevice();
+
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            cout<"bbb";
+            // engine->play2D("./media/getout.ogg", true);
+        score = 0; // reset score of player
     }
 
     void onDraw(double deltaTime) override
     {
+        groundSystem.update(&world, score); // To rerender ground
         // Here, we just run a bunch of systems to control the world logic
-        carsSystem.update(&world); // To control Cars System to appear
-        movementSystem.update(&world, (float)deltaTime);
+        carsSystem.update(&world);                       // To control Cars System to appear
+        collisionSystem.update(&world);                  // To check collision
+        movementSystem.update(&world, (float)deltaTime); // To update movement component
         // cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime, &renderer);
-        groundSystem.update(&world, score);
+        frogController.update(&world, (float)deltaTime); // To control frog movement
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
@@ -76,33 +95,33 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
+
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
         cameraController.exit();
-        // On exit, we call exit for the frog  controller system to make sure that the mouse is unlocked
-        frogController.exit();
         // Clear the world
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+        engine->drop(); // delete engine
     }
 
-    // void onImmediateGui() override
-    // {
-    //     // start gui
-    //     // ImGui::Begin("Score", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
-    //     // set window position
-    //     ImGui::SetWindowPos(ImVec2(50, 50));
-    //     // set window size
-    //     ImGui::SetWindowSize(ImVec2(600, 100));
-    //     // set font
-    //     ImGui::SetWindowFontScale(5.0f);
-    //     // initialize score
-    //     string score_screen = "Score: " + to_string(score);
-    //     // initialize color
-    //     ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), score_screen.c_str());
-    //     // end gui
-    //     ImGui::End();
-    // }
+    void onImmediateGui() override
+    {
+        // start gui
+        ImGui::Begin("Score", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
+        // set window position
+        ImGui::SetWindowPos(ImVec2(50, 50));
+        // set window size
+        ImGui::SetWindowSize(ImVec2(600, 100));
+        // set font
+        ImGui::SetWindowFontScale(5.0f);
+        // initialize score
+        string score_screen = "Score: " + to_string(score);
+        // initialize color
+        ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), score_screen.c_str());
+        // end gui
+        ImGui::End();
+    }
 };

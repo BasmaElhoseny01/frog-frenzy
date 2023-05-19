@@ -25,6 +25,10 @@ namespace our
         }
         // This should be called every frame to update all entities containing a StreetComponent.
         void update(World* world) {
+            if(true){
+                //sleep 10
+                // game over
+            }
             // For each entity in the world
             for(auto entity : world->getEntities()){
                 if (entity->name=="frog")
@@ -50,8 +54,9 @@ namespace our
                             positionFrog.y >= car_min.y && positionFrog.y <= car_max.y &&
                             positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
                         {
-                            app->registerState<GameOver>("game-over");
-                            app->changeState("game-over");
+                            //set bool true
+                            // app->registerState<GameOver>("game-over");
+                            // app->changeState("game-over");
                         }
                 }
                 if((name=="taxi")){

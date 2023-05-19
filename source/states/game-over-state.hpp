@@ -89,7 +89,7 @@ class GameOver : public our::State
         // start gui
         ImGui::Begin("Enter", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
         // set window position
-        ImGui::SetWindowPos(ImVec2(300, 530));
+        ImGui::SetWindowPos(ImVec2(350, 530));
         // set window size
         ImGui::SetWindowSize(ImVec2(800, 100));
         // set font

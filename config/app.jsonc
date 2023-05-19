@@ -45,7 +45,8 @@
                 "specular": "assets/images/metal/specular.jpg",
                 "roughness": "assets/images/metal/roughness.jpg",
                 "black": "assets/images/metal/black.jpg",
-                "white": "assets/images/metal/white.jpg"
+                "white": "assets/images/metal/white.jpg",
+                "gray": "assets/images/metal/gray.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -228,7 +229,7 @@
                     "albedo": "bus",
                     "specular": "white",
                     "roughness": "black",
-                    "emissive": "bus",
+                    "emissive": "black",
                     "ambient_occlusion": "bus"
                 },
                 "taxi": {
@@ -252,7 +253,7 @@
                     "albedo": "taxi",
                     "specular": "white",
                     "roughness": "black",
-                    "emissive": "taxi",
+                    "emissive": "black",
                     "ambient_occlusion": "taxi"
                 },
                 "wall": {

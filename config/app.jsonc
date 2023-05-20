@@ -1597,19 +1597,19 @@
                         "type": "Mesh Renderer",
                         "mesh": "sphere",
                         "material": "moon"
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": 1,
-                        "direction": [-100, 0, 0],
-                        "diffuse": [1.053725, 1.0811764, 1.094117647],
-                        "specular": [0.0053725, 0.00811764, 0.0094117647],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
-                        "cone_angles.inner": 20,
-                        "cone_angles.outer": 50
                     }
+                    // {
+                    //     "type": "Lighting",
+                    //     "kind": 1,
+                    //     "direction": [-100, 0, 0],
+                    //     "diffuse": [1.053725, 1.0811764, 1.094117647],
+                    //     "specular": [0.0053725, 0.00811764, 0.0094117647],
+                    //     "attenuation": [0.00095, 0.00095, 0.000095],
+                    //     "cone_angles.inner": 20,
+                    //     "cone_angles.outer": 50
+                    // }
                 ]
-            }
+            },
             // {
             //     "position": [0, 0, 10],
             //     "rotation": [0, 0, 0],
@@ -1626,41 +1626,42 @@
             //         }
             //     ]
             // }
-            // {
-            //     "name": "lamp",
-            //     "scale": [
-            //         0.008,
-            //         0.008,
-            //         0.008
-            //     ],
-            //     "position": [
-            //         -5,
-            //         -15,
-            //         -17
-            //     ],
-            //     "rotation": [
-            //         0,
-            //         0,
-            //         0
-            //     ],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "lamp",
-            //             "material": "lamp"
-            //         },
-            //         {
-            //             "type": "Lighting",
-            //             "kind": 2,
-            //             "direction": [0, -1, 0],
-            //             "diffuse": [1, 1, 1],
-            //             "specular": [1, 1, 1],
-            //             "attenuation": [0.0095, 0.0095, 0.00095],
-            //             "cone_angles.inner": 20,
-            //             "cone_angles.outer": 50
-            //         }
-            //     ]
-            // }
+            {
+                "name": "lamp",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    -5,
+                    -15,
+                    -17
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "lamp",
+                        "material": "lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 2,
+                        "direction": [0, -100, 0],
+                        "position": [-2, -15, -17],
+                        "diffuse": [0.053725, 0.0811764, 0.094117647],
+                        "specular": [0.53725, 0.811764, 0.94117647],
+                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            }
         ]
     }
 }

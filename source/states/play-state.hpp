@@ -24,20 +24,20 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    int score;              // score no
-    int bestScore;
-    our::World world;
-    our::ForwardRenderer renderer;
-    our::FreeCameraControllerSystem cameraController;
-    our::FreeFrogControllerSystem frogController;
-    our::MovementSystem movementSystem;
-    our::CarsSystem carsSystem;
-    our::GroundSystem groundSystem;
-    our::CollisionSystem collisionSystem;
-    ISoundEngine *engine;
-    our::GainHeartSystem gainHeartSystem;
-    bool flagPostProcessing;
-    int id ;
+    int score;                                          // score of player
+    int bestScore;                                      // best score of player in the game
+    our::World world;                                   // to get the world of game
+    our::ForwardRenderer renderer;                      // render component
+    our::FreeCameraControllerSystem cameraController;   //  camera control system
+    our::FreeFrogControllerSystem frogController;       // frag control system
+    our::MovementSystem movementSystem;                 // movement system
+    our::CarsSystem carsSystem;                         // car system
+    our::GroundSystem groundSystem;                     // ground system
+    our::CollisionSystem collisionSystem;               // collision system
+    ISoundEngine *engine;                               // engine to play sounds
+    our::GainHeartSystem gainHeartSystem;               // gain herat system
+    bool flagPostProcessing;                            //bool to know if he lost 3 hearts or not
+    int id ;                                            // id of heart to know which heart remove or back it
     void onInitialize() override
     {
          std::string config_path = "config/app.jsonc";
@@ -100,6 +100,7 @@ class Playstate : public our::State
         // Read the file into a json object then close the file
         nlohmann::json configsScore = nlohmann::json::parse(file_score, nullptr, true, true);
         file_score.close();
+        // read best score
         bestScore = configsScore["bestScore"];
     }
 
@@ -114,7 +115,6 @@ class Playstate : public our::State
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);// To control frog movement
         gainHeartSystem.update(&world,id);// To check Gaining new Heart
-        
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
@@ -152,6 +152,7 @@ class Playstate : public our::State
         // mutate the json
         nlohmann::json data;
         data["score"] = score;
+        // check id the score are bigger than best score
         data["bestScore"] =(score>bestScore)? score:bestScore;
         // write the JSON object to the file
         file_out << data;

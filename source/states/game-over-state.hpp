@@ -15,12 +15,12 @@ using namespace irrklang;
 class GameOver : public our::State
 {
 
-    our::World world;
-    our::ForwardRenderer renderer;
-    ISoundEngine *engine;
-    our::GameOverSystem gameOver;
-    int score;
-    int bestScore;
+    our::World world;               // to get the world of game
+    our::ForwardRenderer renderer;  // render component
+    ISoundEngine *engine;           // engine to play sounds
+    our::GameOverSystem gameOver;   //  game over system
+    int score;                      // score of player
+    int bestScore;                  // best score of player in the game
     void onInitialize() override
     {
         std::string config_path = "config/game-over.jsonc";
@@ -88,12 +88,6 @@ class GameOver : public our::State
     {
         renderer.render(&world);
         gameOver.update();
-        // auto& keyboard = getApp()->getKeyboard();
-        // if(keyboard.justPressed(GLFW_KEY_ENTER)){
-        //     // go to game
-        //     getApp()->registerState<Playstate>("play");
-        //     getApp()->changeState("play");
-        // }
     }
 
     void onDestroy() override
@@ -110,7 +104,7 @@ class GameOver : public our::State
     }
      void onImmediateGui() override
     {
-         // start gui
+        // start gui
         ImGui::Begin("Score", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
         // set window position
         ImGui::SetWindowPos(ImVec2(50, 50));

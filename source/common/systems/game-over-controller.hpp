@@ -21,10 +21,7 @@ namespace our
         // This should be called every frame to update all entities containing a GameOvertSystem.
         void update() {
             if(app->getKeyboard().isPressed(GLFW_KEY_ENTER)){
-                // app->registerState<Playstate>("play");
                 app->changeState("play");
-                // app->registerState<GameOver>("game-over");
-                // app->changeState("game-over");
             }
         }
 

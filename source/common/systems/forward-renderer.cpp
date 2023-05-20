@@ -143,6 +143,8 @@ namespace our
         }
     }
 
+
+
     void ForwardRenderer::render(World *world)
     {
         // First of all, we search for a camera and for all the mesh renderers
@@ -254,9 +256,9 @@ namespace our
 
                 light_material->shader->set("light_count", (int)Lights.size());
 
-                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
-                light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
-                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.top", glm::vec3(1, 1, 1));
+                light_material->shader->set("sky.horizon", glm::vec3(1, 1, 1));
+                light_material->shader->set("sky.bottom", glm::vec3(1, 1, 1));
                 
                 for(int i = 0; i<Lights.size(); i++) {
 
@@ -264,7 +266,8 @@ namespace our
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
 
                     light_material->shader->set("lights["+std::to_string(i)+"].type", (int)Lights[i]->kind);
-                    light_material->shader->set("lights["+std::to_string(i)+"].color", Lights[i]->color);
+                    light_material->shader->set("lights["+std::to_string(i)+"].diffuse", Lights[i]->diffuse);
+                    light_material->shader->set("lights["+std::to_string(i)+"].specular", Lights[i]->specular);
                     light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                     switch (Lights[i]->kind)
                         {
@@ -322,7 +325,7 @@ namespace our
         for (auto it : transparentCommands)
         {
             it.material->setup();                                        // set up material
-            if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
+             if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
             {
                 // std::cout<<"*************** hiii ***********"<<std::endl;
                 light_material->shader->set("VP", VP);
@@ -335,9 +338,9 @@ namespace our
 
                 light_material->shader->set("light_count", (int)Lights.size());
 
-                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
-                light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
-                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.top", glm::vec3(1, 1, 1));
+                light_material->shader->set("sky.horizon", glm::vec3(1, 1, 1));
+                light_material->shader->set("sky.bottom", glm::vec3(1, 1, 1));
                 
                 for(int i = 0; i<Lights.size(); i++) {
 
@@ -345,7 +348,8 @@ namespace our
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
 
                     light_material->shader->set("lights["+std::to_string(i)+"].type", (int)Lights[i]->kind);
-                    light_material->shader->set("lights["+std::to_string(i)+"].color", Lights[i]->color);
+                    light_material->shader->set("lights["+std::to_string(i)+"].diffuse", Lights[i]->diffuse);
+                    light_material->shader->set("lights["+std::to_string(i)+"].specular", Lights[i]->specular);
                     light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                     switch (Lights[i]->kind)
                         {

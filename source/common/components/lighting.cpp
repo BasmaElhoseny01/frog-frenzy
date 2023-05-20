@@ -13,7 +13,8 @@ namespace our
         if (!data.is_object())return;
         int kind = data.value("kind", 0);  // read the type of the light and set the default to be directional.
 
-        color = glm::vec3(data.value("color", glm::vec3(1, 0.9, 0.7)));
+        diffuse = glm::vec3(data.value("diffuse", glm::vec3(1, 0.9, 0.7)));
+        specular = glm::vec3(data.value("specular", glm::vec3(1, 0.9, 0.7)));
         attenuation = glm::vec3(data.value("attenuation", glm::vec3(1, 0, 0)));
         direction = glm::vec3(data.value("direction", glm::vec3(0, -1, 0)));
         // cone_angles = glm::vec2(data.value("cone_angles", glm::vec2(glm::radians(90.0f), glm::radians(120.0f))));

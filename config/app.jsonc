@@ -150,8 +150,8 @@
                     "ambient_occlusion": "grass"
                 },
                 "street": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighting",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -166,8 +166,8 @@
                         1,
                         1
                     ],
-                    "texture": "street",
-                    "sampler": "default",
+                    // "texture": "street",
+                    "sampler": "repeated",
                     "albedo": "street",
                     "specular": "black",
                     "roughness": "roughness",
@@ -893,7 +893,7 @@
                 "scale": [
                     40,
                     10,
-                    0
+                    1
                 ],
                 "components": [
                     {
@@ -949,7 +949,7 @@
                 "scale": [
                     40,
                     10,
-                    0
+                    1
                 ],
                 "components": [
                     {

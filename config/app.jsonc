@@ -2830,78 +2830,78 @@
                 ]
             },
             /////////////////////////////first road////////////////////////////////
-            {
-                "name": "point_lamp",
-                "scale": [
-                    1,
-                    1,
-                    1
-                ],
-                "position": [
-                    25,
-                    -20,
-                    -19
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "point_lamp",
-                        "material": "point_lamp"
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": 1,
-                        "direction": [0, -100, 0],
-                        "position": [20, -20, -15],
-                        "diffuse": [0.25,0.25,0.25],
-                        "specular": [0.005,0.005,0.005],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
-                        "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
-                    }
-                ]
-            },
-            {
-                "name": "point_lamp2",
-                "scale": [
-                    1,
-                    1,
-                    1
-                ],
-                "position": [
-                    -25,
-                    -20,
-                    -19
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "point_lamp",
-                        "material": "point_lamp"
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": 1,
-                        "direction": [0, -100, 0],
-                        "position": [20, -20, -15],
-                        "diffuse": [0.25,0.25,0.25],
-                        "specular": [0.005,0.005,0.005],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
-                        "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
-                    }
-                ]
-            },
+            // {
+            //     "name": "point_lamp",
+            //     "scale": [
+            //         1,
+            //         1,
+            //         1
+            //     ],
+            //     "position": [
+            //         25,
+            //         -20,
+            //         -19
+            //     ],
+            //     "rotation": [
+            //         0,
+            //         0,
+            //         0
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "point_lamp",
+            //             "material": "point_lamp"
+            //         },
+            //         {
+            //             "type": "Lighting",
+            //             "kind": 1,
+            //             "direction": [0, -100, 0],
+            //             "position": [20, -20, -15],
+            //             "diffuse": [0.25,0.25,0.25],
+            //             "specular": [0.005,0.005,0.005],
+            //             "attenuation": [0.00095, 0.00095, 0.000095],
+            //             "cone_angles.inner": 20,
+            //             "cone_angles.outer": 100
+            //         }
+            //     ]
+            // },
+            // {
+            //     "name": "point_lamp2",
+            //     "scale": [
+            //         1,
+            //         1,
+            //         1
+            //     ],
+            //     "position": [
+            //         -25,
+            //         -20,
+            //         -19
+            //     ],
+            //     "rotation": [
+            //         0,
+            //         0,
+            //         0
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "point_lamp",
+            //             "material": "point_lamp"
+            //         },
+            //         {
+            //             "type": "Lighting",
+            //             "kind": 1,
+            //             "direction": [0, -100, 0],
+            //             "position": [20, -20, -15],
+            //             "diffuse": [0.25,0.25,0.25],
+            //             "specular": [0.005,0.005,0.005],
+            //             "attenuation": [0.00095, 0.00095, 0.000095],
+            //             "cone_angles.inner": 20,
+            //             "cone_angles.outer": 100
+            //         }
+            //     ]
+            // },
             /////////////////////////////second road////////////////////////////////
             {
                 "name": "point_lamp3",
@@ -2913,7 +2913,7 @@
                 "position": [
                     25,
                     -20,
-                    -61
+                    -78
                 ],
                 "rotation": [
                     0,
@@ -2949,7 +2949,7 @@
                 "position": [
                     -25,
                     -20,
-                    -61
+                    -78
                 ],
                 "rotation": [
                     0,

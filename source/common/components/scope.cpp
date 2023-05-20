@@ -4,7 +4,7 @@
 
 namespace our
 {
-    // Reads linearVelocity & angularVelocity from the given json object
+    // Reads size from the given json object
     void ScopeComponent::deserialize(const nlohmann::json &data)
     {
         if (!data.is_object())

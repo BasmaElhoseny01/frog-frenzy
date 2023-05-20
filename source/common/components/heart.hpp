@@ -9,7 +9,7 @@ namespace our {
     // This component denotes that the HeartComponent will check if player has anther opportunity
     // This component is added as a simple example for how use the ECS framework to implement logic.
     // For more information, see "common/systems/Heart.hpp"
-    // For a more complex example of how to use the ECS framework, see "free-camera-controller.hpp"
+    // For a more complex example of how to use the ECS framework, see "collision.hpp"
     class HeartComponent : public Component {
     public:
         int id; // id for heart

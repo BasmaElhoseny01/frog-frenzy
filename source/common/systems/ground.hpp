@@ -5,6 +5,7 @@
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
+#include "../components/movement.hpp"
 
 namespace our
 {
@@ -38,6 +39,13 @@ namespace our
                         if((entity2->name=="car"|| entity2->name=="taxi"||  entity2->name=="fence" ||  entity2->name=="wall" ||  entity2->name=="hole")&& (entity2->localTransform.position[2]) > ( entity->localTransform.position[2] - width/2 ) ){
                             // change taxi or bus position
                             entity2->localTransform.position[2] -= height * 4;
+                            // check if car or not
+                            MovementComponent * move=entity2->getComponent<MovementComponent>();
+                            if(move){
+                                int xSpeed=move->linearVelocity.x;
+                                // inc speed of car
+                                move->linearVelocity.x += (xSpeed < 0) ? -5 : 5;
+                            }
                         }
 
                     }

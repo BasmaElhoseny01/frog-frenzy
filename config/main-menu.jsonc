@@ -1,5 +1,5 @@
 {
-    "start-scene": "game-over",
+    "start-scene": "menu",
     "window": {
         "title": "Frogger",
         "size": {
@@ -24,7 +24,7 @@
                 }
             },
             "textures": {
-                "cover": "assets/textures/cover.png",
+                "cover": "assets/textures/koko.png",
                 "hole": "assets/textures/white.png"
             },
             "meshes": {
@@ -127,10 +127,10 @@
                         "position": [
                             0.0,
                             0,
-                            -5.5
+                            -7
                         ],
                         "scale": [
-                            10,
+                            12,
                             8,
                             2
                         ],
@@ -141,32 +141,33 @@
                                 "material": "cover"
                             }
                         ]
-                    },
-                    {
-                        "name": "background",
-                        "scale": [
-                            1.75,
-                            0.35,
-                            1
-                        ],
-                        "position": [
-                            -2,
-                            -4,
-                            -5
-                        ],
-                        "rotation": [
-                            0,
-                            0,
-                            0
-                        ],
-                        "components": [
-                            {
-                                "type": "Mesh Renderer",
-                                "mesh": "hole",
-                                "material": "white"
-                            }
-                        ]
                     }
+                    // ,
+                    // {
+                    //     "name": "background",
+                    //     "scale": [
+                    //         1.75,
+                    //         0.35,
+                    //         1
+                    //     ],
+                    //     "position": [
+                    //         1,
+                    //         -4,
+                    //         -5
+                    //     ],
+                    //     "rotation": [
+                    //         0,
+                    //         0,
+                    //         0
+                    //     ],
+                    //     "components": [
+                    //         {
+                    //             "type": "Mesh Renderer",
+                    //             "mesh": "hole",
+                    //             "material": "white"
+                    //         }
+                    //     ]
+                    // }
                 ]
             }
         ]

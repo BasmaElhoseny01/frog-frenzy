@@ -87,7 +87,7 @@ namespace our
                 rotationCamera.y =-0.5*glm::half_pi<float>();
                 rotationCamera.z =-glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x =-75;
+                positionCamera.x =-40;
                 positionCamera.y =0;
                 positionCamera.z = 150;
             }
@@ -103,7 +103,7 @@ namespace our
                 rotationCamera.y =0.5*glm::half_pi<float>();
                 rotationCamera.z =glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x =75;
+                positionCamera.x =40;
                 positionCamera.y =0;
                 positionCamera.z = 150;
             }
@@ -120,7 +120,7 @@ namespace our
                 rotationCamera.z =glm::pi<float>();
                 // change postion of camera to be with frog
                 positionCamera.x =0;
-                positionCamera.y =-75;
+                positionCamera.y =-40;
                 positionCamera.z = 150;
             }
         }

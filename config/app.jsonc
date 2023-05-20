@@ -1606,7 +1606,7 @@
                         "specular": [0.53725, 0.811764, 0.94117647],
                         "attenuation": [0.00095, 0.00095, 0.000095],
                         "cone_angles.inner": 20,
-                        "cone-angles.outer": 50
+                        "cone_angles.outer": 50
                     }
                 ]
             },

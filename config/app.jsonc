@@ -166,8 +166,8 @@
                         1,
                         1
                     ],
-                    "texture": "street",
-                    "sampler": "default",
+                    // "texture": "street",
+                    "sampler": "repeated",
                     "albedo": "street",
                     "specular": "black",
                     "roughness": "roughness",

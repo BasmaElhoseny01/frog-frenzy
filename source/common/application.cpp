@@ -165,6 +165,7 @@ int our::Application::run(int run_for_frames) {
 
     auto win_config = getWindowConfiguration();             // Returns the WindowConfiguration current struct instance.
 
+
     // Create a window with the given "WindowConfiguration" attributes.
     // If it should be fullscreen, monitor should point to one of the monitors (e.g. primary monitor), otherwise it should be null
     GLFWmonitor* monitor = win_config.isFullscreen ? glfwGetPrimaryMonitor() : nullptr;
@@ -199,7 +200,6 @@ int our::Application::run(int run_for_frames) {
     setupCallbacks();
     keyboard.enable(window);
     mouse.enable(window);
-
     // Start the ImGui context and set dark style (just my preference :D)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -238,6 +238,8 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
+
+
 
     //Game loop
     while(!glfwWindowShouldClose(window)){

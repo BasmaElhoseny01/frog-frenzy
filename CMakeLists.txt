@@ -84,6 +84,8 @@ set(COMMON_SOURCES
         source/common/components/heart.cpp
         source/common/components/scope.hpp
         source/common/components/scope.cpp
+        source/common/components/lighting.cpp
+        source/common/components/lighting.hpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp

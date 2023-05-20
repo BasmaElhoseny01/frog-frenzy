@@ -8,6 +8,7 @@
 #include "movement.hpp"
 #include "heart.hpp"
 #include "scope.hpp"
+#include "lighting.hpp"
 
 
 namespace our {
@@ -17,6 +18,7 @@ namespace our {
     inline void deserializeComponent(const nlohmann::json& data, Entity* entity){
         std::string type = data.value("type", "");
         Component* component = nullptr;
+        
         //TODO: (Req 8) Add an option to deserialize a "MeshRendererComponent" to the following if-else statement
         if(type == CameraComponent::getID()){
             component = entity->addComponent<CameraComponent>();
@@ -35,6 +37,9 @@ namespace our {
         }
         else if(type==ScopeComponent::getID()){
             component=entity->addComponent<ScopeComponent>();
+        }
+        else if(type==LightingComponent::getID()){
+            component=entity->addComponent<LightingComponent>();
         }
         if(component) component->deserialize(data);
     }

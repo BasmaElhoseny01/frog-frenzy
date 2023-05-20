@@ -11,7 +11,7 @@ namespace our
     void LightingComponent::deserialize(const nlohmann::json &data)
     {
         if (!data.is_object())return;
-        int kind = data.value("kind", 0);  // read the type of the light and set the default to be directional.
+        kind = data.value("kind", 0);  // read the type of the light and set the default to be directional.
 
         diffuse = glm::vec3(data.value("diffuse", glm::vec3(1, 0.9, 0.7)));
         specular = glm::vec3(data.value("specular", glm::vec3(1, 0.9, 0.7)));

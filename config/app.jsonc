@@ -201,16 +201,16 @@
                         1
                     ],
                     "texture": "moon",
-                    "sampler": "default"
-                    // "albedo": "moon",
-                    // "specular": "white",
-                    // "roughness": "black",
-                    // "emissive": "black",
-                    // "ambient_occlusion": "moon"
+                    "sampler": "default",
+                    "albedo": "moon",
+                    "specular": "white",
+                    "roughness": "black",
+                    "emissive": "black",
+                    "ambient_occlusion": "moon"
                 },
                 "bus": {
-                    "type": "lighted",
-                    "shader": "lighting",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -234,8 +234,8 @@
                     "ambient_occlusion": "bus"
                 },
                 "taxi": {
-                    "type": "lighted",
-                    "shader": "lighting",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -1600,10 +1600,10 @@
                     },
                     {
                         "type": "Lighting",
-                        "kind": 0,
+                        "kind": 1,
                         "direction": [-100, 0, 0],
-                        "diffuse": [0.53725, 0.811764, 0.94117647],
-                        "specular": [0.53725, 0.811764, 0.94117647],
+                        "diffuse": [1.053725, 1.0811764, 1.094117647],
+                        "specular": [0.0053725, 0.00811764, 0.0094117647],
                         "attenuation": [0.00095, 0.00095, 0.000095],
                         "cone_angles.inner": 20,
                         "cone_angles.outer": 50

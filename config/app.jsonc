@@ -398,7 +398,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1], // me4 htt2ry
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ], // me4 htt2ry
                     "texture": "lamp",
                     "sampler": "default",
                     "albedo": "lamp",
@@ -418,7 +423,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1], // me4 htt2ry
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ], // me4 htt2ry
                     "texture": "gray_cute",
                     "sampler": "default",
                     "albedo": "gray_cute",
@@ -512,7 +522,7 @@
             //     ]
             // },
             {
-                "name":"frog",
+                "name": "frog",
                 "position": [
                     0,
                     -20,
@@ -555,7 +565,7 @@
                                 "type": "Free Frog Controller"
                             }
                         ],
-                        "children":[
+                        "children": [
                             {
                                 "name": "heart",
                                 "position": [
@@ -642,8 +652,9 @@
                                         "id": 2
                                     }
                                 ]
-                            },{
-                                "name":"background",
+                            },
+                            {
+                                "name": "background",
                                 "scale": [
                                     3,
                                     1,
@@ -664,6 +675,56 @@
                                         "type": "Mesh Renderer",
                                         "mesh": "hole",
                                         "material": "white"
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [
+                                    20,
+                                    150,
+                                    -100
+                                ],
+                                "rotation": [
+                                    45,
+                                    45,
+                                    0
+                                ],
+                                "scale": [
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "sphere",
+                                        "material": "moon"
+                                    },
+                                    {
+                                        "type": "Lighting",
+                                        "kind": 0,
+                                        "direction": [
+                                            0,
+                                            -1,
+                                            0
+                                        ],
+                                        "diffuse": [
+                                            0.53725,
+                                            0.811764,
+                                            0.94117647
+                                        ],
+                                        "specular": [
+                                            0.53725,
+                                            0.811764,
+                                            0.94117647
+                                        ],
+                                        "attenuation": [
+                                            0.00095,
+                                            0.00095,
+                                            0.000095
+                                        ],
+                                        "cone_angles.inner": 20,
+                                        "cone_angles.outer": 50
                                     }
                                 ]
                             }
@@ -847,12 +908,24 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0, 0, 0],
-                        "angularVelocity": [0, 45, 0]
+                        "linearVelocity": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "angularVelocity": [
+                            0,
+                            45,
+                            0
+                        ]
                     },
                     {
-                        "type":"Scope",
-                        "size":[2, 0, 2]
+                        "type": "Scope",
+                        "size": [
+                            2,
+                            0,
+                            2
+                        ]
                     }
                 ]
             },
@@ -1031,7 +1104,7 @@
                     -25,
                     -15
                 ],
-               "rotation": [
+                "rotation": [
                     -90,
                     0,
                     180
@@ -1218,13 +1291,14 @@
                         "material": "hole"
                     }
                 ]
-            }
-            ,{
+            },
+            {
                 "name": "car",
                 "scale": [
                     0.02,
                     0.03,
-                    0.03],
+                    0.03
+                ],
                 "position": [
                     50,
                     -18,
@@ -1258,8 +1332,8 @@
                         ]
                     }
                 ]
-            }
-            , {
+            },
+            {
                 "name": "taxi",
                 "scale": [
                     0.03,
@@ -1299,8 +1373,8 @@
                         ]
                     }
                 ]
-            }
-            ,{
+            },
+            {
                 "name": "taxi",
                 "scale": [
                     0.03,
@@ -2475,28 +2549,28 @@
                     }
                 ]
             },
-            {
-                "position": [20, 5, -100],
-                "rotation": [45, 45, 0],
-                "scale": [1, 1, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "sphere",
-                        "material": "moon"
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": 0,
-                        "direction": [0, -1, 0],
-                        "diffuse": [0.53725, 0.811764, 0.94117647],
-                        "specular": [0.53725, 0.811764, 0.94117647],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
-                        "cone_angles.inner": 20,
-                        "cone_angles.outer": 50
-                    }
-                ]
-            },
+            // {
+            //     "position": [20, 5, -100],
+            //     "rotation": [45, 45, 0],
+            //     "scale": [1, 1, 1],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "sphere",
+            //             "material": "moon"
+            //         },
+            //         {
+            //             "type": "Lighting",
+            //             "kind": 0,
+            //             "direction": [0, -1, 0],
+            //             "diffuse": [0.53725, 0.811764, 0.94117647],
+            //             "specular": [0.53725, 0.811764, 0.94117647],
+            //             "attenuation": [0.00095, 0.00095, 0.000095],
+            //             "cone_angles.inner": 20,
+            //             "cone_angles.outer": 50
+            //         }
+            //     ]
+            // },
             // {
             //     "name": "point_lamp",
             //     "scale": [
@@ -2558,11 +2632,31 @@
                     {
                         "type": "Lighting",
                         "kind": 2,
-                        "direction": [50, -100, 0],
-                        "position": [-30, -7, -39],
-                        "diffuse": [0.253725, 0.2811764, 0.294117647],
-                        "specular": [0.53725, 0.811764, 0.94117647],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "direction": [
+                            50,
+                            -100,
+                            0
+                        ],
+                        "position": [
+                            -30,
+                            -7,
+                            -39
+                        ],
+                        "diffuse": [
+                            0.253725,
+                            0.2811764,
+                            0.294117647
+                        ],
+                        "specular": [
+                            0.53725,
+                            0.811764,
+                            0.94117647
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
                         "cone_angles.inner": 20,
                         "cone_angles.outer": 100
                     }
@@ -2594,11 +2688,31 @@
                     {
                         "type": "Lighting",
                         "kind": 2,
-                        "direction": [50, -100, 0],
-                        "position": [30, -7, -39],
-                        "diffuse": [0.253725, 0.2811764, 0.294117647],
-                        "specular": [0.53725, 0.811764, 0.94117647],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "direction": [
+                            50,
+                            -100,
+                            0
+                        ],
+                        "position": [
+                            30,
+                            -7,
+                            -39
+                        ],
+                        "diffuse": [
+                            0.253725,
+                            0.2811764,
+                            0.294117647
+                        ],
+                        "specular": [
+                            0.53725,
+                            0.811764,
+                            0.94117647
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
                         "cone_angles.inner": 20,
                         "cone_angles.outer": 100
                     }

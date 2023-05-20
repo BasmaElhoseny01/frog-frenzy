@@ -49,6 +49,7 @@
                 "black": "assets/images/metal/black.jpg",
                 "white": "assets/images/metal/white.jpg",
                 "gray": "assets/images/metal/gray.png",
+                "gray_cute": "assets/images/metal/gray_cute.png",
                 "lamp": "assets/images/metal/lamp.png"
             },
             "meshes": {
@@ -418,13 +419,13 @@
                         }
                     },
                     "tint": [1, 1, 1, 1], // me4 htt2ry
-                    "texture": "gray",
+                    "texture": "gray_cute",
                     "sampler": "default",
-                    "albedo": "gray",
+                    "albedo": "gray_cute",
                     "specular": "white",
                     "roughness": "black",
                     "emissive": "black",
-                    "ambient_occlusion": "gray"
+                    "ambient_occlusion": "gray_cute"
                 },
                 "heart": {
                     "type": "textured",
@@ -2475,7 +2476,7 @@
                 ]
             },
             {
-                "position": [0, 18, 18],
+                "position": [20, 5, -100],
                 "rotation": [45, 45, 0],
                 "scale": [1, 1, 1],
                 "components": [
@@ -2539,7 +2540,7 @@
                     0.008
                 ],
                 "position": [
-                    -40,
+                    -38,
                     -15,
                     -39
                 ],
@@ -2557,9 +2558,45 @@
                     {
                         "type": "Lighting",
                         "kind": 2,
-                        "direction": [0, -100, 0],
-                        "position": [-40, -15, -39],
-                        "diffuse": [0.053725, 0.0811764, 0.094117647],
+                        "direction": [50, -100, 0],
+                        "position": [-30, -7, -39],
+                        "diffuse": [0.253725, 0.2811764, 0.294117647],
+                        "specular": [0.53725, 0.811764, 0.94117647],
+                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            },
+            {
+                "name": "spot_lamp2",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    38,
+                    -15,
+                    -39
+                ],
+                "rotation": [
+                    0,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "spot_lamp",
+                        "material": "spot_lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 2,
+                        "direction": [50, -100, 0],
+                        "position": [30, -7, -39],
+                        "diffuse": [0.253725, 0.2811764, 0.294117647],
                         "specular": [0.53725, 0.811764, 0.94117647],
                         "attenuation": [0.00095, 0.00095, 0.000095],
                         "cone_angles.inner": 20,

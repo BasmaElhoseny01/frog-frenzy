@@ -288,7 +288,7 @@ namespace our
                         case 1:
                             // light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->getOwner()->localTransform.position, 1.0));
                             // light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
-                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
+                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(0,0.5*abs(light_position[1]),0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
                         }

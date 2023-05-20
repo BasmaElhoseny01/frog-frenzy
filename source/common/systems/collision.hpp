@@ -75,7 +75,8 @@ namespace our
                                 frogEntity->localTransform.position[2] -= height;
                             }
                             // play sound
-                            engine->play2D("./media/scream.mp3", false);
+                            // engine->play2D("./media/scream.mp3", false);
+                            std::cout<<"3";
                             // inc id after crash
                             id++;
                         }

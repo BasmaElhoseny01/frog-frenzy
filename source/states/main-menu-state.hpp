@@ -15,7 +15,6 @@ class MainMenu : public our::State
     our::MainMenuSystem mainMenu;
     ISoundEngine *engine;
 
-
     void onInitialize() override
     {
         // Read configuration from the file
@@ -61,7 +60,8 @@ class MainMenu : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            engine->play2D("./media/getout.ogg", true);
+            // engine->play2D("./media/getout.ogg", true);
+            std::cout << "1";
     }
 
     void onDraw(double deltaTime) override
@@ -78,10 +78,9 @@ class MainMenu : public our::State
         // meshRendererController.exit();
         // Clear the world
         world.clear();
-        
+
         engine->drop(); // delete engine
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
     }
-
 };

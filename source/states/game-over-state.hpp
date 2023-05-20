@@ -63,7 +63,8 @@ class GameOver : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            engine->play2D("./media/ophelia.mp3", true);
+            // engine->play2D("./media/ophelia.mp3", true);
+            std::cout<<"2";
 
         /////////////  Score /////
         std::string Score_path = "config/score.jsonc";

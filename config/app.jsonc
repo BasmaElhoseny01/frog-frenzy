@@ -324,8 +324,8 @@
                     "sampler": "default"
                 },
                 "frog": {
-                    "type": "lighted",
-                    "shader": "lighting",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -341,12 +341,7 @@
                         1
                     ],
                     "texture": "frog",
-                    "sampler": "default",
-                    "albedo": "frog",
-                    "specular": "white",
-                    "roughness": "black",
-                    "emissive": "black",
-                    "ambient_occlusion": "frog"
+                    "sampler": "default"
                 },
                 "lamp": {
                     "type": "lighted",
@@ -459,6 +454,7 @@
                     }
                 ]
             },
+
             // {
             //     "name": "fence",
             //     "position": [
@@ -1601,18 +1597,19 @@
                         "type": "Mesh Renderer",
                         "mesh": "sphere",
                         "material": "moon"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 0,
+                        "direction": [-100, 0, 0],
+                        "diffuse": [0.53725, 0.811764, 0.94117647],
+                        "specular": [0.53725, 0.811764, 0.94117647],
+                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 50
                     }
-                    // {
-                    //     "type": "Lighting",
-                    //     "kind": 1,
-                    //     "direction": [2, 0, 50],
-                    //     "color": [1, 1, 1],
-                    //     "attenuation": [1, 1, 1],
-                    //     "cone_angles.inner": 90,
-                    //     "cone_angles.outer": 50
-                    // }
                 ]
-            },
+            }
             // {
             //     "position": [0, 0, 10],
             //     "rotation": [0, 0, 0],
@@ -1629,41 +1626,41 @@
             //         }
             //     ]
             // }
-            {
-                "name": "lamp",
-                "scale": [
-                    0.008,
-                    0.008,
-                    0.008
-                ],
-                "position": [
-                    -30,
-                    -5,
-                    -20
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "lamp",
-                        "material": "lamp"
-                    },
-                    {
-                        "type": "Lighting",
-                        "kind": 2,
-                        "direction": [1, 0, 0],
-                        "diffuse": [10, 10, 10],
-                        "specular": [10, 10, 10],
-                        "attenuation": [0.0095, 0.0095, 0.00095],
-                        "cone_angles.inner": 20,
-                        "cone_angles.outer": 50
-                    }
-                ]
-            }
+            // {
+            //     "name": "lamp",
+            //     "scale": [
+            //         0.008,
+            //         0.008,
+            //         0.008
+            //     ],
+            //     "position": [
+            //         -5,
+            //         -15,
+            //         -17
+            //     ],
+            //     "rotation": [
+            //         0,
+            //         0,
+            //         0
+            //     ],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "lamp",
+            //             "material": "lamp"
+            //         },
+            //         {
+            //             "type": "Lighting",
+            //             "kind": 2,
+            //             "direction": [0, -1, 0],
+            //             "diffuse": [1, 1, 1],
+            //             "specular": [1, 1, 1],
+            //             "attenuation": [0.0095, 0.0095, 0.00095],
+            //             "cone_angles.inner": 20,
+            //             "cone_angles.outer": 50
+            //         }
+            //     ]
+            // }
         ]
     }
 }

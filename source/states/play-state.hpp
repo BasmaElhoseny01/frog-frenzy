@@ -12,6 +12,7 @@
 #include <systems/ground.hpp>
 #include <asset-loader.hpp>
 #include <irrKlang/irrKlang.h>
+#include <systems/gain-heart.hpp>
 
 using namespace irrklang;
 
@@ -32,12 +33,26 @@ class Playstate : public our::State
     our::GroundSystem groundSystem;
     our::CollisionSystem collisionSystem;
     ISoundEngine *engine;
+    our::GainHeartSystem gainHeartSystem;
     bool flagPostProcessing;
     int id ;
     void onInitialize() override
     {
+         std::string config_path = "config/app.jsonc";
+
+        // Open the config file and exit if failed
+        std::ifstream file_in(config_path);
+        if (!file_in)
+        {
+            std::cerr << "Couldn't open file: " << config_path << std::endl;
+            return;
+        }
+
+        // Read the file into a json object then close the file
+        nlohmann::json fileConfigs = nlohmann::json::parse(file_in, nullptr, true, true);
+        file_in.close();
         // First of all, we get the scene configuration from the app config
-        auto &config = getApp()->getConfig()["scene"];
+        auto &config = fileConfigs["scene"];
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
@@ -60,10 +75,10 @@ class Playstate : public our::State
         // start the sound engine with default parameters
         engine= createIrrKlangDevice();
 
-        if (!engine)
-            std::cout << "Could not startup engine" << std::endl;
-        else
-            engine->play2D("./media/getout.ogg", true);
+        // if (!engine)
+        //     std::cout << "Could not startup engine" << std::endl;
+        // else
+        //     engine->play2D("./media/getout.ogg", true);
         score = 0; // reset score of player
         flagPostProcessing = false; // reset bool of PostProcessing
         renderer.setApplyPostProcessing(false);
@@ -80,7 +95,7 @@ class Playstate : public our::State
         movementSystem.update(&world, (float)deltaTime); // To update movement component 
         //cameraController.update(&world, (float)deltaTime);
         frogController.update(&world, (float)deltaTime);// To control frog movement
-        
+        gainHeartSystem.update(&world,id);// To check Gaining new Heart
         
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
@@ -89,8 +104,6 @@ class Playstate : public our::State
         world.hideMarkedEntities();
         world.unhideMarkedEntities();
 
-
-       
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
 
@@ -106,6 +119,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
+        gainHeartSystem.exit();
         collisionSystem.exit();
         // Don't forget to destroy the renderer
         renderer.destroy();

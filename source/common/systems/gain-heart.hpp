@@ -71,7 +71,7 @@ namespace our
                         //     cout << "z_rand" << z_rand << endl;
                         //     cout << "Frog Postion:" << glm::to_string(positionFrog) << endl;
                         // }
-                        if (positionFrog.x >= heart_min.x && positionFrog.x <= heart_max.x && positionFrog.y >= heart_min.y && positionFrog.y <= heart_max.y && positionFrog.z >= heart_min.z && positionFrog.z <= heart_max.z)
+                        if (positionFrog.x >= heart_min.x && positionFrog.x <= heart_max.x && positionFrog.z >= heart_min.z && positionFrog.z <= heart_max.z)
                         {
                             if (id <= 0)
                             {

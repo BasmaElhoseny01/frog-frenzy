@@ -84,26 +84,4 @@ class MainMenu : public our::State
         our::clearAllAssets();
     }
 
-    void onImmediateGui() override
-    {
-        // start gui
-        ImGui::Begin("Enter", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
-        // set window position
-        ImGui::SetWindowPos(ImVec2(400, 600));
-        // set window size
-        ImGui::SetWindowSize(ImVec2(800, 100));
-        // set font
-        ImGui::SetWindowFontScale(3.0f);
-        // Start Game Text
-        string pressEnter = "Press Space to start";
-        // initialize color
-        ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), pressEnter.c_str());
-
-        // Exit Game Text
-        string pressEscape = "Press Escape to Exit";
-        // initialize color
-        ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), pressEscape.c_str());
-        // end gui
-        ImGui::End();
-    }
 };

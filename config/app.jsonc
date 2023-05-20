@@ -150,8 +150,8 @@
                     "ambient_occlusion": "grass"
                 },
                 "street": {
-                    "type": "lighted",
-                    "shader": "lighting",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false

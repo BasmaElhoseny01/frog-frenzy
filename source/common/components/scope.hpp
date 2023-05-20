@@ -15,9 +15,9 @@ namespace our {
         glm::vec3 component_size = {0, 0, 0}; //The size of the component to be used as its scope for collision
 
         // The ID of this component type is "Scope"
-        static std::string getID() { return ""; }
+        static std::string getID() { return "Scope"; }
 
-        // Reads linearVelocity & angularVelocity from the given json object
+        // Reads size  from the given json object
         void deserialize(const nlohmann::json& data) override;
     };
 

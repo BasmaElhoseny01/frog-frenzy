@@ -24,7 +24,8 @@
                 }
             },
             "textures": {
-                "ground": "assets/textures/gameOver2.jpg"
+                "heaven": "assets/textures/heaven (1).jpg",
+                "gameOver": "assets/textures/gameOver.jpg"
             },
             "meshes": {
                 "plane": "assets/models/plane.obj"
@@ -36,7 +37,7 @@
                 }
             },
             "materials": {
-                "ground": {
+                "heaven": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -48,7 +49,22 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "ground",
+                    "texture": "heaven",
+                    "sampler": "default"
+                },
+                "gameOver": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "gameOver",
                     "sampler": "default"
                 }
             }
@@ -70,13 +86,28 @@
                 ],
                 "children": [
                     {
-                        "position": [0.0, -0.5, -5.5],
-                        "scale": [3, 2, 2],
+                        "position": [0.0, 0, -5.5],
+                        "scale": [10, 7, 10],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
                                 "mesh": "plane",
-                                "material": "ground"
+                                "material": "heaven"
+                            }
+                        ]
+                    },
+                    {
+                        "position": [0.0, 0, -4.5],
+                        "scale": [
+                            3,
+                            2,
+                            3
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "plane",
+                                "material": "gameOver"
                             }
                         ]
                     }

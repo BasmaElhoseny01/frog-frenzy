@@ -14,6 +14,7 @@
 #include <irrKlang/irrKlang.h>
 #include <systems/gain-heart.hpp>
 
+
 using namespace irrklang;
 
 
@@ -23,7 +24,8 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    int score;
+    int score;              // score no
+    int bestScore;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -83,6 +85,22 @@ class Playstate : public our::State
         flagPostProcessing = false; // reset bool of PostProcessing
         renderer.setApplyPostProcessing(false);
         id = 0;// start from zero
+
+         /////////////  Score /////
+        std::string Score_path = "config/score.jsonc";
+
+        // Open the config file and exit if failed
+        std::ifstream file_score(Score_path);
+        if (!file_in)
+        {
+            std::cerr << "Couldn't open file: " << Score_path << std::endl;
+            return;
+        }
+
+        // Read the file into a json object then close the file
+        nlohmann::json configsScore = nlohmann::json::parse(file_score, nullptr, true, true);
+        file_score.close();
+        bestScore = configsScore["bestScore"];
     }
 
     void onDraw(double deltaTime) override
@@ -119,6 +137,28 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
+        std::string config_path = "config/score.jsonc";
+
+        // Open the config file and exit if failed
+        std::ofstream file_out(config_path);
+        if (!file_out)
+        {
+            std::cerr << "Couldn't open file: " << config_path << std::endl;
+            return;
+        }
+        // // read file
+        // nlohmann::json json = nlohmann::json::parse(file_out, nullptr, true, true);;
+
+        // mutate the json
+        nlohmann::json data;
+        data["score"] = score;
+        data["bestScore"] =(score>bestScore)? score:bestScore;
+        // write the JSON object to the file
+        file_out << data;
+
+        // close the file
+        file_out.close();
+
         gainHeartSystem.exit();
         collisionSystem.exit();
         // Don't forget to destroy the renderer

@@ -399,7 +399,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1], // me4 htt2ry
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ], // me4 htt2ry
                     "texture": "point_lamp",
                     "sampler": "default"
                     // "albedo": "point_lamp",
@@ -477,7 +482,6 @@
         },
         "world": [
             // {
-                
             //     "position": [
             //         0,
             //         0,
@@ -684,7 +688,7 @@
             //     ]
             // },
             {
-                "name":"frog",
+                "name": "frog",
                 "position": [
                     0,
                     -20,
@@ -727,7 +731,7 @@
                                 "type": "Free Frog Controller"
                             }
                         ],
-                        "children":[
+                        "children": [
                             {
                                 "name": "heart",
                                 "position": [
@@ -814,8 +818,9 @@
                                         "id": 2
                                     }
                                 ]
-                            },{
-                                "name":"background",
+                            },
+                            {
+                                "name": "background",
                                 "scale": [
                                     3,
                                     1,
@@ -838,7 +843,8 @@
                                         "material": "white"
                                     }
                                 ]
-                            },{
+                            },
+                            {
                                 "position": [
                                     20,
                                     150,
@@ -863,10 +869,26 @@
                                     {
                                         "type": "Lighting",
                                         "kind": 0,
-                                        "direction": [0, -1, 0],
-                                        "diffuse": [0.53725, 0.811764, 0.94117647],
-                                        "specular": [0.53725, 0.811764, 0.94117647],
-                                        "attenuation": [0.00095, 0.00095, 0.000095],
+                                        "direction": [
+                                            0,
+                                            -1,
+                                            0
+                                        ],
+                                        "diffuse": [
+                                            0.53725,
+                                            0.811764,
+                                            0.94117647
+                                        ],
+                                        "specular": [
+                                            0.53725,
+                                            0.811764,
+                                            0.94117647
+                                        ],
+                                        "attenuation": [
+                                            0.00095,
+                                            0.00095,
+                                            0.000095
+                                        ],
                                         "cone_angles.inner": 20,
                                         "cone_angles.outer": 50
                                     }
@@ -2767,7 +2789,7 @@
                 ]
             },
             {
-                "name": "spot_lamp2",
+                "name": "spot_lamp",
                 "scale": [
                     0.008,
                     0.008,
@@ -2818,7 +2840,7 @@
                 ]
             },
             {
-                "name": "spot_lamp3",
+                "name": "spot_lamp",
                 "scale": [
                     0.008,
                     0.008,
@@ -2869,7 +2891,7 @@
                 ]
             },
             {
-                "name": "spot_lamp4",
+                "name": "spot_lamp",
                 "scale": [
                     0.008,
                     0.008,
@@ -2992,8 +3014,111 @@
             //         }
             //     ]
             // },
-
             /////////////////////////////second road////////////////////////////////
+            {
+                //street 1 right
+                "name": "point_lamp",
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "position": [
+                    35,
+                    -20,
+                    -10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "point_lamp",
+                        "material": "point_lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 1,
+                        "direction": [
+                            0,
+                            -100,
+                            0
+                        ],
+                        "diffuse": [
+                            0.35,
+                            0.35,
+                            0.35
+                        ],
+                        "specular": [
+                            0.005,
+                            0.005,
+                            0.005
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            },
+            {
+                 //Street 1 Left
+                "name": "point_lamp",
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "position": [
+                    -35,
+                    -20,
+                    -10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "point_lamp",
+                        "material": "point_lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 1,
+                        "direction": [
+                            0,
+                            -100,
+                            0
+                        ],
+                        "diffuse": [
+                            0.35,
+                            0.35,
+                            0.35
+                        ],
+                        "specular": [
+                            0.005,
+                            0.005,
+                            0.005
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            },
             {
                 "name": "point_lamp",
                 "scale": [
@@ -3020,17 +3145,33 @@
                     {
                         "type": "Lighting",
                         "kind": 1,
-                        "direction": [0, -100, 0],
-                        "diffuse": [0.35,0.35,0.35],
-                        "specular": [0.005,0.005,0.005],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "direction": [
+                            0,
+                            -100,
+                            0
+                        ],
+                        "diffuse": [
+                            0.35,
+                            0.35,
+                            0.35
+                        ],
+                        "specular": [
+                            0.005,
+                            0.005,
+                            0.005
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
                         "cone_angles.inner": 20,
                         "cone_angles.outer": 100
                     }
                 ]
             },
             {
-                "name": "point_lamp2",
+                "name": "point_lamp",
                 "scale": [
                     1,
                     1,
@@ -3055,10 +3196,26 @@
                     {
                         "type": "Lighting",
                         "kind": 1,
-                        "direction": [0, -100, 0],
-                        "diffuse": [0.35,0.35,0.35],
-                        "specular": [0.005,0.005,0.005],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "direction": [
+                            0,
+                            -100,
+                            0
+                        ],
+                        "diffuse": [
+                            0.35,
+                            0.35,
+                            0.35
+                        ],
+                        "specular": [
+                            0.005,
+                            0.005,
+                            0.005
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
                         "cone_angles.inner": 20,
                         "cone_angles.outer": 100
                     }

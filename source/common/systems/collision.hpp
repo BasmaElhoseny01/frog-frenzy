@@ -81,21 +81,22 @@ namespace our
                         {
                             flagPostProcessing = true;
                             forwardRenderer->setApplyPostProcessing(true); // Turn on Applying Post Processing
-                            // frogEntity->localTransform.position[1] += height; // Make From Jump to the sky when last heart :(
-                        }
-                        else
-                        {
+                            // play sound
+                            engine->play2D("./media/scream.mp3", false);
+                             // inc id after crash with the car
                             id++;
-                            // change position of heart selected Remove Heart from the lives menu
-                            heartEntity->localTransform.position[1] = 100;
+                        }
+                        else if(id<2)
+                        {
+                            // play sound
+                            engine->play2D("./media/scream.mp3", false);
+                            // inc id after crash with the car
+                            id++;
                             // change frog position after crash car Move Car to the front
                             frogEntity->localTransform.position[2] -= height;
                         }
-                        // play sound
-                        std::cout << "Basma: scream" << endl;
-                        // engine->play2D("./media/scream.mp3", false);
-
-                        // inc id after crash with the car
+                        // change position of heart selected Remove Heart from the lives menu
+                        heartEntity->localTransform.position[1] = 100;
                     }
                 }
             }

@@ -191,7 +191,6 @@ namespace our
             // If this entity has a light component add it for the light vectore
             if (auto lightComp = entity->getComponent<LightingComponent>(); lightComp)
             {
-                // std::cout<<"******************** we have light comp **************"<< std::endl;
                 Lights.push_back(lightComp);
             }
         }

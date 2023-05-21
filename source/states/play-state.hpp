@@ -106,9 +106,7 @@ class Playstate : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            cout << "Basma:getout" << endl;
-        // Play Music
-        //  engine->play2D("./media/getout.ogg", true);
+            engine->play2D("./media/getout.ogg", true); // Play Music
     }
 
     void onDraw(double deltaTime) override

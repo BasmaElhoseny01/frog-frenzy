@@ -82,8 +82,7 @@ class GameOver : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            std::cout << "Basma: ophelia" << endl;
-            // engine->play2D("./media/ophelia.mp3", true);
+            engine->play2D("./media/ophelia.mp3", true);
     }
 
     void onDraw(double deltaTime) override

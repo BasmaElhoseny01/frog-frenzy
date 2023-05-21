@@ -63,8 +63,7 @@ class MainMenu : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            std::cout << "Basma: getout" << endl;
-        // engine->play2D("./media/getout.ogg", true);
+            engine->play2D("./media/getout.ogg", true);
     }
 
     void onDraw(double deltaTime) override

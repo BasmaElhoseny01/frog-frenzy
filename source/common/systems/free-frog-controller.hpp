@@ -77,24 +77,24 @@ namespace our
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                 current_sensitivity *= controller->speedupFactor;
-            // left
-            if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0] > -37)
+            // forward
+            if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
                 // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
-                // change rotation of frog to look left
-                rotationFrog.y = glm::half_pi<float>();
+                // change rotation of frog to look forward
+                rotationFrog.y = 0;
                 // change rotation of camera to be with frog
-                rotationCamera.x = 0;
-                rotationCamera.y = -0.5 * glm::half_pi<float>();
-                rotationCamera.z = -glm::half_pi<float>();
+                rotationCamera.x = (110.0/180.0) * glm::pi<float>();
+                rotationCamera.y = glm::pi<float>();
+                rotationCamera.z = glm::pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x = -40;
-                positionCamera.y = 0;
+                positionCamera.x = 0;
+                positionCamera.y = -70;
                 positionCamera.z = 150;
             }
             // right
-            else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT)) && positionFrog[0] < 37)
+            else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT)) && positionFrog[0] < 32)
             {
                 // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
@@ -102,27 +102,27 @@ namespace our
                 rotationFrog.y = -glm::half_pi<float>();
                 // change rotation of camera to be with frog
                 rotationCamera.x = 0;
-                rotationCamera.y = 0.5 * glm::half_pi<float>();
+                rotationCamera.y = (70.0/180.0) * glm::pi<float>();
                 rotationCamera.z = glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x = 40;
+                positionCamera.x = 70;
                 positionCamera.y = 0;
                 positionCamera.z = 150;
             }
-            // forward
-            else if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
+            // left
+            else if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0] > -32)
             {
                 // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
-                // change rotation of frog to look forward
-                rotationFrog.y = 0;
+                // change rotation of frog to look left
+                rotationFrog.y = glm::half_pi<float>();
                 // change rotation of camera to be with frog
-                rotationCamera.y = glm::pi<float>();
-                rotationCamera.x = (3.0 / 4) * glm::pi<float>();
-                rotationCamera.z = glm::pi<float>();
+                rotationCamera.x = 0;
+                rotationCamera.y = -(70.0/180.0) * glm::pi<float>();
+                rotationCamera.z = -glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x = 0;
-                positionCamera.y = -40;
+                positionCamera.x = -70;
+                positionCamera.y = 0;
                 positionCamera.z = 150;
             }
         }

@@ -285,13 +285,13 @@ namespace our
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", light_direction);
                         break;
                     case 2: // case spot light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position + glm::vec3(-8 * (light_position[0] / abs(light_position[0])), 0.5 * abs(light_position[1]), 0));
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", light_direction);
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", Lights[i]->cone_angles);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     case 1:                                                                                                                                        // case point light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position + glm::vec3(0, 0.5 * abs(light_position[1]), 0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     }
@@ -370,13 +370,13 @@ namespace our
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", light_direction);
                         break;
                     case 2: // case spot light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position + glm::vec3(-8 * (light_position[0] / abs(light_position[0])), 0.5 * abs(light_position[1]), 0));
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", light_direction);
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", Lights[i]->cone_angles);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     case 1:                                                                                                                                        // case point light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position + glm::vec3(0, 0.5 * abs(light_position[1]), 0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     }

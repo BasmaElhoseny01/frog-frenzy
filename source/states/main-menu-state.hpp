@@ -69,7 +69,6 @@ class MainMenu : public our::State
 
     void onDraw(double deltaTime) override
     {
-        //On Draw Update the main menu state and call the renderer
         renderer.render(&world);
         mainMenu.update();
     }

@@ -88,7 +88,6 @@ class GameOver : public our::State
 
     void onDraw(double deltaTime) override
     {
-        //On draw update the game over state and call the renderer
         renderer.render(&world);
         gameOver.update();//update game over state
     }

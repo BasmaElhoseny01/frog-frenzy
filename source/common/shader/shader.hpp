@@ -7,6 +7,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include<iostream>
+using namespace std;
 namespace our {
 
     class ShaderProgram {

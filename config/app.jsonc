@@ -11,7 +11,11 @@
     "scene": {
         "renderer": {
             "sky": "assets/textures/night.jpg",
-            "postprocess": "assets/shaders/postprocess/blur.frag"
+            "postprocess": "assets/shaders/postprocess/blur.frag",
+            "resolution": 10.0,
+            "radius": 1.0,
+            "dir_x": 1.0,
+            "dir_y": 0.0
         },
         "assets": {
             "shaders": {
@@ -3068,7 +3072,7 @@
                 ]
             },
             {
-                 //Street 1 Left
+                //Street 1 Left
                 "name": "point_lamp",
                 "scale": [
                     1,

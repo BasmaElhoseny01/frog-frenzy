@@ -10,12 +10,13 @@ in vec2 tex_coord;
 out vec4 frag_color;
 
 //declare uniforms
-// uniform float resolution;
-// uniform float radius;
-// uniform vec2 dir;
-float resolution=10.0;
-float radius=1.0;
-vec2 dir=vec2(1.0f,0.0f);
+uniform float resolution;
+uniform float radius;
+uniform vec2 dir;
+
+// float resolution=10.0;
+// float radius=100.0;
+// vec2 dir=vec2(1.0f,0.0f);
 
 void main() {
 

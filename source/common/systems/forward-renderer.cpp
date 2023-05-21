@@ -2,6 +2,10 @@
 #include "../mesh/mesh-utils.hpp"
 #include "../texture/texture-utils.hpp"
 
+#include <iostream>
+using namespace std;
+#include "glm/gtx/string_cast.hpp"
+
 namespace our
 {
 
@@ -106,7 +110,15 @@ namespace our
             ShaderProgram *postprocessShader = new ShaderProgram();
             postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
             postprocessShader->attach(config.value<std::string>("postprocess", ""), GL_FRAGMENT_SHADER);
+            //Setting Unifrom Values
+            resolution = config.value("resolution", resolution);
+            radius = config.value("radius", radius);
+            dir_x = config.value("dir_x", dir_x);
+            dir_y = config.value("dir_y", dir_y);
+            dir={dir_x,dir_y};
             postprocessShader->link();
+
+
 
             // Create a post processing material
             postprocessMaterial = new TexturedMaterial();
@@ -390,6 +402,11 @@ namespace our
 
             // drawing a full screen triangle
             glBindVertexArray(postProcessVertexArray);
+
+            //Set Uniform Values
+            postprocessMaterial->shader->set("resolution",resolution);
+            postprocessMaterial->shader->set("radius",radius);
+            postprocessMaterial->shader->set("dir",dir);
             glDrawArrays(GL_TRIANGLES, 0, 3);
         }
     }

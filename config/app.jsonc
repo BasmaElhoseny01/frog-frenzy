@@ -16,7 +16,6 @@
             "radius": 1.0,
             "dir_x": 1.0,
             "dir_y": 0.0
-            // "dir":[1.0,0.0]
         },
         "assets": {
             "shaders": {

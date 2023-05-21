@@ -43,7 +43,7 @@ namespace our
                     for (auto entity2 : world->getEntities())
                     {
                         // Loop to render cars and taxis and lamps ... to the forward :D
-                        if ((entity2->name == "car" || entity2->name == "taxi" || entity2->name == "fence" || entity2->name == "wall" || entity2->name == "hole" || entity2->name == "point_lamp" || entity2->name == "spot_lamp") && (entity2->localTransform.position[2]) > (entity->localTransform.position[2] - width / 2))
+                        if ((entity2->name == "car" || entity2->name == "taxi" || entity2->name == "fence" || entity2->name == "wall" || entity2->name == "point_lamp" || entity2->name == "spot_lamp") && (entity2->localTransform.position[2]) > (entity->localTransform.position[2] - width / 2))
                         {
                             // change taxi or bus position
                             entity2->localTransform.position[2] -= height * 4;

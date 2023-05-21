@@ -1270,9 +1270,9 @@
                     0.15
                 ],
                 "position": [
-                    -60,
+                    -59,
                     -25,
-                    -15
+                    -19
                 ],
                 "rotation": [
                     -90,
@@ -1326,7 +1326,7 @@
                 ],
                 "rotation": [
                     -90,
-                    90,
+                    270,
                     180
                 ],
                 "components": [
@@ -1334,56 +1334,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "wall",
                         "material": "wall"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    -38,
-                    -15,
-                    -26
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    -38,
-                    -15,
-                    -45
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
                     }
                 ]
             },
@@ -1409,56 +1359,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "wall",
                         "material": "wall"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    37.5,
-                    -15,
-                    -26
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    37.5,
-                    -15,
-                    -45
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
                     }
                 ]
             },
@@ -1966,9 +1866,9 @@
                     0.15
                 ],
                 "position": [
-                    -60,
+                    -59,
                     -25,
-                    -95
+                    -99
                 ],
                 "rotation": [
                     -90,
@@ -2038,7 +1938,7 @@
                 ],
                 "rotation": [
                     -90,
-                    90,
+                    270,
                     180
                 ],
                 "components": [
@@ -2046,56 +1946,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "wall",
                         "material": "wall"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    -38,
-                    -15,
-                    -106
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    -38,
-                    -15,
-                    -125
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
                     }
                 ]
             },
@@ -2121,56 +1971,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "wall",
                         "material": "wall"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    38,
-                    -15,
-                    -106
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
-                    }
-                ]
-            },
-            {
-                "name": "hole",
-                "scale": [
-                    4,
-                    4,
-                    1
-                ],
-                "position": [
-                    38,
-                    -15,
-                    -125
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "hole",
-                        "material": "hole"
                     }
                 ]
             },

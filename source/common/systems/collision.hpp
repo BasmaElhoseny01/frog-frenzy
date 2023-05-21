@@ -79,7 +79,6 @@ namespace our
                         // check id to know which heart selected
                         if (id == 2)
                         {
-                            std::cout << "idddddd :" << id << std::endl;
                             flagPostProcessing = true;
                             forwardRenderer->setApplyPostProcessing(true); // Turn on Applying Post Processing
                             // frogEntity->localTransform.position[1] += height; // Make From Jump to the sky when last heart :(
@@ -87,7 +86,6 @@ namespace our
                         else
                         {
                             id++;
-                            std::cout << "kokokoko :" << id << std::endl;
                             // change position of heart selected Remove Heart from the lives menu
                             heartEntity->localTransform.position[1] = 100;
                             // change frog position after crash car Move Car to the front

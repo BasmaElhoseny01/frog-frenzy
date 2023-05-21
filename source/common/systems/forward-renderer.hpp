@@ -43,7 +43,7 @@ namespace our
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
         bool applyPostProcessing=false;// bool PostProcessing
-        // light
+        // create light vectore for all light componnent
         std::vector<LightingComponent*> Lights;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.

@@ -73,12 +73,14 @@ namespace our
     void LightingMaterial::setup() const
     {
         Material::setup();
-        // TexturedMaterial::setup();
 
         if (albedo != nullptr)
         {
+            // select an active texture unit -> 0
             glActiveTexture(GL_TEXTURE0);
+            // bind the texture to unit 0
             albedo->bind();
+            // bind the sampler to unit 0
             sampler->bind(0);
             shader->set("material.albedo", 0);
         }
@@ -133,7 +135,6 @@ namespace our
     void LightingMaterial::deserialize(const nlohmann::json &data)
     {
         Material::deserialize(data);
-        // TexturedMaterial::deserialize(data);
         if (!data.is_object()) return;
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
         albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));

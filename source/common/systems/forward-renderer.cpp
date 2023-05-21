@@ -178,7 +178,7 @@ namespace our
                     opaqueCommands.push_back(command);
                 }
             }
-            // If this entity has a light component
+            // If this entity has a light component add it for the light vectore
             if (auto lightComp = entity->getComponent<LightingComponent>(); lightComp)
             {
                 // std::cout<<"******************** we have light comp **************"<< std::endl;
@@ -241,6 +241,7 @@ namespace our
         {
             it.material->setup();                                        // set up material
 
+            // if it is a light material add the camera_position,VP,M,M_IT,light_count,sky to shader
             if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
             {
                 light_material->shader->set("VP", VP);
@@ -257,6 +258,7 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.5, 0.5, 0.5));
                 light_material->shader->set("sky.bottom", glm::vec3(0.5, 0.5, 0.5));
                 
+                // loop on all light componnet and add them to shader
                 for(int i = 0; i<Lights.size(); i++) {
 
                     glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
@@ -268,16 +270,16 @@ namespace our
                     // light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                     switch (Lights[i]->kind)
                         {
-                        case 0:
+                        case 0: // case directional light
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             break;
-                        case 2:
+                        case 2:  // case spot light
                             light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(-8*(light_position[0]/abs(light_position[0])),0.5*abs(light_position[1]),0));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             light_material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
-                        case 1:
+                        case 1: // case point light
                             light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(0,0.5*abs(light_position[1]),0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
@@ -322,6 +324,7 @@ namespace our
         {
             it.material->setup();                                        // set up material
             
+            // if it is a light material add the camera_position,VP,M,M_IT,light_count,sky to shader
             if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
             {
                 light_material->shader->set("VP", VP);
@@ -338,6 +341,7 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.5, 0.5, 0.5));
                 light_material->shader->set("sky.bottom", glm::vec3(0.5, 0.5, 0.5));
                 
+                // loop on all light componnet and add them to shader
                 for(int i = 0; i<Lights.size(); i++) {
 
                     glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
@@ -349,16 +353,16 @@ namespace our
                     // light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                     switch (Lights[i]->kind)
                         {
-                        case 0:
+                        case 0: // case directional light
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             break;
-                        case 2:
+                        case 2:  // case spot light
                             light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(-8*(light_position[0]/abs(light_position[0])),0.5*abs(light_position[1]),0));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             light_material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
-                        case 1:
+                        case 1: // case point light
                             light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(0,0.5*abs(light_position[1]),0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;

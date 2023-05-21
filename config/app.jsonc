@@ -2519,28 +2519,6 @@
                     }
                 ]
             },
-            // {
-            //     "position": [20, 5, -100],
-            //     "rotation": [45, 45, 0],
-            //     "scale": [1, 1, 1],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "sphere",
-            //             "material": "moon"
-            //         },
-            //         {
-            //             "type": "Lighting",
-            //             "kind": 0,
-            //             "direction": [0, -1, 0],
-            //             "diffuse": [0.53725, 0.811764, 0.94117647],
-            //             "specular": [0.53725, 0.811764, 0.94117647],
-            //             "attenuation": [0.00095, 0.00095, 0.000095],
-            //             "cone_angles.inner": 20,
-            //             "cone_angles.outer": 50
-            //         }
-            //     ]
-            // },
             {
                 "name": "spot_lamp",
                 "scale": [
@@ -2549,9 +2527,9 @@
                     0.008
                 ],
                 "position": [
-                    -38,
+                    -40,
                     -15,
-                    -39
+                    -40
                 ],
                 "rotation": [
                     0,
@@ -2568,8 +2546,13 @@
                         "type": "Lighting",
                         "kind": 2,
                         "direction": [
-                            50,
+                            0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            400,
+                            1100,
                             0
                         ],
                         "diffuse": [
@@ -2588,7 +2571,7 @@
                             0.000095
                         ],
                         "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
+                        "cone_angles.outer": 50
                     }
                 ]
             },
@@ -2600,9 +2583,9 @@
                     0.008
                 ],
                 "position": [
-                    38,
+                    40,
                     -15,
-                    -39
+                    -40
                 ],
                 "rotation": [
                     0,
@@ -2619,8 +2602,13 @@
                         "type": "Lighting",
                         "kind": 2,
                         "direction": [
-                            50,
+                            0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            400,
+                            1100,
                             0
                         ],
                         "diffuse": [
@@ -2639,7 +2627,7 @@
                             0.000095
                         ],
                         "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
+                        "cone_angles.outer": 50
                     }
                 ]
             },
@@ -2651,9 +2639,9 @@
                     0.008
                 ],
                 "position": [
-                    -38,
+                    -40,
                     -15,
-                    -119
+                    -120
                 ],
                 "rotation": [
                     0,
@@ -2670,8 +2658,13 @@
                         "type": "Lighting",
                         "kind": 2,
                         "direction": [
-                            50,
+                            0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            400,
+                            1100,
                             0
                         ],
                         "diffuse": [
@@ -2690,7 +2683,7 @@
                             0.000095
                         ],
                         "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
+                        "cone_angles.outer": 50
                     }
                 ]
             },
@@ -2702,9 +2695,9 @@
                     0.008
                 ],
                 "position": [
-                    38,
+                    40,
                     -15,
-                    -119
+                    -120
                 ],
                 "rotation": [
                     0,
@@ -2721,8 +2714,13 @@
                         "type": "Lighting",
                         "kind": 2,
                         "direction": [
-                            50,
+                            0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            400,
+                            1100,
                             0
                         ],
                         "diffuse": [
@@ -2741,7 +2739,7 @@
                             0.000095
                         ],
                         "cone_angles.inner": 20,
-                        "cone_angles.outer": 100
+                        "cone_angles.outer": 50
                     }
                 ]
             },
@@ -2758,7 +2756,7 @@
                 "position": [
                     35,
                     -20,
-                    -10
+                    5
                 ],
                 "rotation": [
                     0,
@@ -2777,6 +2775,11 @@
                         "direction": [
                             0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            0,
+                            10,
                             0
                         ],
                         "diffuse": [
@@ -2810,7 +2813,7 @@
                 "position": [
                     -35,
                     -20,
-                    -10
+                    5
                 ],
                 "rotation": [
                     0,
@@ -2829,6 +2832,11 @@
                         "direction": [
                             0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            0,
+                            10,
                             0
                         ],
                         "diffuse": [
@@ -2882,6 +2890,11 @@
                             -100,
                             0
                         ],
+                        "position": [
+                            0,
+                            10,
+                            0
+                        ],
                         "diffuse": [
                             0.35,
                             0.35,
@@ -2931,6 +2944,11 @@
                         "direction": [
                             0,
                             -100,
+                            0
+                        ],
+                        "position": [
+                            0,
+                            10,
                             0
                         ],
                         "diffuse": [

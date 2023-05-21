@@ -272,7 +272,7 @@ namespace our
                 for (int i = 0; i < Lights.size(); i++)
                 {
 
-                    glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->position, 1);
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", (int)Lights[i]->kind);
@@ -290,8 +290,8 @@ namespace our
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", Lights[i]->cone_angles);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
-                    case 1:                                                                                                                                        // case point light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
+                    case 1: // case point light
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     }
@@ -357,7 +357,7 @@ namespace our
                 for (int i = 0; i < Lights.size(); i++)
                 {
 
-                    glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->position, 1);
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", (int)Lights[i]->kind);
@@ -375,8 +375,8 @@ namespace our
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", Lights[i]->cone_angles);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
-                    case 1:                                                                                                                                        // case point light
-                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
+                    case 1: // case point light
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", light_position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", Lights[i]->attenuation);
                         break;
                     }

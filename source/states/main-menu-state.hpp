@@ -10,13 +10,14 @@
 
 class MainMenu : public our::State
 {
-    our::World world;
-    our::ForwardRenderer renderer;
-    our::MainMenuSystem mainMenu;
-    ISoundEngine *engine;
+    our::World world;              // to get the world of game
+    our::ForwardRenderer renderer; // render component
+    our::MainMenuSystem mainMenu;  //  Main Menu system
+    ISoundEngine *engine;          // engine to play sounds
 
     void onInitialize() override
     {
+        // step(1) Scene
         // Read configuration from the file
         std::string config_path = "config/main-menu.jsonc";
 
@@ -49,19 +50,22 @@ class MainMenu : public our::State
 
         // Start the main menu State
         mainMenu.enter(getApp());
+        // We initialize the mesh renderer controller system since it needs a pointer to the app
+        // meshRendererController.enter(getApp());
 
         // initialize renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
 
+        // step(2) start the music
         // start the sound engine with default parameters
         engine = createIrrKlangDevice();
 
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
+            std::cout << "Basma: getout"<<endl;
             // engine->play2D("./media/getout.ogg", true);
-            std::cout << "1";
     }
 
     void onDraw(double deltaTime) override

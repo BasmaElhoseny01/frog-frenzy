@@ -21,7 +21,7 @@ namespace our
     {
         glm::vec3 positionFrog;
         HeartComponent *heart = nullptr;
-        
+
     public:
         // This should be called every frame to update all entities containing a StreetComponent.
         void update(World *world, int &id)
@@ -29,7 +29,7 @@ namespace our
             // For each entity in the world
             for (auto entity : world->getEntities())
             {
-                //find frog entity
+                // find frog entity
                 if (entity->name == "frog")
                 {
                     // get position of frog
@@ -57,12 +57,13 @@ namespace our
                         glm::vec3 heart_size = scope->component_size;
                         glm::vec3 heart_max = heart_position + (heart_size);
                         glm::vec3 heart_min = heart_position - (heart_size);
-                        //check on collision between heart and the frog so that it can gain this heart
+                        // check on collision between heart and the frog so that it can gain this heart
                         if (positionFrog.x >= heart_min.x && positionFrog.x <= heart_max.x && positionFrog.z >= heart_min.z && positionFrog.z <= heart_max.z)
                         {
                             if (id <= 0)
                             {
                                 // Full Heart Level so Ignore this heart
+                                // FIX: I hear want to change its color
                                 break;
                             }
                             // Increase Heart Count
@@ -75,7 +76,7 @@ namespace our
                             int x_rand = 0 + (std::rand() % (35 + 1)); // random number from 0-35
                             if (x_old > 0)
                             {
-                                //If the heart is already in the right half of the screen rerender to the left part :D
+                                // If the heart is already in the right half of the screen rerender to the left part :D
                                 x_rand *= -1;
                             }
                             entity->localTransform.position[0] += x_rand;
@@ -88,10 +89,12 @@ namespace our
                 }
             }
 
-            //Update the heart level in the herat bar
-            for (auto entity : world->getEntities()){
+            // Update the heart level in the herat bar
+            for (auto entity : world->getEntities())
+            {
                 heart = entity->getComponent<HeartComponent>();
-                if(heart && heart->id==id){
+                if (heart && heart->id == id)
+                {
                     entity->localTransform.position.y = 20;
                     break;
                 }
@@ -99,8 +102,8 @@ namespace our
         }
         void exit()
         {
-            //Release Resources if found
-            heart=nullptr;
+            // Release Resources if found
+            heart = nullptr;
         }
     };
 }

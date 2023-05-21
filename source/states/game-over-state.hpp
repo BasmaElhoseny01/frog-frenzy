@@ -54,7 +54,6 @@ class GameOver : public our::State
         }
         gameOver.enter(getApp());
         // We initialize the mesh renderer controller system since it needs a pointer to the app
-        // meshRendererController.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
@@ -98,12 +97,11 @@ class GameOver : public our::State
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the meshRenderer controller system to make sure that the mouse is unlocked
-        // meshRendererController.exit();
         // Clear the world
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
-        
+
         engine->drop(); // delete engine
     }
     void onImmediateGui() override

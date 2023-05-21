@@ -9,7 +9,8 @@
 #include "../../states/game-over-state.hpp"
 #include "../../states/play-state.hpp"
 #include "../ecs/entity.hpp"
-
+#include <iostream>
+using namespace std;
 namespace our
 {
 
@@ -21,11 +22,14 @@ namespace our
         int height = 40;               // height of ground
         Entity *heartEntity = nullptr; // Pointer to store heart entity
         Entity *frogEntity = nullptr;  // Pointer to store frog entity
+        int counter = 0;
+
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
             this->app = app;
+            counter = 0;
         }
         // This should be called every frame to update all entities containing a StreetComponent :D.
         void update(World *world, ForwardRenderer *forwardRenderer, bool &flagPostProcessing, ISoundEngine *engine, int &id)
@@ -75,12 +79,15 @@ namespace our
                         // check id to know which heart selected
                         if (id == 2)
                         {
+                            std::cout << "idddddd :" << id << std::endl;
                             flagPostProcessing = true;
-                            forwardRenderer->setApplyPostProcessing(true);    // Turn on Applying Post Processing
-                            frogEntity->localTransform.position[1] += height; // Make From Jump to the sky when last heart :(
+                            forwardRenderer->setApplyPostProcessing(true); // Turn on Applying Post Processing
+                            // frogEntity->localTransform.position[1] += height; // Make From Jump to the sky when last heart :(
                         }
                         else
                         {
+                            id++;
+                            std::cout << "kokokoko :" << id << std::endl;
                             // change position of heart selected Remove Heart from the lives menu
                             heartEntity->localTransform.position[1] = 100;
                             // change frog position after crash car Move Car to the front
@@ -91,7 +98,6 @@ namespace our
                         // engine->play2D("./media/scream.mp3", false);
 
                         // inc id after crash with the car
-                        id++;
                     }
                 }
             }
@@ -102,11 +108,16 @@ namespace our
             // check if game is over or not
             if (flagPostProcessing)
             {
+                counter++;
                 // wait to apply post processing filter after 1.5 sec
-                _sleep(1500);
-                // change to game over state
-                // app->registerState<GameOver>("game-over");
-                app->changeState("game-over");
+                // _sleep(1500);
+                if (counter >= 150)
+                {
+                    // cout << "ee";
+                    // change to game over state
+                    // app->registerState<GameOver>("game-over");
+                    app->changeState("game-over");
+                }
             }
         }
         void exit()

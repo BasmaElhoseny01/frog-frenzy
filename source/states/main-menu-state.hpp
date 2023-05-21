@@ -51,7 +51,6 @@ class MainMenu : public our::State
         // Start the main menu State
         mainMenu.enter(getApp());
         // We initialize the mesh renderer controller system since it needs a pointer to the app
-        // meshRendererController.enter(getApp());
 
         // initialize renderer
         auto size = getApp()->getFrameBufferSize();
@@ -64,8 +63,8 @@ class MainMenu : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            std::cout << "Basma: getout"<<endl;
-            // engine->play2D("./media/getout.ogg", true);
+            std::cout << "Basma: getout" << endl;
+        // engine->play2D("./media/getout.ogg", true);
     }
 
     void onDraw(double deltaTime) override
@@ -78,8 +77,6 @@ class MainMenu : public our::State
     {
         // Don't forget to destroy the renderer
         renderer.destroy();
-        // On exit, we call exit for the meshRenderer controller system to make sure that the mouse is unlocked
-        // meshRendererController.exit();
         // Clear the world
         world.clear();
 

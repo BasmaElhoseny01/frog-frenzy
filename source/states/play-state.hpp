@@ -107,8 +107,8 @@ class Playstate : public our::State
             std::cout << "Could not startup engine" << std::endl;
         else
             cout << "Basma:getout" << endl;
-            // Play Music
-            //  engine->play2D("./media/getout.ogg", true);
+        // Play Music
+        //  engine->play2D("./media/getout.ogg", true);
     }
 
     void onDraw(double deltaTime) override
@@ -118,10 +118,10 @@ class Playstate : public our::State
 
         // Here, we just run a bunch of systems to control the world logic
         carsSystem.update(&world);                                                 // To control Cars System to appear
-        movementSystem.update(&world, (float)deltaTime);                           // To update movement component
-        frogController.update(&world, (float)deltaTime); // To control frog movement
+        movementSystem.update(&world, (float)deltaTime, flagPostProcessing);       // To update movement component
+        frogController.update(&world, (float)deltaTime, flagPostProcessing);       // To control frog movement
         collisionSystem.update(&world, &renderer, flagPostProcessing, engine, id); // To check collision
-        gainHeartSystem.update(&world, id);              // To check Gaining new Heart
+        gainHeartSystem.update(&world, id);                                        // To check Gaining new Heart
         // cameraController.update(&world, (float)deltaTime);
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
@@ -142,7 +142,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
-        //Open Score File to save the new score if it is better than the previous best score
+        // Open Score File to save the new score if it is better than the previous best score
         std::string config_path = "config/score.jsonc";
 
         // Open the config file and exit if failed

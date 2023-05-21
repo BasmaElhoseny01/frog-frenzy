@@ -31,9 +31,11 @@ namespace our
         }
 
         // This should be called every frame to update all entities containing a FreeFrogControllerComponent
-        void update(World *world, float deltaTime)
+        void update(World *world, float deltaTime, bool flagPostProcessing)
         {
-           // First of all, we search for an entity containing both a MeshRendererComponent and a FreeFrogControllerComponent
+            if (flagPostProcessing)
+                return;
+            // First of all, we search for an entity containing both a MeshRendererComponent and a FreeFrogControllerComponent
             // As soon as we find one, we break
             // MeshRendererComponent *MeshRenderer = nullptr;
             FreeFrogControllerComponent *controller = nullptr;
@@ -43,7 +45,7 @@ namespace our
                 // MeshRenderer = entity->getComponent<MeshRendererComponent>();
                 controller = entity->getComponent<FreeFrogControllerComponent>();
                 camera = entity->getComponent<CameraComponent>();
-                
+
                 if (camera && controller)
                     break;
             }
@@ -54,7 +56,7 @@ namespace our
 
             // Get the entity that we found via getOwner (we could use controller->getOwner())
             Entity *entity = controller->getOwner();
-            
+
             // We get a reference to the entity's position and rotation [camera]
             glm::vec3 &positionCamera = entity->localTransform.position;
             glm::vec3 &rotationCamera = entity->localTransform.rotation;
@@ -72,39 +74,39 @@ namespace our
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
 
-             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
+            // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                 current_sensitivity *= controller->speedupFactor;
             // left
-            if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0]>-37)
+            if ((app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT)) && positionFrog[0] > -37)
             {
                 // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 // change rotation of frog to look left
                 rotationFrog.y = glm::half_pi<float>();
                 // change rotation of camera to be with frog
-                rotationCamera.x =0;
-                rotationCamera.y =-0.5*glm::half_pi<float>();
-                rotationCamera.z =-glm::half_pi<float>();
+                rotationCamera.x = 0;
+                rotationCamera.y = -0.5 * glm::half_pi<float>();
+                rotationCamera.z = -glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x =-40;
-                positionCamera.y =0;
+                positionCamera.x = -40;
+                positionCamera.y = 0;
                 positionCamera.z = 150;
             }
             // right
-            else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))&& positionFrog[0]< 37)
+            else if ((app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT)) && positionFrog[0] < 37)
             {
                 // change position of frog
                 positionFrog += up * (deltaTime * current_sensitivity.y);
                 // change rotation of frog to look right
                 rotationFrog.y = -glm::half_pi<float>();
                 // change rotation of camera to be with frog
-                rotationCamera.x =0;
-                rotationCamera.y =0.5*glm::half_pi<float>();
-                rotationCamera.z =glm::half_pi<float>();
+                rotationCamera.x = 0;
+                rotationCamera.y = 0.5 * glm::half_pi<float>();
+                rotationCamera.z = glm::half_pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x =40;
-                positionCamera.y =0;
+                positionCamera.x = 40;
+                positionCamera.y = 0;
                 positionCamera.z = 150;
             }
             // forward
@@ -115,16 +117,15 @@ namespace our
                 // change rotation of frog to look forward
                 rotationFrog.y = 0;
                 // change rotation of camera to be with frog
-                rotationCamera.y =glm::pi<float>();
-                rotationCamera.x =(3.0/4) *glm::pi<float>();
-                rotationCamera.z =glm::pi<float>();
+                rotationCamera.y = glm::pi<float>();
+                rotationCamera.x = (3.0 / 4) * glm::pi<float>();
+                rotationCamera.z = glm::pi<float>();
                 // change postion of camera to be with frog
-                positionCamera.x =0;
-                positionCamera.y =-40;
+                positionCamera.x = 0;
+                positionCamera.y = -40;
                 positionCamera.z = 150;
             }
         }
-
     };
 
 }

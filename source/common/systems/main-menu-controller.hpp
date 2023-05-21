@@ -22,10 +22,12 @@ namespace our
         {
             if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
             {
+                //change state to play if we pressed space
                 app->changeState("play");
             }
             else if (app->getKeyboard().isPressed(GLFW_KEY_ESCAPE))
             {
+                //close app if we pressed escape
                 app->close();
             }
         }

@@ -14,33 +14,34 @@
 #include <irrKlang/irrKlang.h>
 #include <systems/gain-heart.hpp>
 
+#include <iostream>
+using namespace std;
 
 using namespace irrklang;
-
-
 
 #pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    int score;                                          // score of player
-    int bestScore;                                      // best score of player in the game
-    our::World world;                                   // to get the world of game
-    our::ForwardRenderer renderer;                      // render component
-    our::FreeCameraControllerSystem cameraController;   //  camera control system
-    our::FreeFrogControllerSystem frogController;       // frag control system
-    our::MovementSystem movementSystem;                 // movement system
-    our::CarsSystem carsSystem;                         // car system
-    our::GroundSystem groundSystem;                     // ground system
-    our::CollisionSystem collisionSystem;               // collision system
-    ISoundEngine *engine;                               // engine to play sounds
-    our::GainHeartSystem gainHeartSystem;               // gain herat system
-    bool flagPostProcessing;                            //bool to know if he lost 3 hearts or not
-    int id ;                                            // id of heart to know which heart remove or back it
+    int score;                                        // score of player
+    int bestScore;                                    // best score of player in the game
+    our::World world;                                 // to get the world of game
+    our::ForwardRenderer renderer;                    // render component
+    our::FreeCameraControllerSystem cameraController; //  camera control system
+    our::FreeFrogControllerSystem frogController;     // frag control system
+    our::MovementSystem movementSystem;               // movement system
+    our::GroundSystem groundSystem;                   // ground system
+    our::CarsSystem carsSystem;                       // car system
+    our::CollisionSystem collisionSystem;             // collision system
+    our::GainHeartSystem gainHeartSystem;             // gain herat system
+    ISoundEngine *engine;                             // engine to play sounds
+    bool flagPostProcessing;                          // bool to Apply Post Processing Before GameOver (if he lost 3 hearts)
+    int id;                                           // id of heart to know which heart remove or back it
     void onInitialize() override
     {
-         std::string config_path = "config/app.jsonc";
+        // Step(1) Scene from Json
+        std::string config_path = "config/app.jsonc";
 
         // Open the config file and exit if failed
         std::ifstream file_in(config_path);
@@ -61,33 +62,28 @@ class Playstate : public our::State
             our::deserializeAllAssets(config["assets"]);
         }
         // If we have a world in the scene config, we use it to populate our world
-        // std::cout<<"*********************************** initializing2 ***********************************"<<std::endl;
         if (config.contains("world"))
         {
             world.deserialize(config["world"]);
         }
+        // Initializations
         // We initialize the camera controller system since it needs a pointer to the app
         cameraController.enter(getApp());
         // We initialize the frog controller system since it needs a pointer to the app
         frogController.enter(getApp());
         // We initialize the collision  system since it needs a pointer to the app
         collisionSystem.enter(getApp());
+
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
-        // start the sound engine with default parameters
-        engine= createIrrKlangDevice();
 
-        // if (!engine)
-        //     std::cout << "Could not startup engine" << std::endl;
-        // else
-        //     engine->play2D("./media/getout.ogg", true);
-        score = 0; // reset score of player
-        flagPostProcessing = false; // reset bool of PostProcessing
-        renderer.setApplyPostProcessing(false);
-        id = 0;// start from zero
+        score = 0;                              // reset score of player
+        flagPostProcessing = false;             // reset flag bool of PostProcessing
+        renderer.setApplyPostProcessing(false); // stop applying the post processing
+        id = 0;                                 // start hearts counts from zero
 
-         /////////////  Score /////
+        // Step(2) Best Score
         std::string Score_path = "config/score.jsonc";
 
         // Open the config file and exit if failed
@@ -103,25 +99,33 @@ class Playstate : public our::State
         file_score.close();
         // read best score
         bestScore = configsScore["bestScore"];
+
+        // Step (3) Start Music
+        //  Initialize the sound engine with default parameters
+        engine = createIrrKlangDevice();
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            cout << "Basma:getout" << endl;
+            // Play Music
+            //  engine->play2D("./media/getout.ogg", true);
     }
 
     void onDraw(double deltaTime) override
     {
-        collisionSystem.checkGameOver(flagPostProcessing);// To check game over
-        groundSystem.update(&world, score); // To rerender ground
+        collisionSystem.checkGameOver(flagPostProcessing); // To check game over
+        groundSystem.update(&world, score);                // To rerender street, grass,lakes, lamps and hearts to the forward space
+
         // Here, we just run a bunch of systems to control the world logic
-        carsSystem.update(&world); // To control Cars System to appear
-        collisionSystem.update(&world,&renderer,flagPostProcessing,engine,id);// To check collision
-        movementSystem.update(&world, (float)deltaTime); // To update movement component 
+        carsSystem.update(&world);                                                 // To control Cars System to appear
+        movementSystem.update(&world, (float)deltaTime);                           // To update movement component
+        frogController.update(&world, (float)deltaTime); // To control frog movement
+        collisionSystem.update(&world, &renderer, flagPostProcessing, engine, id); // To check collision
+        gainHeartSystem.update(&world, id);              // To check Gaining new Heart
         // cameraController.update(&world, (float)deltaTime);
-        frogController.update(&world, (float)deltaTime);// To control frog movement
-        gainHeartSystem.update(&world,id);// To check Gaining new Heart
 
         // Remove Marked for removal Entities[Basma] so that they aren't rendered again
         world.deleteMarkedEntities();
-        // Hide and Unhide Marked Entities :D
-        world.hideMarkedEntities();
-        world.unhideMarkedEntities();
 
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
@@ -138,6 +142,7 @@ class Playstate : public our::State
 
     void onDestroy() override
     {
+        //Open Score File to save the new score if it is better than the previous best score
         std::string config_path = "config/score.jsonc";
 
         // Open the config file and exit if failed
@@ -154,15 +159,13 @@ class Playstate : public our::State
         nlohmann::json data;
         data["score"] = score;
         // check id the score are bigger than best score
-        data["bestScore"] =(score>bestScore)? score:bestScore;
+        data["bestScore"] = (score > bestScore) ? score : bestScore;
         // write the JSON object to the file
         file_out << data;
 
         // close the file
         file_out.close();
 
-        gainHeartSystem.exit();
-        collisionSystem.exit();
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
@@ -171,9 +174,9 @@ class Playstate : public our::State
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
-        engine->drop(); // delete engine
+        engine->drop(); // delete sound engine
     }
-    
+
     void onImmediateGui() override
     {
         // start gui
@@ -185,11 +188,10 @@ class Playstate : public our::State
         // set font
         ImGui::SetWindowFontScale(5.0f);
         // initialize score
-        string score_screen= "Score: " + to_string(score);
+        string score_screen = "Score: " + to_string(score);
         // initialize color
         ImGui::TextColored(ImVec4(0.957f, 0.352f, 0.0f, 1.0f), score_screen.c_str());
         // end gui
         ImGui::End();
     }
-
 };

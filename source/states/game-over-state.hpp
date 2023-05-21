@@ -15,14 +15,16 @@ using namespace irrklang;
 class GameOver : public our::State
 {
 
-    our::World world;               // to get the world of game
-    our::ForwardRenderer renderer;  // render component
-    ISoundEngine *engine;           // engine to play sounds
-    our::GameOverSystem gameOver;   //  game over system
-    int score;                      // score of player
-    int bestScore;                  // best score of player in the game
+    our::World world;              // to get the world of game
+    our::ForwardRenderer renderer; // render component
+    ISoundEngine *engine;          // engine to play sounds
+    our::GameOverSystem gameOver;  //  game over system
+    int score;                     // score of player
+    int bestScore;                 // best score of player in the game
     void onInitialize() override
     {
+        // step(1) Scene
+        // Read game over menu scene from the json file
         std::string config_path = "config/game-over.jsonc";
 
         // Open the config file and exit if failed
@@ -36,7 +38,6 @@ class GameOver : public our::State
         // Read the file into a json object then close the file
         nlohmann::json fileConfigs = nlohmann::json::parse(file_in, nullptr, true, true);
         file_in.close();
-      
 
         // First of all, we get the scene configuration from the app config
         auto &config = fileConfigs["scene"];
@@ -57,16 +58,8 @@ class GameOver : public our::State
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
-         // start the sound engine with default parameters
-         engine= createIrrKlangDevice();
 
-        if (!engine)
-            std::cout << "Could not startup engine" << std::endl;
-        else
-            // engine->play2D("./media/ophelia.mp3", true);
-            std::cout<<"2";
-
-        /////////////  Score /////
+        // step(2) Score
         std::string Score_path = "config/score.jsonc";
 
         // Open the config file and exit if failed
@@ -82,13 +75,22 @@ class GameOver : public our::State
         file_score.close();
         score = configsScore["score"];
         bestScore = configsScore["bestScore"];
-     
+
+        // step(3) start the music
+        // start the sound engine with default parameters
+        engine = createIrrKlangDevice();
+
+        if (!engine)
+            std::cout << "Could not startup engine" << std::endl;
+        else
+            std::cout << "Basma: ophelia" << endl;
+            // engine->play2D("./media/ophelia.mp3", true);
     }
 
     void onDraw(double deltaTime) override
     {
         renderer.render(&world);
-        gameOver.update();
+        gameOver.update();//update game over state
     }
 
     void onDestroy() override
@@ -101,9 +103,10 @@ class GameOver : public our::State
         world.clear();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+        
         engine->drop(); // delete engine
     }
-     void onImmediateGui() override
+    void onImmediateGui() override
     {
         // start gui
         ImGui::Begin("Score", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
@@ -114,12 +117,12 @@ class GameOver : public our::State
         // set font
         ImGui::SetWindowFontScale(5.0f);
         // initialize score
-        string score_screen= "Score: " + to_string(score);
+        string score_screen = "Score: " + to_string(score);
         // initialize color
         ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), score_screen.c_str());
-        
+
         // initialize best score
-        string best_score_screen= "Best score: " + to_string(bestScore);
+        string best_score_screen = "Best score: " + to_string(bestScore);
         // initialize color
         ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), best_score_screen.c_str());
         // end gui

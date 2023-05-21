@@ -43,7 +43,7 @@ namespace our
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
         bool applyPostProcessing=false;// bool PostProcessing
-        // create light vectore for all light componnent
+        // create light vectors for all light components
         std::vector<LightingComponent*> Lights;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
@@ -53,7 +53,7 @@ namespace our
         void destroy();
         // This function should be called every frame to draw the given world
         void render(World* world);
-        // This function sets the applyPostProcessing
+        // This function sets the applyPostProcessing with the given Value
         void setApplyPostProcessing(bool value);
     };
 

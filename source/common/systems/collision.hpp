@@ -13,25 +13,29 @@
 namespace our
 {
 
-    class CollisionSystem {
-        Application *app;               // The application in which the state runs
-        glm::vec3 positionFrog;         // position Frog
-        int width = 20;                 // width of ground
-        int height = 40;                // height of ground
-        Entity *heartEntity = nullptr;  // to store heart entity
-        Entity *frogEntity = nullptr;   // to store frog entity
+    class CollisionSystem
+    {
+        Application *app;              // The application in which the state runs
+        glm::vec3 positionFrog;        // position Frog
+        int width = 20;                // width of ground
+        int height = 40;               // height of ground
+        Entity *heartEntity = nullptr; // Pointer to store heart entity
+        Entity *frogEntity = nullptr;  // Pointer to store frog entity
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
             this->app = app;
         }
-        // This should be called every frame to update all entities containing a StreetComponent.
-        void update(World* world,ForwardRenderer *forwardRenderer, bool& flagPostProcessing,ISoundEngine *engine,int& id) {
-            
+        // This should be called every frame to update all entities containing a StreetComponent :D.
+        void update(World *world, ForwardRenderer *forwardRenderer, bool &flagPostProcessing, ISoundEngine *engine, int &id)
+        {
+
             // For each entity in the world
-            for(auto entity : world->getEntities()){
-                if (entity->name=="frog")
+            for (auto entity : world->getEntities())
+            {
+                // Search for the frog entity
+                if (entity->name == "frog")
                 {
                     // get position of frog
                     positionFrog = entity->localTransform.position;
@@ -41,63 +45,77 @@ namespace our
             }
             HeartComponent *heart = nullptr;
             ScopeComponent *scopeController = nullptr;
-            for(auto entity : world->getEntities()){
+            for (auto entity : world->getEntities())
+            {
                 // Get name of entity
                 std::string name = entity->name;
                 // get the car's position
                 glm::vec3 car_position = entity->localTransform.position;
                 // If the bus or taxi component exists
                 heart = entity->getComponent<HeartComponent>();
-                scopeController = entity->getComponent<ScopeComponent>();
-                
-                if(heart && heart->id==id){
+                if (heart && heart->id == id)
+                {
+                    // If heart with the specific id is found
                     heartEntity = entity;
                     continue;
                 }
-                
-                if((name=="car" || name=="taxi" ) && scopeController){
+
+                // Get Scope Component to determines range of the taxi or car
+                scopeController = entity->getComponent<ScopeComponent>();
+
+                if ((name == "car" || name == "taxi") && scopeController)
+                {
                     // get the car's max and min position
                     glm::vec3 car_size = scopeController->component_size;
-                    glm::vec3 car_max = car_position + (car_size  );
-                    glm::vec3 car_min = car_position - (car_size );
+                    glm::vec3 car_max = car_position + (car_size);
+                    glm::vec3 car_min = car_position - (car_size);
                     if (positionFrog.x >= car_min.x && positionFrog.x <= car_max.x &&
-                            positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
+                        positionFrog.z >= car_min.z && positionFrog.z <= car_max.z)
+                    {
+                        // check id to know which heart selected
+                        if (id == 2)
                         {
-                            // check id to know which heart selected
-                            if(id==2){
-                                flagPostProcessing = true;
-                                forwardRenderer->setApplyPostProcessing(true);
-                                frogEntity->localTransform.position[1] += height;
-                            }else{
-                                // change position of heart selected
-                                heartEntity->localTransform.position[1] = 100;
-                                // change frog position after crash car
-                                frogEntity->localTransform.position[2] -= height;
-                            }
-                            // play sound
-                            // engine->play2D("./media/scream.mp3", false);
-                            std::cout<<"3";
-                            // inc id after crash
-                            id++;
+                            flagPostProcessing = true;
+                            forwardRenderer->setApplyPostProcessing(true);    // Turn on Applying Post Processing
+                            frogEntity->localTransform.position[1] += height; // Make From Jump to the sky when last heart :(
                         }
+                        else
+                        {
+                            // change position of heart selected Remove Heart from the lives menu
+                            heartEntity->localTransform.position[1] = 100;
+                            // change frog position after crash car Move Car to the front
+                            frogEntity->localTransform.position[2] -= height;
+                        }
+                        // play sound
+                        std::cout << "Basma: scream" << endl;
+                        // engine->play2D("./media/scream.mp3", false);
+
+                        // inc id after crash with the car
+                        id++;
+                    }
                 }
             }
         }
-        // check if game over
-        void checkGameOver(bool flagPostProcessing){
+        // Check if game is over
+        void checkGameOver(bool flagPostProcessing)
+        {
             // check if game is over or not
-            if(flagPostProcessing){
-                // wait to apply filter 2 sec
+            if (flagPostProcessing)
+            {
+                // wait to apply post processing filter after 1.5 sec
                 _sleep(1500);
                 // change to game over state
-                app->registerState<GameOver>("game-over");
+                // app->registerState<GameOver>("game-over");
                 app->changeState("game-over");
             }
         }
-        void exit(){
-           
+        void exit()
+        {
+            // Release Pointers
+            app = nullptr;
+            heartEntity = nullptr;
+            frogEntity = nullptr;
         }
-
     };
 
 }

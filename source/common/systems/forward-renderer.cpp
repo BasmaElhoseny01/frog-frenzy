@@ -239,13 +239,10 @@ namespace our
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for (auto it : opaqueCommands)
         {
-            // std::cout<<Lights.size()<<std::endl;
             it.material->setup();                                        // set up material
-
 
             if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
             {
-                // std::cout<<"*************** hiii ***********"<<std::endl;
                 light_material->shader->set("VP", VP);
 
                 light_material->shader->set("camera_position", eyeTrans);
@@ -260,7 +257,7 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.5, 0.5, 0.5));
                 light_material->shader->set("sky.bottom", glm::vec3(0.5, 0.5, 0.5));
                 
-            for(int i = 0; i<Lights.size(); i++) {
+                for(int i = 0; i<Lights.size(); i++) {
 
                     glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
@@ -272,22 +269,15 @@ namespace our
                     switch (Lights[i]->kind)
                         {
                         case 0:
-                            // std::cout<<"******************* hello Directional *******************"<<std::endl;
-                            // light_material->shader->set("lights["+std::to_string(i)+"].direction", glm::normalize(Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0)));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             break;
                         case 2:
-                            // std::cout<<"******************* hello Spot *******************"<<std::endl;
-                            // light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->getOwner()->localTransform.position, 1.0));
-                            // light_material->shader->set("lights["+std::to_string(i)+"].direction", glm::normalize(Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0)));
-                            light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->position);
+                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(-8*(light_position[0]/abs(light_position[0])),0.5*abs(light_position[1]),0));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             light_material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
                         case 1:
-                            // light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->getOwner()->localTransform.position, 1.0));
-                            // light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(0,0.5*abs(light_position[1]),0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
@@ -297,6 +287,7 @@ namespace our
             } else {
                 it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
             }
+
             it.mesh->draw(); // draw
         }
         // If there is a sky material, draw the sky
@@ -330,9 +321,9 @@ namespace our
         for (auto it : transparentCommands)
         {
             it.material->setup();                                        // set up material
+            
             if (auto light_material = dynamic_cast<LightingMaterial *>(it.material); light_material)
             {
-                // std::cout<<"*************** hiii ***********"<<std::endl;
                 light_material->shader->set("VP", VP);
 
                 light_material->shader->set("camera_position", eyeTrans);
@@ -347,7 +338,7 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.5, 0.5, 0.5));
                 light_material->shader->set("sky.bottom", glm::vec3(0.5, 0.5, 0.5));
                 
-            for(int i = 0; i<Lights.size(); i++) {
+                for(int i = 0; i<Lights.size(); i++) {
 
                     glm::vec3 light_position = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0);
@@ -359,24 +350,16 @@ namespace our
                     switch (Lights[i]->kind)
                         {
                         case 0:
-                            std::cout<<"******************* hello Directional *******************"<<std::endl;
-                            // light_material->shader->set("lights["+std::to_string(i)+"].direction", glm::normalize(Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0)));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             break;
                         case 2:
-                            std::cout<<"******************* hello Spot *******************"<<std::endl;
-                            // light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->getOwner()->localTransform.position, 1.0));
-                            // light_material->shader->set("lights["+std::to_string(i)+"].direction", glm::normalize(Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->direction, 0)));
-                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position);
+                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(-8*(light_position[0]/abs(light_position[0])),0.5*abs(light_position[1]),0));
                             light_material->shader->set("lights["+std::to_string(i)+"].direction", light_direction);
                             light_material->shader->set("lights["+std::to_string(i)+"].cone_angles", Lights[i]->cone_angles);
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
                         case 1:
-                            std::cout<<"******************* hello Point *******************"<<std::endl;
-                            // light_material->shader->set("lights["+std::to_string(i)+"].position", Lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(Lights[i]->getOwner()->localTransform.position, 1.0));
-                            // light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
-                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position);
+                            light_material->shader->set("lights["+std::to_string(i)+"].position", light_position + glm::vec3(0,0.5*abs(light_position[1]),0)); // glm::vec4(Lights[i]->getOwner()->localTransform.position + glm::vec3(0, Lights[i]->getOwner()->localTransform.position.y, 0), 1.0) => madboul
                             light_material->shader->set("lights["+std::to_string(i)+"].attenuation", Lights[i]->attenuation);
                             break;
                         }
@@ -385,6 +368,7 @@ namespace our
             } else {
                 it.material->shader->set("transform", VP * it.localToWorld); // sent transform matrix to shader
             }
+
             it.mesh->draw();                                             // draw
         }
 

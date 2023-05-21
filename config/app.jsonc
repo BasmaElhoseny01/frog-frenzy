@@ -222,8 +222,8 @@
                     "ambient_occlusion": "moon"
                 },
                 "car": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighting",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -2748,11 +2748,6 @@
                             -100,
                             0
                         ],
-                        "position": [
-                            -30,
-                            -7,
-                            -39
-                        ],
                         "diffuse": [
                             0.253725,
                             0.2811764,
@@ -2804,10 +2799,107 @@
                             -100,
                             0
                         ],
-                        "position": [
-                            30,
-                            -7,
-                            -39
+                        "diffuse": [
+                            0.253725,
+                            0.2811764,
+                            0.294117647
+                        ],
+                        "specular": [
+                            0.53725,
+                            0.811764,
+                            0.94117647
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            },
+            {
+                "name": "spot_lamp3",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    -38,
+                    -15,
+                    -119
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "spot_lamp",
+                        "material": "spot_lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 2,
+                        "direction": [
+                            50,
+                            -100,
+                            0
+                        ],
+                        "diffuse": [
+                            0.253725,
+                            0.2811764,
+                            0.294117647
+                        ],
+                        "specular": [
+                            0.53725,
+                            0.811764,
+                            0.94117647
+                        ],
+                        "attenuation": [
+                            0.00095,
+                            0.00095,
+                            0.000095
+                        ],
+                        "cone_angles.inner": 20,
+                        "cone_angles.outer": 100
+                    }
+                ]
+            },
+            {
+                "name": "spot_lamp4",
+                "scale": [
+                    0.008,
+                    0.008,
+                    0.008
+                ],
+                "position": [
+                    38,
+                    -15,
+                    -119
+                ],
+                "rotation": [
+                    0,
+                    180,
+                    0
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "spot_lamp",
+                        "material": "spot_lamp"
+                    },
+                    {
+                        "type": "Lighting",
+                        "kind": 2,
+                        "direction": [
+                            50,
+                            -100,
+                            0
                         ],
                         "diffuse": [
                             0.253725,
@@ -2902,16 +2994,17 @@
             //         }
             //     ]
             // },
+
             /////////////////////////////second road////////////////////////////////
             {
-                "name": "point_lamp3",
+                "name": "point_lamp",
                 "scale": [
                     1,
                     1,
                     1
                 ],
                 "position": [
-                    25,
+                    35,
                     -20,
                     -78
                 ],
@@ -2930,7 +3023,6 @@
                         "type": "Lighting",
                         "kind": 1,
                         "direction": [0, -100, 0],
-                        "position": [20, -20, -15],
                         "diffuse": [0.35,0.35,0.35],
                         "specular": [0.005,0.005,0.005],
                         "attenuation": [0.00095, 0.00095, 0.000095],
@@ -2940,14 +3032,14 @@
                 ]
             },
             {
-                "name": "point_lamp4",
+                "name": "point_lamp2",
                 "scale": [
                     1,
                     1,
                     1
                 ],
                 "position": [
-                    -25,
+                    -35,
                     -20,
                     -78
                 ],
@@ -2966,7 +3058,6 @@
                         "type": "Lighting",
                         "kind": 1,
                         "direction": [0, -100, 0],
-                        "position": [20, -20, -15],
                         "diffuse": [0.35,0.35,0.35],
                         "specular": [0.005,0.005,0.005],
                         "attenuation": [0.00095, 0.00095, 0.000095],

@@ -17,7 +17,6 @@ namespace our
         specular = glm::vec3(data.value("specular", glm::vec3(1, 0.9, 0.7)));
         attenuation = glm::vec3(data.value("attenuation", glm::vec3(1, 0, 0)));
         direction = glm::vec3(data.value("direction", glm::vec3(0, -1, 0)));
-        position = glm::vec3(data.value("position", glm::vec3(0, 0, 0)));
         // cone_angles = glm::vec2(data.value("cone_angles", glm::vec2(glm::radians(90.0f), glm::radians(120.0f))));
         cone_angles.x = glm::radians((float)data.value("cone_angles.inner",90));
         cone_angles.y = glm::radians((float)data.value("cone_angles.outer",120));

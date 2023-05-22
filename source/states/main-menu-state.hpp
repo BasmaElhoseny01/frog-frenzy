@@ -63,7 +63,7 @@ class MainMenu : public our::State
         if (!engine)
             std::cout << "Could not startup engine" << std::endl;
         else
-            engine->play2D("./media/getout.ogg", true);
+            engine->play2D("./media/MainMenu.mp3", true);
     }
 
     void onDraw(double deltaTime) override

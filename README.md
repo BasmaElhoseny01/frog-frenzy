@@ -98,10 +98,8 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 ## <img align= "center" width=80px height=80px src="https://media2.giphy.com/media/dAu3qBzpmXstCTimDv/giphy.gif?cid=ecf05e475rq4hwxg7usfm1go2dc1pl5gpbnvo1izu6ph4yuh&rid=giphy.gif&ct=s"> Path of the program <a id ="Path"></a>
 
 <ol>
-<li>When run the Project
-
+<li>When run the Project</li>
 <br>
-
 <table>
 <tr>
 <th align="center" width=70%>Image</th>
@@ -117,14 +115,12 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 </td>
 </tr>
 </table>
-</li>
-<li> When start Game, you can start playing.
-
+<li> When start Game, you can start playing.</li>
 <br>
 <div align="center">
 <img width="500px" src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/7a949eda-0af2-4d9c-a3e1-679d48bd2427">
 </div>
-</li>
+
 <br>
 <li>Settings
 <ul>

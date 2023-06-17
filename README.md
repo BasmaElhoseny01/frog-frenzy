@@ -102,7 +102,7 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 <br>
 <table>
 <tr>
-<th align="center" width=70%>Image</th>
+<th align="center" width=60%>Image</th>
 <th width=20%>Description </th>
 </tr>
 <tr>
@@ -144,7 +144,7 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 <br>
 <table>
 <tr>
-<th align="center" width=70%>Image</th>
+<th align="center" width=65%>Image</th>
 <th width=20%>Description </th>
 </tr>
 <tr>

@@ -99,6 +99,7 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 
 <ol>
 <li>When run the Project
+<br>
 <table>
 
 <tr>
@@ -120,6 +121,39 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 
 <br>
 <div align="center">
+<table>
+
+<tr>
+<th align="center" width=70%>Image</th>
+<th width=20%>Description </th>
+</tr>
+<tr>
+<td align="center" ><img src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/7a949eda-0af2-4d9c-a3e1-679d48bd2427"></td>
+<td>
+<ul>
+<li>Settings
+<ul>
+<li>Froward => W & 🔼</li>
+<li>Left => A & ◀️</li>
+<li>Right => D & ▶️</li>
+<li>Speed => left shift</li>
+<li>Exit Game => Esc</li>
+</ul>
+</li>
+<li>Rules
+<ul>
+<li>You have at most 3 hearts. You start the game with 3 hearts.</li>
+<li>If you make accident you loss one heart.</li>
+<li>when you haven't any more hearts you die. </li>
+<li>Score will increase by crossing the Road</li>
+<li>Your goal is increasing score as you can</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<br>
 <img width="500px" src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/7a949eda-0af2-4d9c-a3e1-679d48bd2427">
 </div>
 </li>

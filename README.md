@@ -5,7 +5,7 @@
 
 </div>
 <div align="center">
-   <img align="center" width=498px height=260px src="https://media.tenor.com/I4J9Q3Aq0ZIAAAAC/frogger-cross-the-street.gif" alt="logo">
+   <img align="center" height=360px src="https://media.tenor.com/I4J9Q3Aq0ZIAAAAC/frogger-cross-the-street.gif" alt="logo">
 
    ### ”Please, Help me to cross the road. 🐸“
 </div>

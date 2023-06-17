@@ -173,7 +173,7 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 ## <img  align= center width= 70px height =70px src="https://img.genial.ly/5f91608064ad990c6ee12237/bd7195a3-a8bb-494b-8a6d-af48dd4deb4b.gif?genial&1643587200063"> Demo
 
 <div  align="center">
-  <img align="center" height=370px  src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/5b26b27b-59fb-4e5d-be19-877a0a832864">
+  <video align="center" height=370px  src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/5b26b27b-59fb-4e5d-be19-877a0a832864">
 </div>
 
 <hr style="background-color: #4b4c60"></hr>

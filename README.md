@@ -165,7 +165,7 @@ git clone https://github.com/BasmaElhoseny01/frog-frenzy
 ## <img align= center width=60px height=60px src="https://media1.giphy.com/media/igsIZv3VwIIlRIpq5G/giphy.gif?cid=ecf05e47faatmwdhcst7c2d4eontr459hjd35zf3an324elo&rid=giphy.gif&ct=s"> File Structure 
 <br>
 <div align= center>
-<img   src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/97bd1f07-1cae-4d27-9366-4e4624015c96">
+<img  height="300px" src="https://github.com/BasmaElhoseny01/frog-frenzy/assets/71986226/97bd1f07-1cae-4d27-9366-4e4624015c96">
 </div>
 <hr style="background-color: #4b4c60"></hr>
 <a id ="video"></a>
